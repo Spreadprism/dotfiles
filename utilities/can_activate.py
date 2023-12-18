@@ -10,7 +10,7 @@ conda_home = Path.home() / "miniconda3"
 
 if not conda_home.exists():
     print("No conda home found...")
-    exit(1)
+    sys.exit(1)
 
 cwd = Path(os.getcwd()).name
 
