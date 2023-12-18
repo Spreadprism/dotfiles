@@ -9,6 +9,8 @@ continuation_prompt = '  ➤ '
 [directory]
 format ='[$path]($style)[$read_only]($read_only_style)'
 truncate_to_repo = false
+read_only='🔒'
+read_only_style='red'
 
 [conda]
 format = '\([$environment]($style)\)'
@@ -32,4 +34,10 @@ style = 'fg:#FF7047'
 format=' on [$symbol$branch(:$remote_branch)]($style)'
 
 [git_status]
-
+format=' ([\[ $all_status$ahead_behind\]]($style) )'
+diverged='󰙅'
+conflicted='{count}󰮘 '
+modified='${count}󱇧 '
+untracked='${count}󰷊 '
+deleted='${count} '
+staged='${count}󰈖 '

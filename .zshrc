@@ -10,8 +10,8 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 # INFO: Aliases
-# alias activate='conda activate'
-# alias deactivate='conda deactivate'
+alias activate='conda activate'
+alias deactivate='conda deactivate'
 # alias nvim='nvim --listen localhost:12345'
 #
 # Doing all the possible typos

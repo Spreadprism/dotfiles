@@ -8,5 +8,4 @@ link_config:
 link_starship:
 	@echo "Linking ~/.config/starship.toml"
 	@rm -f ~/.config/starship.toml
-	@ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
-
+	@ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml  
