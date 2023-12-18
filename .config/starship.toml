@@ -1,0 +1,35 @@
+format = '''
+╭\[$directory\]$conda$git_branch$git_status(
+├\($python$golang$rust\))
+╰─➤ 
+'''
+add_newline = false
+continuation_prompt = '  ➤ '
+
+[directory]
+format ='[$path]($style)[$read_only]($read_only_style)'
+truncate_to_repo = false
+
+[conda]
+format = '\([$environment]($style)\)'
+# style = 'white'
+
+[python]
+format = '[$symbol$version]($style)'
+symbol = ' '
+style = 'yellow'
+
+[golang]
+format = '[$symbol($version)]($style)'
+symbol = '󰟓 '
+
+[rust]
+format = '[$symbol ($version)]($style)'
+symbol = ''
+style = 'fg:#FF7047'
+
+[git_branch]
+format=' on [$symbol$branch(:$remote_branch)]($style)'
+
+[git_status]
+
