@@ -135,9 +135,10 @@ return {
 	-- {
 	-- 	"3rd/image.nvim",
 	-- 	event = "VeryLazy",
+	-- 	rocks = { "magick" },
 	-- 	config = function()
 	-- 		require("image").setup({
-	-- 			backend = "kitty",
+	-- 			backend = "ueberzug",
 	-- 			integrations = {
 	-- 				markdown = {
 	-- 					enabled = true,
@@ -154,8 +155,8 @@ return {
 	-- 					filetypes = { "norg" },
 	-- 				},
 	-- 			},
-	-- 			max_width = nil,
-	-- 			max_height = nil,
+	-- 			max_width = 0,
+	-- 			max_height = 0,
 	-- 			max_width_window_percentage = nil,
 	-- 			max_height_window_percentage = 50,
 	-- 			window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
