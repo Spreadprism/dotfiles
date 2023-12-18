@@ -1,7 +1,7 @@
 format = '''
 ╭\[$directory\]$conda$git_branch$git_status(
-├\($python$golang$rust\))
-╰─➤ 
+├\( $python$golang$c$dotnet$rust$elixir$java$nodejs${custom.docker}\))
+╰($container)─➤ 
 '''
 add_newline = false
 continuation_prompt = '  ➤ '
@@ -16,19 +16,52 @@ read_only_style='red'
 format = '\([$environment]($style)\)'
 # style = 'white'
 
+[container]
+format = '[\($symbol \[$name\]]($style)\)'
+symbol=''
+style='bold blue dimmed'
+
+[dotnet]
+format = '[$symbol( $version)( 🎯 $tfm)]($style) '
+symbol=''
+style='fg:#876CE2'
+
+[c]
+format = '[$symbol( $version(-$name))]($style) '
+symbol = ''
+style = 'blue'
+
 [python]
-format = '[$symbol$version]($style)'
+format = '[$symbol$version]($style) '
 symbol = ' '
 style = 'yellow'
 
 [golang]
-format = '[$symbol($version)]($style)'
+format = '[$symbol($version)]($style) '
 symbol = '󰟓 '
 
 [rust]
-format = '[$symbol ($version)]($style)'
+format = '[$symbol ($version)]($style) '
 symbol = ''
 style = 'fg:#FF7047'
+
+[elixir]
+format = '[$symbol ($version \(OTP $otp_version\))]($style) '
+symbol=''
+
+[java]
+format = '[${symbol} (${version})]($style) '
+symbol = ''
+style='fg:#EA2D2E'
+
+[nodejs]
+format = '[$symbol $version]($style) '
+symbol = '󰎙'
+
+[custom.docker]
+format = '[󰡨]($style) '
+detect_files=['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+style ='blue bold'
 
 [git_branch]
 format=' on [$symbol$branch(:$remote_branch)]($style)'
