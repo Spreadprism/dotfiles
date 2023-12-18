@@ -22,6 +22,7 @@ alias vnim='nvim'
 alias nvmi='nvim'
 alias vmi='nvim'
 alias n='nvim'
+alias nivm='nvim'
 
 alias nc='rm -rf ~/.local/state/nvim/swap && mkdir ~/.local/state/nvim/swap'
 alias lg='lazygit'
@@ -38,7 +39,7 @@ alias envim='(cd ~/.config/nvim && nvim)'
 alias etmux='nvim ~/.config/tmux/tmux.conf && tmux source ~/.config/tmux/tmux.conf'
 
 # INFO: Plugins
-plugins=(git zsh-autosuggestions sudo)
+plugins=(git zsh-autosuggestions sudo dirhistory)
 
 autoload -Uz compinit && compinit
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
