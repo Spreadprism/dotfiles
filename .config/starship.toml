@@ -1,6 +1,6 @@
 format = '''
 ╭\[$directory\](${custom.conda-env-available})$conda$git_branch$git_status(
-├\( $python$golang$c$dotnet$rust$elixir$java$nodejs${custom.docker}\))
+├\($python$golang$c$dotnet$rust$elixir$java$nodejs${custom.docker}\))
 ╰($container)─➤ 
 '''
 add_newline = false
@@ -27,39 +27,39 @@ symbol=''
 style='fg:#876CE2'
 
 [c]
-format = '[$symbol( $version(-$name))]($style) '
+format = '[$symbol( $version(-$name))]($style)'
 symbol = ''
 style = 'blue'
 
 [python]
-format = '[$symbol$version]($style) '
+format = '[$symbol$version]($style)'
 symbol = ' '
 style = 'yellow'
 
 [golang]
-format = '[$symbol($version)]($style) '
+format = '[$symbol($version)]($style)'
 symbol = '󰟓 '
 
 [rust]
-format = '[$symbol ($version)]($style) '
+format = '[$symbol ($version)]($style)'
 symbol = ''
 style = 'fg:#FF7047'
 
 [elixir]
-format = '[$symbol ($version \(OTP $otp_version\))]($style) '
+format = '[$symbol ($version \(OTP $otp_version\))]($style)'
 symbol=''
 
 [java]
-format = '[${symbol} (${version})]($style) '
+format = '[${symbol} (${version})]($style)'
 symbol = ''
 style='fg:#EA2D2E'
 
 [nodejs]
-format = '[$symbol $version]($style) '
+format = '[$symbol $version]($style)'
 symbol = '󰎙'
 
 [custom.docker]
-format = '[󰡨]($style) '
+format = ' [󰡨]($style)'
 detect_files=['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
 style ='blue bold'
 
