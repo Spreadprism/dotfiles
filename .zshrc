@@ -39,7 +39,7 @@ alias envim='(cd ~/.config/nvim && nvim)'
 alias etmux='nvim ~/.config/tmux/tmux.conf && tmux source ~/.config/tmux/tmux.conf'
 
 # INFO: Plugins
-plugins=(git zsh-autosuggestions sudo dirhistory)
+plugins=(git zsh-autosuggestions sudo dirhistory jsontools)
 
 autoload -Uz compinit && compinit
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
