@@ -10,8 +10,9 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 # INFO: Aliases
-alias activate='conda activate'
+# alias activate='conda activate'
 alias deactivate='conda deactivate'
+alias activate='source ~/miniconda3/bin/activate $(basename $(pwd))'
 # alias nvim='nvim --listen localhost:12345'
 #
 # Doing all the possible typos
@@ -75,4 +76,6 @@ fi
 
 # Created by `pipx` on 2023-11-15 12:54:02
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.dotfiles/bin"
+
 eval "$(starship init zsh)"

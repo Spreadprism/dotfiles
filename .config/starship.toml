@@ -1,5 +1,5 @@
 format = '''
-╭\[$directory\]$conda$git_branch$git_status(
+╭\[$directory\](${custom.conda-env-available})$conda$git_branch$git_status(
 ├\( $python$golang$c$dotnet$rust$elixir$java$nodejs${custom.docker}\))
 ╰($container)─➤ 
 '''
@@ -62,6 +62,11 @@ symbol = '󰎙'
 format = '[󰡨]($style) '
 detect_files=['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
 style ='blue bold'
+
+[custom.conda-env-available]
+format='\([]($style)\)'
+when='can_activate'
+style='bold green'
 
 [git_branch]
 format=' on [$symbol$branch(:$remote_branch)]($style)'

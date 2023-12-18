@@ -2,6 +2,7 @@ link_all:
 	@echo "Linking all"
 	@make link_zsh --no-print-directory
 	@make link_config --no-print-directory
+	@cd utilities && make --no-print-directory
 
 link_zsh:
 	@echo "Linking ~/.zshrc"
