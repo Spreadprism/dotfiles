@@ -17,3 +17,7 @@ private_zsh:
 link_config:
 	@cd .config && make
 
+link_conda:
+	@echo "Linking ~/.condarc"
+	@rm -f ~/.condarc
+	@ln -s ~/.dotfiles/.condarc ~/.condarc
