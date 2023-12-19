@@ -23,8 +23,10 @@ alias nvmi='nvim'
 alias vmi='nvim'
 alias n='nvim'
 alias nivm='nvim'
+export NVIM_LISTEN_ADDRESS='/tmp/nvim.socket'
 
-alias nc='rm -rf ~/.local/state/nvim/swap && mkdir ~/.local/state/nvim/swap'
+alias nclear='rm -rf ~/.local/state/nvim/swap && mkdir ~/.local/state/nvim/swap'
+alias nc='nclear'
 alias lg='lazygit'
 
 # windows commands
