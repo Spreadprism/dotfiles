@@ -1,8 +1,9 @@
+
 link_all:
 	@echo "Linking all"
+	@make build_utilities --no-print-directory # INFO: Utilities need to be built before everything else
 	@make link_zsh --no-print-directory
 	@make link_config --no-print-directory
-	@make build_utilities --no-print-directory
 
 link_zsh:
 	@echo "Linking ~/.zshrc"
@@ -25,3 +26,6 @@ link_conda:
 
 build_utilities:
 	@cd utilities && make --no-print-directory
+
+link_glaze:
+	@cd .glaze-wm && make --no-print-directory
