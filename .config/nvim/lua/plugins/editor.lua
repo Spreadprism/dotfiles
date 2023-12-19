@@ -292,6 +292,10 @@ return {
 			is_insert_mode = true,
 		},
 	},
+	{
+		"mg979/vim-visual-multi",
+		event = "VeryLazy",
+	},
 	-- {
 	-- 	"neoclide/coc.nvim",
 	-- 	event = "VeryLazy",
