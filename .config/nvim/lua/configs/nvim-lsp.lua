@@ -12,11 +12,17 @@ return function()
 
 	local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+	-- lsp_capabilities.textDocument.foldingRange = {
+	-- 	dynamicRegistration = false,
+	-- 	lineFoldingOnly = true,
+	-- }
+
 	-- Language specific configs
 
 	local util = require("lspconfig/util")
 	-- lua
 	lspconfig.lua_ls.setup({
+		capabilities = lsp_capabilities,
 		settings = {
 			Lua = {
 				diagnostics = {
@@ -177,6 +183,7 @@ return function()
 
 	-- go
 	lspconfig.gopls.setup({
+		capabilities = lsp_capabilities,
 		cmd = { "gopls" },
 		filetypes = { "go", "gomod", "gowork", "gotmpl" },
 		root_dir = util.root_pattern("go.work", "go.mod", ".git"),
