@@ -2,7 +2,7 @@ Current_ft = function()
 	return vim.api.nvim_buf_get_option(0, "filetype")
 end
 
-config = require("nvim-surround.config")
+local config = require("nvim-surround.config")
 
 return {
 	["s"] = {
