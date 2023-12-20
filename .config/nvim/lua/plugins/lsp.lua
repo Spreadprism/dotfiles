@@ -27,7 +27,7 @@ return {
 				enabled = false,
 			},
 		},
-		config = require("configs.nvim-lsp"),
+		config = require("configs.new-nvim-lsp"),
 	},
 	{
 		"hrsh7th/nvim-cmp",

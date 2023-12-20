@@ -45,7 +45,7 @@ end
 M.init_keybinds = function()
 	local module_utility = require("utility.module_utility")
 	local mapping_path = module_utility.BASE_NEOVIM_LUA_PATH .. "/keys"
-	local modules = module_utility.get_modules_in_dir(mapping_path)
+	local modules = module_utility.get_modules_in_dir(mapping_path, "keys.")
 
 	-- For each modules, load their keymaps
 	for _, module in pairs(modules) do

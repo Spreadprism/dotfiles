@@ -3,10 +3,10 @@ return function(on_attach, capabilities)
 		on_attach = on_attach,
 		capabilities = capabilities,
 		settings = {
-			Lua = {
-				diagnostics = {
-					-- Get the language server to recognize the `vim` global
-					globals = { "vim" },
+			{
+				root_dir = vim.fn.getcwd(),
+				bashIde = {
+					globPattern = "!(*.env|*@(.sh|.inc|.bash|.command))",
 				},
 			},
 		},

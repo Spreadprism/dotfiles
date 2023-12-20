@@ -46,11 +46,11 @@ return {
 				popup = {
 					autofocus = true,
 				},
-				src = {
-					cmp = {
-						enabled = true,
-					},
-				},
+				-- src = {
+				-- 	cmp = {
+				-- 		enabled = true,
+				-- 	},
+				-- },
 			})
 		end,
 	},
