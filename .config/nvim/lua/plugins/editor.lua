@@ -296,9 +296,16 @@ return {
 		"mg979/vim-visual-multi",
 		event = "VeryLazy",
 	},
-	-- {
-	-- 	"neoclide/coc.nvim",
-	-- 	event = "VeryLazy",
-	-- 	build = "npm ci",
-	-- },
+	{
+		"cvigilv/esqueleto.nvim",
+		config = function()
+			local templates_dir = vim.fn.stdpath("config") .. "/lua" .. "/templates"
+			-- get all directories name in templates_dir in table
+			local directories_name = vim.fn.readdir(templates_dir)
+			require("esqueleto").setup({
+				directories = { templates_dir },
+				patterns = directories_name,
+			})
+		end,
+	},
 }
