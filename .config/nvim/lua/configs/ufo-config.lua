@@ -38,6 +38,7 @@ return function()
 	require("ufo").setup({
 		close_fold_kinds = {},
 		fold_virt_text_handler = fold_virt_text_handler,
+		---@diagnostic disable-next-line: unused-local
 		provider_selector = function(bufnr, filetype, buftype)
 			return { "lsp", "indent" }
 		end,

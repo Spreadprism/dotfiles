@@ -114,6 +114,7 @@ return function()
 	-- INFO: C# CONFIGS
 	overseer.register_template({
 		name = "C# build debug",
+		---@diagnostic disable-next-line: unused-local
 		builder = function(params)
 			return {
 				cmd = { "dotnet" },
@@ -147,6 +148,7 @@ return function()
 
 	overseer.register_template({
 		name = "Rust build debug",
+		---@diagnostic disable-next-line: unused-local
 		builder = function(params)
 			return {
 				cmd = { "cargo" },
@@ -158,6 +160,7 @@ return function()
 
 	overseer.register_template({
 		name = "rust_build_release",
+		---@diagnostic disable-next-line: unused-local
 		builder = function(params)
 			return {
 				cmd = { "cargo" },
