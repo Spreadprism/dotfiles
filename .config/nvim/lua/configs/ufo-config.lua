@@ -1,7 +1,26 @@
 return function()
+	vim.o.foldcolumn = "1" -- '0' is not bad
+	vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+	vim.o.foldlevelstart = 99
+	vim.o.foldenable = true
+	-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+	vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+	vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+
+	-- BUG: this doesn't work (because async)
+	--
+	-- vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	-- 	callback = function()
+	-- 		require("ufo").closeAllFolds()
+	-- 	end,
+	-- })
 	require("ufo").setup({
+		close_fold_kinds = { "function" },
 		provider_selector = function(bufnr, filetype, buftype)
-			return { "treesitter", "indent" }
+			if filetype == "python" then
+				return { "treesitter", "indent" }
+			end
+			return { "lsp", "indent" }
 		end,
 	})
 end

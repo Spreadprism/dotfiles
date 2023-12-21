@@ -32,6 +32,10 @@ end
 local define_capabilities = function()
 	local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 
+	-- lsp_capabilities.textDocument.foldingRange = {
+	-- 	dynamicRegistration = false,
+	-- 	lineFoldingOnly = true,
+	-- }
 	return lsp_capabilities
 end
 

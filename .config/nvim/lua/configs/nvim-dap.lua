@@ -26,10 +26,10 @@ return function()
 		args = { "--interpreter=vscode" },
 	}
 
-	-- INFO: Load vscode launch.json
-	require("dap.ext.vscode").load_launchjs(nil, {
-		codelldb = { "rust", "c" },
-	})
+	-- -- INFO: Load vscode launch.json
+	-- require("dap.ext.vscode").load_launchjs(nil, {
+	-- 	codelldb = { "rust", "c" },
+	-- })
 	-- local mason_bin = os.getenv("HOME") .. "/.local/share/nvim/mason"
 
 	-- INFO: Custom dap configs
