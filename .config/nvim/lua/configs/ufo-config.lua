@@ -25,6 +25,7 @@ local fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate
 	table.insert(newVirtText, { suffix, "MoreMsg" })
 	return newVirtText
 end
+
 return function()
 	vim.o.foldcolumn = "1" -- '0' is not bad
 	vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
@@ -38,9 +39,6 @@ return function()
 		close_fold_kinds = {},
 		fold_virt_text_handler = fold_virt_text_handler,
 		provider_selector = function(bufnr, filetype, buftype)
-			if filetype == "python" then
-				return { "treesitter", "indent" }
-			end
 			return { "lsp", "indent" }
 		end,
 	})
