@@ -87,6 +87,7 @@ return {
 			})
 		end,
 	},
+	{ "folke/neodev.nvim", opts = {} },
 	-- {
 	-- 	"Dhanus3133/LeetBuddy.nvim",
 	-- 	dependencies = {
