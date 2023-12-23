@@ -23,3 +23,6 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSig
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#1abc9c]])
+
+local fu = require("utility.file_utility")
+

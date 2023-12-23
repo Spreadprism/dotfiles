@@ -58,6 +58,7 @@ return {
 				["<leader>t"] = { name = "+test" },
 				["<leader>g"] = { name = "+git" },
 				["<leader>c"] = { name = "+cargo" },
+				["<leader>n"] = { name = "+noice" },
 				["<leader>gh"] = { name = "+hunks" },
 				["<leader>j"] = { name = "+jupynium" },
 				["<leader>q"] = { name = "+quit/session" },

@@ -107,6 +107,7 @@ return function()
 	local get_cs_program_debug = function()
 		local directory = vim.fn.getcwd()
 		local program_name = string.match(directory, "[^/]+$")
+
 		local program = directory .. "/bin/Debug/net7.0/" .. program_name .. ".dll"
 		return program
 	end
