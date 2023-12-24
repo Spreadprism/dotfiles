@@ -9,6 +9,13 @@ vim.o.showtabline = 0
 vim.o.updatetime = 300
 vim.o.scl = "yes"
 
+local env = require("utility.env")
+env.set("userHome", env.get("HOME"))
+env.set("nvimHome", env.get("HOME") .. "/.config/nvim")
+
+env.set("workspaceFolder", vim.fn.getcwd())
+env.set("workspaceFolderBaseName", vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+
 -- INFO: Init packages
 require("init_lazy")
 -- INFO: Init keybinds
@@ -23,6 +30,3 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSig
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#1abc9c]])
-
-local fu = require("utility.file_utility")
-

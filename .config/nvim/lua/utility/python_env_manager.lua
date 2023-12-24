@@ -18,7 +18,7 @@ function M.get_venv_dir()
 
 	local conda_env_name = vim.fn.fnamemodify(current_root, ":t")
 
-	local conda_env_path = os.getenv("HOME") .. "/miniconda3/envs/" .. conda_env_name
+	local conda_env_path = require("utility.env").get("HOME") .. "/miniconda3/envs/" .. conda_env_name
 	local conda_env_path_env = conda_env_path .. "_env"
 	local venv_path = current_root .. "/venv"
 
@@ -51,7 +51,7 @@ function M.get_python_path()
 	if full_dir_path ~= nil then
 		return full_dir_path .. "/bin/python"
 	else
-		local path = os.getenv("HOME") .. "/miniconda3/bin/python"
+		local path = require("utility.env").get("HOME") .. "/miniconda3/bin/python"
 		-- print(path) -- for debugging purposes
 		return path
 	end
@@ -62,7 +62,7 @@ function M.get_pytest_path()
 	if full_dir_path ~= nil then
 		return full_dir_path .. "/bin/pytest"
 	else
-		local path = os.getenv("HOME") .. "/miniconda3/bin/pytest"
+		local path = require("utility.env").get("HOME") .. "/miniconda3/bin/pytest"
 		-- print(path) -- for debugging purposes
 		return path
 	end

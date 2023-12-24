@@ -2,7 +2,7 @@ local M = {}
 
 local lfs = require("lfs")
 
-M.BASE_NEOVIM_LUA_PATH = os.getenv("HOME") .. "/.config/nvim/lua"
+M.BASE_NEOVIM_LUA_PATH = require("utility.env").get("HOME") .. "/.config/nvim/lua"
 
 local is_dir = function(path)
 	-- lfs.attributes will error on a filename ending in '/'

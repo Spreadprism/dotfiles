@@ -99,6 +99,13 @@ return {
 			vim.keymap.set("n", "<leader>sr", builtin.lsp_references, { desc = "Search reference" })
 			-- INFO: files
 			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Search files" })
+			vim.keymap.set(
+				"n",
+				"<leader>sw",
+				require("telescope").extensions.workspaces.workspaces,
+				{ desc = "Search workspaces" }
+			)
+
 			vim.keymap.set("n", "<leader>sG", builtin.live_grep, { desc = "Grep workspace" })
 			-- INFO: current file
 			vim.keymap.set("n", "<leader>scG", builtin.current_buffer_fuzzy_find, { desc = "Grep current file" })
@@ -317,5 +324,23 @@ return {
 			"kevinhwang91/promise-async",
 		},
 		config = require("configs.ufo-config"),
+	},
+	{
+		"natecraddock/workspaces.nvim",
+		dependencies = "nvim-telescope/telescope.nvim",
+		config = function()
+			local workspace_hooks = require("utility.workspace_utilities")
+			require("workspaces").setup({
+				auto_open = true,
+				hooks = {
+					add = workspace_hooks.on_add,
+					remove = workspace_hooks.on_remove,
+					rename = workspace_hooks.on_rename,
+					open_pre = workspace_hooks.on_open_pre,
+					open = workspace_hooks.on_open,
+				},
+			})
+			require("telescope").load_extension("workspaces")
+		end,
 	},
 }
