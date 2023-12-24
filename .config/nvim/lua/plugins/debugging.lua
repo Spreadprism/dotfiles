@@ -1,5 +1,6 @@
 local prefered_output = {
 	go = 2,
+	cs = 2,
 	typescriptreact = 2,
 	typescript = 2,
 	javascript = 2,

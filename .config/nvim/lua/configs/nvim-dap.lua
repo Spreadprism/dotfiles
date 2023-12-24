@@ -104,12 +104,27 @@ return function()
 	--
 	local overseer = require("overseer")
 
-	local get_cs_program_debug = function()
-		local directory = vim.fn.getcwd()
-		local program_name = string.match(directory, "[^/]+$")
+	local env = require("utility.env")
+	local file_utility = require("utility.file_utility")
 
-		local program = directory .. "/bin/Debug/net7.0/" .. program_name .. ".dll"
-		return program
+	local get_cs_program_debug = function()
+		local bin_path = env.get("workspaceFolder") .. "/bin"
+		local program_name = env.get("workspaceFolderBaseName")
+
+		local pattern = "/Debug/*/" .. program_name .. ".dll"
+		local possible_files = file_utility.get_files(bin_path, pattern)
+
+		if #possible_files == 0 then
+			print("No debug dll found")
+			return nil
+		elseif #possible_files > 1 then
+			print("Multiple debug dlls found")
+			return nil
+		else
+			---@diagnostic disable-next-line: need-check-nil
+			local program_binary = possible_files[1]
+			return bin_path .. "/" .. program_binary
+		end
 	end
 
 	-- INFO: C# CONFIGS
