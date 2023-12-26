@@ -46,7 +46,7 @@ return {
 				require("lazy").load({ plugins = { "dressing.nvim" } })
 				return vim.ui.select(...)
 			end
-			---@diagnostic disable-next-line: duplicate-set-field
+      ---@diagnostic disable-next-line: duplicate-set-field
 			vim.ui.input = function(...)
 				require("lazy").load({ plugins = { "dressing.nvim" } })
 				return vim.ui.input(...)
@@ -70,6 +70,16 @@ return {
 					win_options = {
 						winblend = 0,
 					},
+				},
+			},
+			routes = {
+				-- INFO: Remove all saved message
+				{
+					filter = {
+						event = "msg_show",
+						find = "written",
+					},
+					opts = { skip = true },
 				},
 			},
 		},
@@ -196,18 +206,4 @@ return {
 			})
 		end,
 	},
-	-- {
-	-- 	"Bekaboo/dropbar.nvim",
-	-- 	-- optional, but required for fuzzy finder support
-	-- 	dependencies = {
-	-- 		"nvim-telescope/telescope-fzf-native.nvim",
-	-- 	},
-	-- },
-	-- {
-	--   'goolord/alpha-nvim',
-	--   dependencies = { 'nvim-tree/nvim-web-devicons' },
-	--   config = function ()
-	--       require'alpha'.setup(require'configs.dashboard'.config)
-	--   end
-	-- }
 }

@@ -68,7 +68,7 @@ return {
 				["<leader>sg"] = { name = "+git" },
 				["<leader>sgb"] = { name = "+current buffer" },
 				["<leader>u"] = { name = "+ui" },
-				["<leader>w"] = { name = "+windows" },
+				["<leader>w"] = { name = "+workspaces" },
 				["<leader>x"] = { name = "+export" },
 			},
 		},
