@@ -1,9 +1,3 @@
--- Set icon by extension
--- ["go"] = {
---   icon = "󰟓",
---   color = "#29BEB0",
---   name = "go"
--- },
 return {
 	["go"] = {
 		icon = "󰟓",
