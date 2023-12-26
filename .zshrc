@@ -79,6 +79,7 @@ fi
 
 # Created by `pipx` on 2023-11-15 12:54:02
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
 export PATH="$PATH:$HOME/.dotfiles/bin"
 
 eval "$(starship init zsh)"

@@ -1,10 +1,11 @@
 format = '''
 ╭\[$directory\](${custom.conda-env-available})$conda$git_branch$git_status(
-├\($python$golang$c$dotnet$rust$elixir$java$nodejs${custom.docker}\))
+├\($python$golang$c$dotnet$rust$elixir$java$ruby$nodejs${custom.docker}\))
 ╰($container)─➤ 
 '''
 add_newline = false
 continuation_prompt = '  ➤ '
+command_timeout=1000
 
 [directory]
 format ='[$path]($style)[$read_only]($read_only_style)'
@@ -44,6 +45,10 @@ symbol = '󰟓 '
 format = '[$symbol ($version)]($style)'
 symbol = ''
 style = 'fg:#FF7047'
+
+[ruby]
+format = '[$symbol ($version)]($style)'
+symbol = ' '
 
 [elixir]
 format = '[$symbol ($version \(OTP $otp_version\))]($style)'
