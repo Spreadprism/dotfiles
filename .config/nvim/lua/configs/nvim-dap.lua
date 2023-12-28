@@ -18,6 +18,22 @@ local load_dap_adapters = function()
 	end
 end
 
+local load_vscode_configs = function(clear)
+	if clear == nil then
+		clear = false
+	end
+
+	if clear then
+		local dap = require("dap")
+		dap.configurations = {}
+		load_dap_configurations()
+	end
+
+	require("dap.ext.vscode").load_launchjs(nil, {
+		codelldb = { "rust", "c" },
+	})
+end
+
 return function()
 	-- INFO: Setting DAP icons
 	vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "ErrorMsg", linehl = "", numhl = "" })
@@ -30,8 +46,14 @@ return function()
 
 	load_dap_adapters()
 	load_dap_configurations()
+	load_vscode_configs()
 
-	require("dap.ext.vscode").load_launchjs(nil, {
-		codelldb = { "rust", "c" },
+	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+		callback = function()
+			-- If its launch.json or tasks.json then reload it
+			if vim.fn.expand("%:t") == "launch.json" then
+				load_vscode_configs(true)
+			end
+		end,
 	})
 end
