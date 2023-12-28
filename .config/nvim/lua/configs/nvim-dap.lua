@@ -50,8 +50,8 @@ return function()
 
 	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		callback = function()
-			-- If its launch.json or tasks.json then reload it
-			if vim.fn.expand("%:t") == "launch.json" then
+			local file_name = vim.fn.expand("%:t")
+			if file_name == "launch.json" or file_name == "tasks.json" then
 				load_vscode_configs(true)
 			end
 		end,
