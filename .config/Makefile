@@ -1,8 +1,13 @@
 link_config:
-	@cd tmux && make
-	@cd nvim && make
-	@cd lazygit && make
+	@cd hypr && make
+	@cd kanshi && make
+	@cd kitty && make
 	@cd lazydocker && make
+	@cd lazygit && make
+	@cd nvim && make
+	@cd rofi && make
+	@cd swaylock && make
+	@cd tmux && make
 	@make link_starship
 
 link_starship:

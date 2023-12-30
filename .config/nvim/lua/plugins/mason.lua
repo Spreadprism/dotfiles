@@ -1,19 +1,19 @@
 local language_servers = {
-	"lua_ls",
-	"tsserver",
-	"gopls",
-	"pyright",
+	-- "lua_ls",
+	-- "tsserver",
+	-- "gopls",
+	-- "pyright",
 }
 
 local daps_plugins = {
-	"java-debug-adapter",
+	-- "java-debug-adapter",
 }
 
 local external_tools = {
-	"debugpy",
-	"black",
-	"prettier",
-	"js-debug-adapter",
+	-- "debugpy",
+	-- "black",
+	-- "prettier",
+	-- "js-debug-adapter",
 }
 
 return {

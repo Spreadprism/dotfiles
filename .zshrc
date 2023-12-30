@@ -42,12 +42,12 @@ alias etmux='nvim ~/.config/tmux/tmux.conf && tmux source ~/.config/tmux/tmux.co
 
 # INFO: Plugins
 plugins=(git zsh-autosuggestions sudo dirhistory jsontools)
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 
 autoload -Uz compinit && compinit
-ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 bindkey '^A' autosuggest-execute
-source $ZSH/oh-my-zsh.sh
 
+source $ZSH/oh-my-zsh.sh
 
 # INFO: Theme
 ZSH_THEME="gnzh"
@@ -69,6 +69,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 #
 # INFO: Activate conda environment if it exists
+conda config --set auto_activate_base false
 current_directory_name="${PWD##*/}"
 
 envs=$(conda env list | awk '{print $1}' | grep -v '^#')
