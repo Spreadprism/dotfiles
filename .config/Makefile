@@ -8,6 +8,7 @@ link_config:
 	@cd rofi && make
 	@cd swaylock && make
 	@cd tmux && make
+	@cd waybar && make
 	@make link_starship
 
 link_starship:
