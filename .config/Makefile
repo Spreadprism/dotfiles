@@ -4,6 +4,7 @@ link_config:
 	@cd kitty && make
 	@cd lazydocker && make
 	@cd lazygit && make
+	@cd mako && make
 	@cd nvim && make
 	@cd rofi && make
 	@cd swaylock && make

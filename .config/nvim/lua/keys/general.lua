@@ -123,9 +123,9 @@ M.n = {
 		end,
 		"Export plantuml",
 	},
-	["<leader>Or"] = {
+	["<leader>rt"] = {
 		"<cmd>OverseerRun<CR>",
-		"Overseer run",
+		"Run task",
 		{ silent = true },
 	},
 	["<leader>oo"] = {
