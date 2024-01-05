@@ -280,18 +280,27 @@ return {
 		event = "VeryLazy",
 		config = function()
 			require("copilot").setup({
-				suggestion = { enabled = false },
+				suggestion = {
+					enabled = true,
+					auto_trigger = true,
+					keymap = {
+						accept = "<M-a>",
+						dismiss = "<M-d>",
+						next = "<M-l>",
+						prev = "<M-h>",
+					},
+				},
 				panel = { enabled = false },
 			})
 		end,
 	},
-	{
-		"zbirenbaum/copilot-cmp",
-		event = "VeryLazy",
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require("copilot_cmp").setup()
+	-- 	end,
+	-- },
 	{
 		"nvim-pack/nvim-spectre",
 		event = "VeryLazy",

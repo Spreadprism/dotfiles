@@ -63,7 +63,7 @@ return function()
 		},
 		sources = cmp.config.sources({
 			{ name = "path" },
-			{ name = "copilot", group_index = 2 },
+			-- { name = "copilot", group_index = 2 },
 			{ name = "crates", keyword_length = 0 },
 			{ name = "nvim_lsp", keyword_length = 1 },
 			{ name = "buffer", keyword_length = 3 },
@@ -140,4 +140,12 @@ return function()
 			{ name = "cmdline" },
 		}),
 	})
+
+	-- cmp.event:on("menu_opened", function()
+	-- 	vim.b.copilot_suggestion_hidden = true
+	-- end)
+	--
+	-- cmp.event:on("menu_closed", function()
+	-- 	vim.b.copilot_suggestion_hidden = false
+	-- end)
 end
