@@ -2,6 +2,7 @@ ignore-empty-password
 font="JetBrains Mono"
 
 clock
+hide-keyboard-layout
 timestr=%R
 datestr=%a, %e of %B
 
