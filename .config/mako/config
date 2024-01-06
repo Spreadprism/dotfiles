@@ -15,6 +15,7 @@ font=monospace 14
 [urgency=low]
 border-color=#cccccc
 background-color=#101010C0
+progress-color=over #FB6159
 
 [urgency=normal]
 border-color=#d08770
