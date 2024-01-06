@@ -10,7 +10,6 @@ fade-in=0.5
 image=$HOME/Images/wallpapers/cache/current_wallpaper
 effect-blur=20x10
 
-
 indicator
 # smaller indicator
 indicator-radius=200
