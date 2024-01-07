@@ -5,3 +5,7 @@ new_link:
 	@echo "Linking ~/.config/$(DIRECTORY_NAME)"
 	@rm -rf $(CONFIG_PATH)
 	@ln -s $(DOTFILE_CONFIG_PATH) $(CONFIG_PATH)
+
+reset_waybar:
+	@killall waybar
+	@hyprctl dispatch exec waybar
