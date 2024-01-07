@@ -10,6 +10,7 @@ link_config:
 	@cd swaylock && make
 	@cd tmux && make
 	@cd waybar && make
+	@cd wlogout && make
 	@make link_starship
 
 link_starship:
