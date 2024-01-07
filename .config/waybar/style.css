@@ -38,6 +38,7 @@ window#waybar {
     color: #000000;
 }
 
+.modules-center,
 .modules-left,
 .modules-right {
     background-color: rgba(43, 48, 59, 0.5);
