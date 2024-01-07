@@ -28,6 +28,7 @@ export NVIM_LISTEN_ADDRESS='/tmp/nvim.socket'
 alias nclear='rm -rf ~/.local/state/nvim/swap && mkdir ~/.local/state/nvim/swap'
 alias nc='nclear'
 alias lg='lazygit'
+alias ld='lazydocker'
 
 # windows commands
 alias wsl='wsl.exe'
