@@ -81,4 +81,7 @@
     "format": "{temperatureC}°C {icon}",
     "format-icons": ["", "", ""]
   },
+  "tray": {
+    "spacing": 2
+  }
 }
