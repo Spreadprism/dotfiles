@@ -30,10 +30,10 @@ alias nc='nclear'
 alias lg='lazygit'
 alias ld='lazydocker'
 
-# windows commands
-alias wsl='wsl.exe'
-alias explorer='explorer.exe .'
-alias pws='powershell.exe'
+# # windows commands
+# alias wsl='wsl.exe'
+# alias explorer='explorer.exe .'
+# alias pws='powershell.exe'
 
 # INFO: Edit and source config
 alias ezshrc='nvim ~/.zshrc && source ~/.zshrc'
