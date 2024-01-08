@@ -1,4 +1,5 @@
 local buffer_blacklist = { "neo-tree filesystem [1]" }
+local extension_blacklist = { "norg" }
 
 ---@diagnostic disable-next-line: lowercase-global
 function DisplayFilename()
@@ -8,6 +9,7 @@ function DisplayFilename()
 	end
 
 	local current_buffer = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":t")
+	local current_buffer_extension = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":e")
 
 	-- INFO: Don't need to check all of our blacklisted filename, its empty
 	if current_buffer == "" then
@@ -18,6 +20,13 @@ function DisplayFilename()
 	for _, str in ipairs(buffer_blacklist) do
 		if current_buffer == str then
 			-- INFO: Current buffer is in the blacklist, no need to search futher
+			display = false
+			break
+		end
+	end
+
+	for _, str in ipairs(extension_blacklist) do
+		if current_buffer_extension == str then
 			display = false
 			break
 		end

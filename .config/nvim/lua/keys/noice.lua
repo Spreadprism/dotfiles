@@ -1,6 +1,6 @@
 local M = {}
 
-local base_bind = "<leader>n"
+local base_bind = "<leader>N"
 M.n = {
 	[base_bind .. "l"] = {
 		function()

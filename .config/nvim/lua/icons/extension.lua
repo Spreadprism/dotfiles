@@ -64,4 +64,9 @@ return {
 		color = "#ACE54A",
 		name = "puml",
 	},
+	["norg"] = {
+		icon = "",
+		color = "#406DB9",
+		name = "norg",
+	},
 }

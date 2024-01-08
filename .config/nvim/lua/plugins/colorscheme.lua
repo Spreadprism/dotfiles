@@ -3,7 +3,7 @@ return {
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		transparent = true,
+		-- transparent = true,
 		dependencies = "xiyaowong/transparent.nvim",
 		config = function()
 			vim.cmd([[colorscheme tokyonight-storm]])

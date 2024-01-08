@@ -9,6 +9,35 @@ return {
 		},
 		config = require("configs.neo-tree"),
 	},
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	version = "*",
+	-- 	lazy = false,
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 	},
+	-- 	config = function()
+	-- 		-- local function my_on_attach(bufnr)
+	-- 		-- 	local api = require("nvim-tree.api")
+	-- 		--
+	-- 		-- 	local function opts(desc)
+	-- 		-- 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+	-- 		-- 	end
+	-- 		--
+	-- 		-- 	-- default mappings
+	-- 		-- 	api.config.mappings.default_on_attach(bufnr)
+	-- 		--
+	-- 		-- 	-- custom mappings
+	-- 		-- 	vim.keymap.set("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
+	-- 		-- 	vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
+	-- 		-- end
+	-- 		require("nvim-tree").setup({
+	-- 			sync_root_with_cwd = true,
+	-- 			reload_on_bufenter = true,
+	--        respect_buf_cwd = true,
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"MunifTanjim/nui.nvim",
 	},
@@ -58,7 +87,8 @@ return {
 				["<leader>t"] = { name = "+test" },
 				["<leader>g"] = { name = "+git" },
 				["<leader>c"] = { name = "+cargo" },
-				["<leader>n"] = { name = "+noice" },
+				["<leader>n"] = { name = "+neorg" },
+				["<leader>N"] = { name = "+noice" },
 				["<leader>gh"] = { name = "+hunks" },
 				["<leader>j"] = { name = "+jupynium" },
 				["<leader>q"] = { name = "+quit/session" },
