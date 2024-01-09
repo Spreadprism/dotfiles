@@ -103,6 +103,26 @@ M.n = {
 		"Open plantuml preview",
 		{ silent = true },
 	},
+	["<leader>oq"] = {
+		function()
+			local current_workspace = require("utility.neorg_dirman").get_current_workspace()[1]
+			if current_workspace ~= "quicknote" then
+				vim.cmd("Neorg workspace quicknote")
+			end
+			vim.cmd("Neorg index")
+		end,
+		"Open quicknote",
+	},
+	["<leader>on"] = {
+		function()
+			local current_workspace = require("utility.neorg_dirman").get_current_workspace()[1]
+			if current_workspace ~= "Notes" then
+				vim.cmd("Neorg workspace Notes")
+			end
+			vim.cmd("Neorg index")
+		end,
+		"Open quicknote",
+	},
 	["<leader>xp"] = {
 		function()
 			local bufname = vim.api.nvim_buf_get_name(0)

@@ -63,11 +63,6 @@ style='fg:#EA2D2E'
 format = '[$symbol $version]($style)'
 symbol = '󰎙'
 
-[custom.docker]
-format = ' [󰡨]($style)'
-detect_files=['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
-style ='blue bold'
-
 [custom.conda-env-available]
 format='\([]($style)\)'
 when='can_activate'

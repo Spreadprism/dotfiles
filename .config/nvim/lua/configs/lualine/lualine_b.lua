@@ -35,6 +35,18 @@ function DisplayFilename()
 	return display
 end
 
+local dirman = require("neorg.modules.core.dirman.module")
+local get_current_workspace = dirman.public.get_current_workspace
+local current_neorg_workspace = function()
+	-- name is the first element
+	return get_current_workspace()[1]
+end
+
+local display_neorg_workspace = function()
+	local extension = vim.fn.expand("%:e")
+	return extension == "norg"
+end
+
 local utils = require("harpoon.utils")
 local mark = require("harpoon.mark")
 
@@ -53,14 +65,35 @@ end
 
 return {
 	"branch",
-	{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 }, cond = DisplayFilename },
+	{
+		"filetype",
+		icon_only = true,
+		separator = "",
+		padding = { left = 1, right = 0 },
+		cond = DisplayFilename,
+	},
 	{
 		"filename",
 		path = 0,
 		separator = "",
-		padding = { left = 1, right = 0 },
+		padding = { left = 1, right = 1 },
 		symbols = { modified = "󱇧", readonly = "󰷊", unnamed = "" },
 		cond = DisplayFilename,
+	},
+	{
+		function()
+			return ""
+		end,
+		color = { fg = "#406DB9" },
+		padding = { left = 1, right = 0 },
+		separator = "",
+		cond = display_neorg_workspace,
+	},
+	{
+		current_neorg_workspace,
+		padding = { left = 1, right = 1 },
+		separator = "",
+		cond = display_neorg_workspace,
 	},
 	{
 		function()

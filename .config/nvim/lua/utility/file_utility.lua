@@ -117,4 +117,11 @@ M.get_files = function(path, pattern, options)
 	return files
 end
 
+M.get_parent_directory = function(path)
+	-- example path : /home/user/something -> /home/user
+	-- example file path : /home/user/something/file.txt -> /home/user/something
+	local parent_directory = path:match("(.*)/")
+	return parent_directory
+end
+
 return M
