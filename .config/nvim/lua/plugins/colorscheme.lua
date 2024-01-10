@@ -6,9 +6,18 @@ return {
 		-- transparent = true,
 		dependencies = "xiyaowong/transparent.nvim",
 		config = function()
-			vim.cmd([[colorscheme tokyonight-storm]])
+			vim.cmd([[colorscheme tokyonight-night]])
 		end,
 	},
+	-- {
+	-- 	"baliestri/aura-theme",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function(plugin)
+	-- 		vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+	-- 		vim.cmd([[colorscheme aura-dark]])
+	-- 	end,
+	-- },
 	{
 		"xiyaowong/transparent.nvim",
 		config = function()
