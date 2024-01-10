@@ -23,7 +23,7 @@ local get_workspaces = function()
 	local workspaces = {}
 
 	workspaces[get_workspace_name(notes_directory)] = notes_directory
-	workspaces["quicknote"] = env.get("HOME") .. "/quicknote"
+	workspaces["quicknote"] = notes_directory .. "/quicknote"
 
 	local pattern = "*/index.norg"
 	local index_files = fs.get_files(env.get("HOME") .. "/Notes", pattern)
