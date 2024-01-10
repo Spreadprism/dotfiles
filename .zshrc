@@ -33,12 +33,8 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
   fi
 fi
 
+
 # INFO: Aliases
-# alias activate='conda activate'
-alias deactivate='conda deactivate'
-alias activate='source ~/miniconda3/bin/activate $(basename $(pwd))'
-# alias nvim='nvim --listen localhost:12345'
-#
 # Doing all the possible typos
 alias v='nvim'
 alias vim='nvim'
@@ -93,12 +89,15 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 #
-# INFO: Activate conda environment if it exists
+
 conda config --set auto_activate_base false
-current_directory_name="${PWD##*/}"
+current_directory_name="${PWD##*/}" # INFO: no need for prompt, starship will show it
 
+alias deactivate='conda deactivate'
+alias activate='source ~/miniconda3/bin/activate $(basename $(pwd))'
+
+# INFO: Activate conda environment if it exists
 envs=$(conda env list | awk '{print $1}' | grep -v '^#')
-
 if [[ $envs == *"$current_directory_name"* ]]; then
     conda activate "$current_directory_name"
 fi
