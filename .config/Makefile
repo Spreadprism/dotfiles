@@ -1,4 +1,5 @@
 link_config:
+	@cd dunst && make
 	@cd hypr && make
 	@cd kanshi && make
 	@cd kitty && make

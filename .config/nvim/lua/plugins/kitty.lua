@@ -66,7 +66,7 @@ local kitty_plugins = {
 
 local env = require("utility.env")
 
-if env.get("IN_KITTY") == "true" then
+if env.get("TERM") == "xterm-kitty" then
 	return kitty_plugins
 else
 	return {}
