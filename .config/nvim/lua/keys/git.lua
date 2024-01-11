@@ -1,7 +1,7 @@
 local M = {}
 
 M.n = {
-	["<leader>gb"] = { "<cmd> Gitsigns toggle_current_line_blame<CR>", "Toggle blame" },
+	["<leader>gm"] = { "<CMD>GitMessenger<CR>", "Toggle commit message" },
 }
 
 return M

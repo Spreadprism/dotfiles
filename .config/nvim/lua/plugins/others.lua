@@ -14,6 +14,9 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
+  {
+    "rhysd/git-messenger.vim",
+  },
 	{
 		"crnvl96/lazydocker.nvim",
 		event = "VeryLazy",
