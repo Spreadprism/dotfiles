@@ -20,7 +20,7 @@ function DisplayFilename()
 	for _, str in ipairs(buffer_blacklist) do
 		if current_buffer == str then
 			-- INFO: Current buffer is in the blacklist, no need to search futher
-			display = false
+
 			break
 		end
 	end
@@ -64,7 +64,19 @@ function Displaymark()
 end
 
 return {
-	"branch",
+	{
+		"branch",
+	},
+	-- {
+	-- 	"diff",
+	-- 	padding = { left = 1, right = 1 },
+	-- 	colored = false,
+	-- 	symbols = {
+	-- 		added = "󰝒",
+	-- 		modified = "󱇧",
+	-- 		removed = "",
+	-- 	},
+	-- },
 	{
 		"filetype",
 		icon_only = true,

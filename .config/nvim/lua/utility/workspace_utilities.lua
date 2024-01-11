@@ -25,7 +25,7 @@ M.on_rename = function() end
 M.on_open_pre = function() end
 
 M.on_open = function()
-	vim.cmd([[SessionRestore]]) -- INFO: the session isn't loaded when switching with telescope
+	-- vim.cmd([[SessionRestore]]) -- INFO: the session isn't loaded when switching with telescope
 	load_env_variables()
 	load_workspace_file()
 end

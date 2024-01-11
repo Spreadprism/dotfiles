@@ -308,6 +308,7 @@ return {
 	{
 		"zbirenbaum/copilot.lua",
 		event = "VeryLazy",
+		dependencies = "neovim/nvim-lspconfig",
 		config = function()
 			require("copilot").setup({
 				suggestion = {

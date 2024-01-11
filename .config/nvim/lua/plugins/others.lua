@@ -14,9 +14,9 @@ return {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-  {
-    "rhysd/git-messenger.vim",
-  },
+	{
+		"rhysd/git-messenger.vim",
+	},
 	{
 		"crnvl96/lazydocker.nvim",
 		event = "VeryLazy",
@@ -81,16 +81,15 @@ return {
 		version = "*",
 		opts = {},
 	},
-	{
-		"rmagatti/auto-session",
-		config = function()
-			require("auto-session").setup({
-				log_level = "error",
-				auto_session_suppress_dirs = { "~/", "~/projects", "~/Downloads", "/" },
-			})
-		end,
-	},
-	-- { "folke/neodev.nvim", opts = {} },
+	-- {
+	-- 	"rmagatti/auto-session",
+	-- 	config = function()
+	-- 		require("auto-session").setup({
+	-- 			log_level = "error",
+	-- 			auto_session_suppress_dirs = { "~/", "~/projects", "~/Downloads", "/" },
+	-- 		})
+	-- 	end,
+	-- },
 	-- {
 	-- 	"Dhanus3133/LeetBuddy.nvim",
 	-- 	dependencies = {

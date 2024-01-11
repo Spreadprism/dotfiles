@@ -8,7 +8,8 @@ continuation_prompt = '  ➤ '
 command_timeout=1000
 
 [directory]
-format ='[$path]($style)[$read_only]($read_only_style)'
+format ='[$path]($style)(\]\[[$read_only]($read_only_style))'
+truncation_length = 5
 truncate_to_repo = false
 read_only='🔒'
 read_only_style='red'
@@ -79,4 +80,4 @@ modified='\[${count}󱇧\]'
 untracked='\[${count}󰷊\]'
 deleted='\[${count}\]'
 stashed='\[${count}󰥥\]'
-staged='\[${count}󰈖\]'
+staged='\[${count}󰝒\]'

@@ -39,14 +39,14 @@ return {
 			require("mason-tool-installer").setup({ ensure_installed = external_tools })
 		end,
 	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		event = "VeryLazy",
-		dependencies = "williamboman/mason.nvim",
-		config = function()
-			require("mason-lspconfig").setup({ ensure_installed = language_servers })
-		end,
-	},
+	-- {
+	-- 	"williamboman/mason-lspconfig.nvim",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = "williamboman/mason.nvim",
+	-- 	config = function()
+	-- 		require("mason-lspconfig").setup({ ensure_installed = language_servers })
+	-- 	end,
+	-- },
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		event = "VeryLazy",

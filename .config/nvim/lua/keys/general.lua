@@ -43,14 +43,11 @@ M.n = {
 		end,
 		"Horizontal split",
 	},
-	["<leader>S"] = {
-		function()
-			require("spectre").toggle()
-		end,
-		"Spectre",
-		{ silent = true },
-	},
 
+	["<leader>ff"] = {
+		"<CMD>Format<CR>",
+		"format",
+	},
 	["tn"] = {
 		"<CMD>tabnew<CR>",
 		"New tab",
@@ -155,10 +152,6 @@ M.n = {
 	},
 }
 
-M.t = {
-	-- terminal
-	["<C-;>"] = { '<C-\\><C-n><CR>:lua require("nvterm.terminal").toggle "horizontal"<CR>', "", { silent = true } },
-}
 M.i = {
 	["<C-l>"] = { "<Right>", "Move right", { silent = true } },
 	["<C-j>"] = { "<Down>", "Move down", { silent = true } },
@@ -183,7 +176,22 @@ M.v = {
 }
 
 M.t = {
-	["<Esc>"] = { "<C-\\><C-n>", "Escape terminal" },
+	["<Esc>"] = {
+		function()
+			local current_buffer = vim.api.nvim_get_current_buf()
+			local current_buffer_name = vim.api.nvim_buf_get_name(current_buffer)
+
+			-- We don't want to send escape sequence when in lazygit
+			local in_lazygit = string.find(current_buffer_name, "lazygit")
+			local in_lazydocker = string.find(current_buffer_name, "lazydocker")
+
+			if not in_lazygit or not in_lazydocker then
+				local term_codes = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
+				vim.api.nvim_feedkeys(term_codes, "t", true)
+			end
+		end,
+		"Escape terminal",
+	},
 }
 
 return M
