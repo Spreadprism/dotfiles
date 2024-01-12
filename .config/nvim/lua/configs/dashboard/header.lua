@@ -11,7 +11,6 @@ if handle == nil then
 end
 
 local logo = handle:read("*a")
-print(logo)
 handle:close()
 
 logo = string.rep("\n", 8) .. logo .. "\n\n"

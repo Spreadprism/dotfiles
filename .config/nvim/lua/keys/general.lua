@@ -11,10 +11,21 @@ M.n = {
 	-- closing and saving
 	["<C-q>"] = { "<CMD>q<CR>", "close", { silent = true } },
 	-- file keymaps
-	["<leader>e"] = { ":Neotree toggle<CR>", "Toggle file explorer", { noremap = true, silent = true } },
+	["<leader>e"] = {
+		"<CMD>Neotree filesystem toggle left<CR>",
+		"Toggle neovim file explorer",
+		{ noremap = true, silent = true },
+	},
 	["<leader>E"] = {
-		":Neotree filesystem reveal<CR>",
-		"Toggle file explorer with current file as focus",
+		"<CMD>Neotree filesystem toggle left reveal<CR>",
+		"Toggle neovim file explorer with current buffer as focus",
+		{ noremap = true, silent = true },
+	},
+	["<M-e>"] = {
+		function()
+			vim.cmd("silent !thunar $PWD")
+		end,
+		"Toggle file explorer with workspace directory as focus",
 		{ noremap = true, silent = true },
 	},
 	["<M-v>"] = { "<CMD>vsplit<CR>", "Vertical split" },
