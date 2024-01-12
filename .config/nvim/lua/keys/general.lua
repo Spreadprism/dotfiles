@@ -3,7 +3,8 @@ local M = {}
 -- Available options silent & noremap
 M.n = {
 	["<leader>og"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
-	["<leader>od"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
+	["<leader>old"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
+	["<leader>od"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
 	-- moving
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
 	["H"] = { "^", "move the cursor to the first non-whitespace character", { noremap = true } },
@@ -176,20 +177,8 @@ M.v = {
 }
 
 M.t = {
-	["<Esc>"] = {
-		function()
-			local current_buffer = vim.api.nvim_get_current_buf()
-			local current_buffer_name = vim.api.nvim_buf_get_name(current_buffer)
-
-			-- We don't want to send escape sequence when in lazygit
-			local in_lazygit = string.find(current_buffer_name, "lazygit")
-			local in_lazydocker = string.find(current_buffer_name, "lazydocker")
-
-			if not in_lazygit or not in_lazydocker then
-				local term_codes = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
-				vim.api.nvim_feedkeys(term_codes, "t", true)
-			end
-		end,
+	["<M-;>"] = {
+		"<C-\\><C-n>",
 		"Escape terminal",
 	},
 }

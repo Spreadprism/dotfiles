@@ -31,11 +31,12 @@ if [ -z "$TMUX" ]; then
         tmux attach-session -t "$SESSION_ID"
         exit
       else
-        exec tmux new -s "$SESSION_N"
+        exec tmux new -s "$SESSION_N" -c "$PWD"
       fi
     fi
   else
-    exec tmux new -s 0
+    echo $PWD
+    exec tmux new -s 0 -c "$PWD"
   fi
 
 fi

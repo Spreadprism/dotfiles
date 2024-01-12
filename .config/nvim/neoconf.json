@@ -1,4 +1,3 @@
-// base-config https://github.com/folke/neoconf.nvim/tree/main/schemas
 {
   "neodev": {
     "library": {

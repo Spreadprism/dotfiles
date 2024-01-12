@@ -39,6 +39,12 @@ return {
 		end,
 	},
 	{
+		"nvimdev/dashboard-nvim",
+		event = "VimEnter",
+		config = require("configs.dashboard"),
+		dependencies = { "nvim-tree/nvim-web-devicons", "chrisbra/Colorizer" },
+	},
+	{
 		"stevearc/dressing.nvim",
 		init = function()
 			---@diagnostic disable-next-line: duplicate-set-field
