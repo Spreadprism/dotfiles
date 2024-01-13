@@ -113,8 +113,10 @@ fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
 
+# Needs entr
 alias watch='entr'
 
+# Needs zoxide
 alias cd='z'
 alias zz='z -'
 export _ZO_ECHO=0
