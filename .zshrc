@@ -35,7 +35,6 @@ if [ -z "$TMUX" ]; then
       fi
     fi
   else
-    echo $PWD
     exec tmux new -s 0 -c "$PWD"
   fi
 
@@ -114,4 +113,11 @@ fi
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
 
+alias watch='entr'
+
+alias cd='z'
+alias zz='z -'
+export _ZO_ECHO=0
+
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
