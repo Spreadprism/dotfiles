@@ -14,7 +14,7 @@ if [ -z "$TMUX" ]; then
       #TMUX is not running
       FOUND_SESSION=false
       SESSION_ID=""
-      SESSION_N=1
+      SESSION_N=0
       #Find session to attach to
       for line in $(tmux ls -F "#{session_id}:#{?session_attached,attached,not-attached}"); do
         SESSION_ATTACHED=$(echo "$line" | cut -d':' -f2)
@@ -112,6 +112,10 @@ fi
 # Created by `pipx` on 2023-11-15 12:54:02
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
+
+# Needs eza
+alias ls='eza'
+alias ll='eza --tree'
 
 # Needs entr
 alias watch='entr'
