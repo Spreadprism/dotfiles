@@ -379,7 +379,6 @@ return {
 		"kevinhwang91/nvim-ufo",
 		lazy = false,
 		dependencies = {
-			"neovim/nvim-lspconfig",
 			"kevinhwang91/promise-async",
 		},
 		config = require("configs.ufo-config"),

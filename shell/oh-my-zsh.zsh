@@ -5,7 +5,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
-
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
 # INFO: Plugins
 plugins=(zsh-nvm zsh-lazyload git zsh-autosuggestions sudo dirhistory jsontools)
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
