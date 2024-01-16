@@ -1,4 +1,5 @@
 zmodload zsh/zprof
+alias zperf='zprof'
 
 CONFIG_DIR="$HOME/.dotfiles/shell"
 
