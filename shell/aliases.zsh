@@ -25,7 +25,18 @@ alias nivm='nvim'
 
 # INFO: Conda
 alias deactivate='conda deactivate'
-alias activate='source ~/miniconda3/bin/activate $(basename $(pwd))'
+
+auto_activate () {
+  env_dir=$HOME/miniconda3/envs/
+  current_directory_name="${PWD##*/}"
+  if [ -d "$env_dir/$current_directory_name"_env ]; then
+    source ~/miniconda3/bin/activate "$current_directory_name"_env
+  elif [ -d "$env_dir/$current_directory_name" ]; then
+    source ~/miniconda3/bin/activate "$current_directory_name"
+  fi
+}
+alias activate='auto_activate'
+
 
 # INFO: Edit and source config
 alias ezshrc='nvim ~/.zshrc && source ~/.zshrc'

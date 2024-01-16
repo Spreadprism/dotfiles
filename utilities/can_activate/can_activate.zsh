@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 env_dir=$HOME/miniconda3/envs/
-
 current_directory_name="${PWD##*/}"
 
 if [ -d "$env_dir/$current_directory_name"_env ]; then
