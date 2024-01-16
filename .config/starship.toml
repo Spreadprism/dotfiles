@@ -61,7 +61,7 @@ symbol = ''
 style='fg:#EA2D2E'
 
 [nodejs]
-format = '\([$symbol $version]($style)\)'
+format = '\([$symbol( $version)]($style)\)'
 symbol = '󰎙'
 
 [custom.conda-env-available]
