@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 CONFIG_DIR="$HOME/.dotfiles/shell"
 
 # INFO: Importing our utilities before everything else
