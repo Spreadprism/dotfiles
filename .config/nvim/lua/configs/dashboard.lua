@@ -6,6 +6,9 @@ local setup = function()
 			center = require("configs.dashboard.center"), --your center
 			footer = require("configs.dashboard.footer"), --your footer
 		},
+		hide = {
+			statusline = false,
+		},
 	})
 end
 return function()
