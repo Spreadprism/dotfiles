@@ -21,22 +21,15 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
   source "$CONFIG_DIR/wsl.zsh"
 fi
 
-# echo "Sourcing conda"
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="$HOME/miniconda3/bin:$PATH"
-    fi
+# INFO: Conda
+lazyload conda -- 'source $HOME/.dotfiles/shell/conda.zsh'
+
+env_dir="$HOME/miniconda3/envs"
+current_directory_name="${PWD##*/}"
+
+if [ -d "$env_dir/$current_directory_name" ]; then
+    conda activate "$current_directory_name"
 fi
-unset __conda_setup
-# <<< conda initialize <<<
-source "$CONFIG_DIR/conda.zsh"
 
 # Created by `pipx` on 2023-11-15 12:54:02
 export PATH="$PATH:$HOME/.local/bin"

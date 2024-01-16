@@ -95,7 +95,7 @@ unset __conda_setup
 #
 
 conda config --set auto_activate_base false
-current_directory_name="${PWD##*/}" # INFO: no need for prompt, starship will show it
+current_directory_name="${PWD##*/}" 
 
 alias deactivate='conda deactivate'
 alias activate='source ~/miniconda3/bin/activate $(basename $(pwd))'
