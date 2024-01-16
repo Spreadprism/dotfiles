@@ -28,9 +28,13 @@ lazyload conda -- 'source $HOME/.dotfiles/shell/conda.zsh'
 env_dir="$HOME/miniconda3/envs"
 current_directory_name="${PWD##*/}"
 
-if [ -d "$env_dir/$current_directory_name" ]; then
+# if $env or $env + "_env" exists, activate it
+if [ -d "$env_dir/$current_directory_name"_env ]; then
+    conda activate "$current_directory_name"_env
+elif [ -d "$env_dir/$current_directory_name" ]; then
     conda activate "$current_directory_name"
 fi
+
 
 # Created by `pipx` on 2023-11-15 12:54:02
 export PATH="$PATH:$HOME/.local/bin"
