@@ -57,10 +57,7 @@ alias nc='nclear'
 alias lg='lazygit'
 alias ld='lazydocker'
 
-# # windows commands
-# alias wsl='wsl.exe'
-# alias explorer='explorer.exe .'
-# alias pws='powershell.exe'
+source ./wsl_configs.sh
 
 # INFO: Edit and source config
 alias ezshrc='nvim ~/.zshrc && source ~/.zshrc'
@@ -127,3 +124,5 @@ export _ZO_ECHO=0
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
