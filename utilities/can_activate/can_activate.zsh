@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+# We can't activate if we are already in an environment
+if [ ! -z "$CONDA_DEFAULT_ENV" ]; then
+  exit 1
+fi
+
 env_dir=$HOME/miniconda3/envs/
 current_directory_name="${PWD##*/}"
 
