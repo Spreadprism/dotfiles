@@ -3,9 +3,6 @@
 # INFO: General
 alias lg='lazygit'
 alias ld='lazydocker'
-# Needs eza
-alias ls='eza'
-alias ll='eza --tree'
 # Needs entr
 alias watch='entr'
 # Needs zoxide
