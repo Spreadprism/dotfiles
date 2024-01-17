@@ -21,10 +21,7 @@ return {
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				local file_type = require("utility.buffer_info").filetype()
 
-				local ui = prefered_output[file_type]
-				if ui == nil then
-					ui = 3
-				end
+				local ui = prefered_output[file_type] or 3
 				require("dapui").open(ui)
 			end
 		end,
