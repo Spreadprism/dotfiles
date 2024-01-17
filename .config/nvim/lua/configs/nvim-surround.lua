@@ -1,7 +1,3 @@
-Current_ft = function()
-	return vim.api.nvim_buf_get_option(0, "filetype")
-end
-
 local config = require("nvim-surround.config")
 
 return {

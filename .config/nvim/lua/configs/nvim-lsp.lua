@@ -40,6 +40,7 @@ local define_capabilities = function()
 	return lsp_capabilities
 end
 
+---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr) end
 
 local configure_all_lsp = function()
@@ -78,21 +79,12 @@ local function filter_diagnostics(diagnostic)
 	if diagnostic.message:find("is not accessed") then
 		return false
 	end
-	-- if diagnostic.message == '"kwargs" is not accessed' then
-	-- 	return false
-	-- end
-	--
-	-- -- Allow variables starting with an underscore
-	-- if string.match(diagnostic.message, '"_.+" is not accessed') then
-	-- 	return false
-	-- end
-
 	return true
 end
 
-local function custom_on_publish_diagnostics(a, params, client_id, c, config)
-	filter(params.diagnostics, filter_diagnostics)
-	vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
+local function custom_on_publish_diagnostics(_, result, ctx, config)
+	filter(result.diagnostics, filter_diagnostics)
+	vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
 end
 
 return function()

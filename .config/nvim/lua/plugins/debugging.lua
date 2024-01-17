@@ -19,8 +19,7 @@ return {
 			local dapui = require("dapui")
 			dapui.setup(require("configs.nvim-dap-ui"))
 			dap.listeners.after.event_initialized["dapui_config"] = function()
-				local current_buffer = vim.api.nvim_get_current_buf()
-				local file_type = vim.api.nvim_buf_get_option(current_buffer, "filetype")
+				local file_type = require("utility.buffer_info").get_filetype()
 
 				local ui = prefered_output[file_type]
 				if ui == nil then
@@ -35,6 +34,8 @@ return {
 		config = function()
 			require("cmp").setup({
 				enabled = function()
+					--- Ignored because this is given from the cmp-dap readme
+					---@diagnostic disable-next-line: deprecated
 					return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
 				end,
 			})
@@ -55,9 +56,10 @@ return {
 				root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
 				init_options = {
 					bundles = {
-						vim.fn.glob("/usr/share/java-debug/com.microsoft.java.debug.plugin.jar", 1),
+						vim.fn.glob("/usr/share/java-debug/com.microsoft.java.debug.plugin.jar", true),
 					},
 				},
+				---@diagnostic disable-next-line: unused-local
 				on_attach = function(client, bufnr)
 					require("jdtls.dap").setup_dap_main_class_configs()
 				end,
