@@ -5,6 +5,7 @@ M.n = {
 	["<leader>og"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
 	["<leader>old"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
 	["<leader>od"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
+	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
 	-- moving
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
 	["H"] = { "^", "move the cursor to the first non-whitespace character", { noremap = true } },
