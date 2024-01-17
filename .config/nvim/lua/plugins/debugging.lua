@@ -19,7 +19,7 @@ return {
 			local dapui = require("dapui")
 			dapui.setup(require("configs.nvim-dap-ui"))
 			dap.listeners.after.event_initialized["dapui_config"] = function()
-				local file_type = require("utility.buffer_info").get_filetype()
+				local file_type = require("utility.buffer_info").filetype()
 
 				local ui = prefered_output[file_type]
 				if ui == nil then
