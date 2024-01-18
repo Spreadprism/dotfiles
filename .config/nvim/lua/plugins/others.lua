@@ -40,6 +40,10 @@ return {
 		end,
 	},
 	{
+		"rhysd/git-messenger.vim",
+		cmd = "GitMessenger",
+	},
+	{
 		"saecki/crates.nvim",
 		tag = "v0.4.0",
 		ft = { "rust", "toml" },
