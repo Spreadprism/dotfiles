@@ -81,32 +81,13 @@ return {
 		version = "*",
 		opts = {},
 	},
-	-- {
-	-- 	"rmagatti/auto-session",
-	-- 	config = function()
-	-- 		require("auto-session").setup({
-	-- 			log_level = "error",
-	-- 			auto_session_suppress_dirs = { "~/", "~/projects", "~/Downloads", "/" },
-	-- 		})
-	-- 	end,
-	-- },
-	-- {
-	-- 	"Dhanus3133/LeetBuddy.nvim",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-telescope/telescope.nvim",
-	-- 	},
-	-- 	config = function()
-	-- 		require("leetbuddy").setup({})
-	-- 	end,
-	-- 	keys = {
-	-- 		{ "<leader>lq", "<cmd>LBQuestions<cr>", desc = "List Questions" },
-	-- 		{ "<leader>ll", "<cmd>LBQuestion<cr>", desc = "View Question" },
-	-- 		{ "<leader>lr", "<cmd>LBReset<cr>", desc = "Reset Code" },
-	-- 		{ "<leader>lt", "<cmd>LBTest<cr>", desc = "Run Code" },
-	-- 		{ "<leader>ls", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
-	-- 	},
-	-- },
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		opts = {
+			-- add any custom options here
+		},
+	},
 	-- {
 	-- 	"kawre/leetcode.nvim",
 	-- 	build = ":TSUpdate html",
