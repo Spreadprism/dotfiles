@@ -19,7 +19,7 @@ return {
 		end,
 		desc = " Notes",
 		icon = "󱞁 ",
-		key = "c",
+		key = "n",
 	},
 	{
 		action = "Telescope oldfiles",
