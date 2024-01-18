@@ -1,7 +1,7 @@
 format = '''
 ╭\[$directory\](${custom.conda-env-available})$conda$git_branch$git_status(
 ├$python$golang$c$dotnet$rust$elixir$java$ruby$nodejs${custom.docker})
-╰($container)─➤ 
+╰($container)(\($hostname\))─➤ 
 '''
 add_newline = false
 continuation_prompt = '  ➤ '
@@ -11,8 +11,8 @@ command_timeout=1000
 format ='[$path]($style)(\]\[[$read_only]($read_only_style))'
 truncation_length = 5
 truncate_to_repo = false
-read_only='🔒'
-read_only_style='red'
+read_only=''
+read_only_style='yellow'
 
 [conda]
 format = '\([$environment]($style)\)'
@@ -22,6 +22,10 @@ format = '\([$environment]($style)\)'
 format = '[\($symbol \[$name\]]($style)\)'
 symbol=''
 style='bold blue dimmed'
+
+[hostname]
+ssh_only = true
+format='[$hostname]($style)'
 
 [dotnet]
 format = '\([$symbol( $version)( 🎯 $tfm)]($style)\)'

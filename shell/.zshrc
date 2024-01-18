@@ -45,6 +45,9 @@ export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
 source "$CONFIG_DIR/private.zsh"
 
 
+# Needs eza
+alias ls='eza'
+alias ll='eza --tree'
 # echo "Initializing prompt"
 export _ZO_ECHO=0
 eval "$(zoxide init zsh)"
