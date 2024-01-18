@@ -38,7 +38,7 @@ local setup = function()
 			command = "cat | lolcat",
 			file_path = header_path,
 			file_width = 42,
-			file_height = 23,
+			file_height = 20,
 		},
 	})
 end

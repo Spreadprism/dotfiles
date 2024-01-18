@@ -1,4 +1,4 @@
-return {
+local center = {
 	{
 		action = "Telescope find_files",
 		desc = " Find file",
@@ -8,15 +8,14 @@ return {
 	{
 		action = function()
 			require("telescope").extensions.workspaces.workspaces()
+			vim.version()
 		end,
 		desc = " Find workspace",
 		icon = "󱈹 ",
 		key = "w",
 	},
 	{
-		action = function()
-			vim.cmd("silent !Neorg index")
-		end,
+		action = "Neorg index",
 		desc = " Notes",
 		icon = "󱞁 ",
 		key = "n",
@@ -46,3 +45,10 @@ return {
 		key = "q",
 	},
 }
+
+for _, button in ipairs(center) do
+	button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
+	button.key_format = "  %s"
+end
+
+return center

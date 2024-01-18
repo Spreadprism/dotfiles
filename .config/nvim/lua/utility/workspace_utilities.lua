@@ -28,9 +28,7 @@ M.on_open = function()
 	load_env_variables()
 	load_workspace_file()
 
-	--Execute Dashboard cmd
 	print(M.current_workspace_name())
-	vim.cmd("Dashboard")
 end
 
 M.currently_in_workspace = function()
