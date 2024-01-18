@@ -1,4 +1,4 @@
-local buffer_blacklist = { "neo-tree filesystem [1]" }
+local buffer_blacklist = { "neo-tree filesystem [1]", "[dap-repl]", "DAP Console", "DAP Watches" }
 local extension_blacklist = { "norg" }
 
 ---@diagnostic disable-next-line: lowercase-global
@@ -20,7 +20,7 @@ function DisplayFilename()
 	for _, str in ipairs(buffer_blacklist) do
 		if current_buffer == str then
 			-- INFO: Current buffer is in the blacklist, no need to search futher
-
+			display = false
 			break
 		end
 	end

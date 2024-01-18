@@ -114,8 +114,8 @@ return {
 				["<leader>s"] = { name = "+search" },
 				["<leader>sc"] = { name = "+current buffer" },
 				["<leader>sh"] = { name = "+history" },
-				["<leader>sg"] = { name = "+git" },
-				["<leader>sgb"] = { name = "+current buffer" },
+				-- ["<leader>sg"] = { name = "+git" },
+				-- ["<leader>sgb"] = { name = "+current buffer" },
 				["<leader>u"] = { name = "+ui" },
 				["<leader>w"] = { name = "+workspaces" },
 				["<leader>x"] = { name = "+export" },
@@ -138,9 +138,9 @@ return {
 			-- INFO: history
 			vim.keymap.set("n", "<leader>shc", builtin.command_history, { desc = "Search commands history" })
 			-- INFO: git
-			vim.keymap.set("n", "<leader>sgB", builtin.git_branches, { desc = "Search branches" })
-			vim.keymap.set("n", "<leader>sgc", builtin.git_commits, { desc = "Search commits" })
-			vim.keymap.set("n", "<leader>sgbc", builtin.git_bcommits, { desc = "Search commits" })
+			-- vim.keymap.set("n", "<leader>sgB", builtin.git_branches, { desc = "Search branches" })
+			-- vim.keymap.set("n", "<leader>sgc", builtin.git_commits, { desc = "Search commits" })
+			-- vim.keymap.set("n", "<leader>sgbc", builtin.git_bcommits, { desc = "Search commits" })
 			-- INFO: lsp
 			vim.keymap.set("n", "<leader>se", builtin.diagnostics, { desc = "Search errors" })
 			vim.keymap.set("n", "<leader>sd", builtin.lsp_definitions, { desc = "Search definition" })
@@ -157,7 +157,8 @@ return {
 
 			vim.keymap.set("n", "<leader>sG", builtin.live_grep, { desc = "Grep workspace" })
 			-- INFO: current file
-			vim.keymap.set("n", "<leader>scG", builtin.current_buffer_fuzzy_find, { desc = "Grep current file" })
+			vim.keymap.set("n", "<leader>sg", builtin.current_buffer_fuzzy_find, { desc = "Grep current file" })
+
 			vim.keymap.set("n", "<leader>sce", function()
 				require("telescope.builtin").diagnostics({ bufnr = 0 })
 			end, { desc = "Search errors" })

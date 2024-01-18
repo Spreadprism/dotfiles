@@ -16,19 +16,49 @@ local blacklist = {
 	"copilot", --INFO: not an lsp
 	"ruff_lsp", -- INFO: Not an actual lsp, its a linter I don't want it to crowd the info
 }
--- LSP clients attached to buffer
-local clients_lsp = function()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local clients = vim.lsp.buf_get_clients(bufnr)
-	if next(clients) == nil then
-		clients = {}
-	end
-	local c = {}
-	for _, client in pairs(clients) do
+-- -- LSP clients attached to buffer
+-- local clients_lsp = function()
+-- 	local bufnr = vim.api.nvim_get_current_buf()
+-- 	local clients = vim.lsp.buf_get_clients(bufnr)
+-- 	if next(clients) == nil then
+-- 		clients = {}
+-- 	end
+-- 	local c = {}
+-- 	for _, client in pairs(clients) do
+-- 		local name = client.name
+-- 		if name == "pyright" then
+-- 			name = name .. "(" .. require("utility.python_env_manager").get_venv_dir_name() .. ")"
+-- 		end
+-- 		local blacklisted = false
+-- 		for _, blacklist_value in pairs(blacklist) do
+-- 			if name == blacklist_value then
+-- 				blacklisted = true
+-- 				break
+-- 			end
+-- 		end
+-- 		if not blacklisted then
+-- 			table.insert(c, name)
+-- 		end
+-- 	end
+--
+-- 	if #c > 0 then
+-- 		return " " .. table.concat(c, " | ")
+-- 	else
+-- 		return " " .. "No lsp"
+-- 	end
+-- end
+
+local current_lsp = function()
+	local current_buffer = require("utility.buffer_info").buffer_number()
+	local all_clients = vim.lsp.get_clients({ bufnr = current_buffer }) or {}
+
+	local attached_clients = {}
+	for _, client in pairs(all_clients) do
 		local name = client.name
 		if name == "pyright" then
 			name = name .. "(" .. require("utility.python_env_manager").get_venv_dir_name() .. ")"
 		end
+
 		local blacklisted = false
 		for _, blacklist_value in pairs(blacklist) do
 			if name == blacklist_value then
@@ -37,15 +67,18 @@ local clients_lsp = function()
 			end
 		end
 		if not blacklisted then
-			table.insert(c, name)
+			table.insert(attached_clients, name)
 		end
 	end
-
-	if #c > 0 then
-		return " " .. table.concat(c, " | ")
+	if #attached_clients > 0 then
+		return " " .. table.concat(attached_clients, " | ")
 	else
-		return " " .. "No lsp"
+		return nil
 	end
+end
+
+local display_lsp = function()
+	return current_lsp() ~= nil
 end
 
 local status_to_color = {
@@ -79,11 +112,12 @@ return {
 		color = get_copilot_color,
 	},
 	{
-		clients_lsp,
+		current_lsp,
+		cond = display_lsp,
 	},
 	{
 		"diagnostics",
-		sources = { "nvim_diagnostic" },
+		sources = { "nvim_workspace_diagnostic" },
 		symbols = { error = " ", warn = " ", info = " " },
 		diagnostics_color = {
 			color_error = { fg = colors.red },
@@ -92,5 +126,8 @@ return {
 		},
 		sections = { "error", "warn", "info" },
 		always_visible = true,
+		cond = function()
+			return require("utility.buffer_info").filetype() ~= "norg"
+		end,
 	},
 }

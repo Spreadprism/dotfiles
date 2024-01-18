@@ -44,6 +44,9 @@ export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
 # INFO: Sourcing our private shell (We must do this at the end if we want to override anything)
 source "$CONFIG_DIR/private.zsh"
 
+# Needs eza
+alias ls='eza'
+alias ll='eza --tree'
 
 # Needs eza
 alias ls='eza'
