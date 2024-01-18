@@ -82,10 +82,10 @@ return {
 		opts = {},
 	},
 	{
-		"folke/persistence.nvim",
-		event = "BufReadPre", -- this will only start session saving when an actual file was opened
+		"rmagatti/auto-session",
 		opts = {
-			-- add any custom options here
+			auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+			auto_restore_enabled = false,
 		},
 	},
 	-- {
