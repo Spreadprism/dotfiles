@@ -6,21 +6,6 @@ local center = {
 		key = "f",
 	},
 	{
-		action = function()
-			require("telescope").extensions.workspaces.workspaces()
-			vim.version()
-		end,
-		desc = " Find workspace",
-		icon = "󱈹 ",
-		key = "w",
-	},
-	{
-		action = "Neorg index",
-		desc = " Notes",
-		icon = "󱞁 ",
-		key = "n",
-	},
-	{
 		action = "Telescope oldfiles",
 		desc = " Recent files",
 		icon = "󱋡 ",
@@ -31,6 +16,20 @@ local center = {
 		desc = " Load session",
 		icon = " ",
 		key = "l",
+	},
+	{
+		action = function()
+			require("telescope").extensions.workspaces.workspaces()
+		end,
+		desc = " Find workspace",
+		icon = "󱈹 ",
+		key = "w",
+	},
+	{
+		action = "Neorg index",
+		desc = " Notes",
+		icon = "󱞁 ",
+		key = "n",
 	},
 	{
 		action = "cd ~/.dotfiles/.config/nvim",
