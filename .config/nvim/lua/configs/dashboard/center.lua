@@ -41,7 +41,7 @@ local center = {
 	{
 		action = "bd",
 		desc = " Close dashboard",
-		icon = "󰝒 ",
+		icon = " ",
 		key = "x",
 	},
 	{
