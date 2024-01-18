@@ -1,13 +1,5 @@
 return {
 	{
-		action = function()
-			require("persistence").load()
-		end,
-		desc = " Load Session",
-		icon = "󰈞 ",
-		key = "l",
-	},
-	{
 		action = "Telescope find_files",
 		desc = " Find file",
 		icon = "󰈞 ",
@@ -18,6 +10,14 @@ return {
 		desc = " Recent files",
 		icon = "󱋡 ",
 		key = "r",
+	},
+	{
+		action = function()
+			require("persistence").load()
+		end,
+		desc = " Load Session",
+		icon = " ",
+		key = "l",
 	},
 	{
 		action = "qa",
