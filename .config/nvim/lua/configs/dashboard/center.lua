@@ -39,6 +39,12 @@ local center = {
 		key = "c",
 	},
 	{
+		action = "bd",
+		desc = " Close dashboard",
+		icon = "󰝒 ",
+		key = "x",
+	},
+	{
 		action = "qa",
 		desc = " Quit",
 		icon = " ",

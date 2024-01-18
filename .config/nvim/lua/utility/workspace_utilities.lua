@@ -27,8 +27,6 @@ M.on_open_pre = function() end
 M.on_open = function()
 	load_env_variables()
 	load_workspace_file()
-
-	print(M.current_workspace_name())
 end
 
 M.currently_in_workspace = function()
