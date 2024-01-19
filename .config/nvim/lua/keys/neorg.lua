@@ -97,7 +97,7 @@ M.n = {
 		end,
 		"New workspace",
 	},
-	["snw"] = {
+	["<leader>snw"] = {
 		function()
 			require("utility.telescope_pickers.neorg_workspace")()
 		end,

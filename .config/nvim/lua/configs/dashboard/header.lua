@@ -1,28 +1,14 @@
--- local cwd_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
---
--- -- INFO: need to install figlet-cli
--- -- npm install -g figlet-cli
--- -- make_it_rainbow
--- -- lolcat
---
--- -- restrict cwd_name to 9 characters
--- if cwd_name ~= nil and string.len(cwd_name) > 9 then
--- 	cwd_name = string.sub(cwd_name, 1, 9)
--- 	cwd_name = cwd_name .. "..."
--- end
---
--- local handle = io.popen("figlet -f 'ANSI Shadow' " .. cwd_name)
---
--- if handle == nil then
--- 	return {}
--- end
---
--- local logo = handle:read("*a")
--- handle:close()
+local file_utility = require("utility.file_utility")
+local env = require("utility.env")
 
-local logo = [[
-]]
+local headers_dir_path = vim.fn.stdpath("data") .. "/headers/"
+local headers_session_path = vim.fn.stdpath("data") .. "/headers_session/"
 
-logo = string.rep("\n", 8) .. logo .. "\n\n"
+local terminal_width = 80
 
-return vim.split(logo, "\n")
+if not file_utility.exists(headers_dir_path) then
+	vim.cmd("silent !mkdir " .. headers_dir_path)
+end
+
+-- use vim localtime().getpid() to generate session id
+local session_id = vim.fn.localtime().getpid()

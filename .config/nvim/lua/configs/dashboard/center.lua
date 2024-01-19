@@ -1,16 +1,23 @@
 local center = {
 	{
-		action = "Telescope find_files",
+		action = function()
+			vim.cmd("bd")
+			vim.defer_fn(function()
+				vim.cmd("Telescope find_files")
+			end, 5)
+		end,
 		desc = " Find file",
 		icon = "󰈞 ",
 		key = "f",
 	},
 	{
 		action = function()
-			require("telescope").extensions.workspaces.workspaces()
-			vim.version()
+			vim.cmd("bd")
+			vim.defer_fn(function()
+				require("utility.telescope_pickers.workspace")()
+			end, 5)
 		end,
-		desc = " Find workspace",
+		desc = " Open workspace",
 		icon = "󱈹 ",
 		key = "w",
 	},
@@ -21,7 +28,12 @@ local center = {
 		key = "n",
 	},
 	{
-		action = "Telescope oldfiles",
+		action = function()
+			vim.cmd("bd")
+			vim.defer_fn(function()
+				vim.cmd("Telescope oldfiles")
+			end, 5)
+		end,
 		desc = " Recent files",
 		icon = "󱋡 ",
 		key = "r",
@@ -33,7 +45,16 @@ local center = {
 		key = "l",
 	},
 	{
-		action = "cd ~/.dotfiles/.config/nvim",
+		action = function()
+			-- If cwd is not nvim config dir, change to it
+			if vim.fn.getcwd() ~= vim.fn.expand("~/.dotfiles/.config/nvim") then
+				vim.cmd("bd")
+				vim.defer_fn(function()
+					vim.cmd("cd ~/.dotfiles/.config/nvim")
+					vim.cmd("Dashboard")
+				end, 5)
+			end
+		end,
 		desc = " Neovim configs",
 		icon = " ",
 		key = "c",

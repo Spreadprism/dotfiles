@@ -390,7 +390,7 @@ return {
 		config = function()
 			local workspace_hooks = require("utility.workspace_utilities")
 			require("workspaces").setup({
-				auto_open = true,
+				auto_open = false,
 				hooks = {
 					add = workspace_hooks.on_add,
 					remove = workspace_hooks.on_remove,

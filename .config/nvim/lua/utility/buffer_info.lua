@@ -34,9 +34,14 @@ M.filetype = function()
 	return filetype
 end
 
-M.parent_path = function()
+M.dir_path = function()
 	local parent_path = vim.fn.expand("%:p:h")
 	return parent_path
+end
+
+M.dir_name = function()
+	local dir_name = vim.fn.expand("%:h:t")
+	return dir_name
 end
 
 return M

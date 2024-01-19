@@ -1,19 +1,34 @@
-lfs = require("utility.file_utility")
+local headers_dir_path = vim.fn.stdpath("data") .. "/headers/"
+local file_utility = require("utility.file_utility")
+local terminal_width = 120
+local env = require("utility.env")
+
+if not file_utility.exists(headers_dir_path) then
+	vim.cmd("silent !mkdir " .. headers_dir_path)
+end
+
+local get_cwd_name = function()
+	return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+end
+local get_header_path = function()
+	return headers_dir_path .. env.get("NVIM_SESSION_ID") .. ".txt"
+end
+
+local update_header = function()
+	local header_path = get_header_path()
+
+	vim.cmd("silent !rm -f" .. header_path)
+	local figlet_cmd = "figlet -c -w "
+		.. terminal_width
+		.. " -f 'ANSI Shadow' "
+		.. get_cwd_name()
+		.. " > "
+		.. header_path
+	vim.cmd("silent !" .. figlet_cmd)
+end
 
 local setup = function()
-	local header_path = vim.fn.stdpath("data") .. "/header"
-	local current_os = require("utility.os").os()
-
-	if not lfs.exists(header_path) then
-		vim.cmd("silent !rm " .. header_path)
-
-		if current_os == "Ubuntu" then
-			vim.cmd("silent !neofetch --ascii_distro ubuntu_old -L > " .. header_path)
-		else
-			vim.cmd("silent !neofetch -L > " .. header_path)
-		end
-	end
-
+	update_header()
 	if vim.o.filetype == "lazy" then
 		vim.cmd.close()
 		vim.api.nvim_create_autocmd("User", {
@@ -36,9 +51,9 @@ local setup = function()
 		},
 		preview = {
 			command = "cat | lolcat",
-			file_path = header_path,
-			file_width = 42,
-			file_height = 20,
+			file_path = get_header_path(),
+			file_width = terminal_width,
+			file_height = 6,
 		},
 	})
 end
@@ -47,7 +62,12 @@ return function()
 	vim.api.nvim_create_autocmd("DirChanged", {
 		pattern = "global",
 		callback = function()
-			setup()
+			update_header()
+			-- if on dashboard we need to close it then repoen it
+			if vim.bo.filetype == "dashboard" then
+				vim.cmd("bd")
+				vim.cmd("Dashboard")
+			end
 		end,
 	})
 end
