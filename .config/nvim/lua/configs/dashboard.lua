@@ -70,4 +70,11 @@ return function()
 			end
 		end,
 	})
+	-- when nvim closes we need to delete the header file
+	vim.api.nvim_create_autocmd("VimLeave", {
+		pattern = "*",
+		callback = function()
+			vim.cmd("!rm -f " .. get_header_path())
+		end,
+	})
 end
