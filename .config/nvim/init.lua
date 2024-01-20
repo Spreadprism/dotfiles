@@ -31,7 +31,12 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSi
 vim.diagnostic.config({
 	signs = {
 		--support diagnostic severity / diagnostic type name
-		text = { [1] = " ", ["WARN"] = " ", ["HINT"] = "󰌵", ["INFO"] = " " },
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = "󰌵",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
 	},
 })
 

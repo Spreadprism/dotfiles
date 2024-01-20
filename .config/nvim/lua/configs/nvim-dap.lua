@@ -18,20 +18,18 @@ local load_dap_adapters = function()
 	end
 end
 
-local load_vscode_configs = function(clear)
-	if clear == nil then
-		clear = false
-	end
-
-	if clear then
-		local dap = require("dap")
-		dap.configurations = {}
-		load_dap_configurations()
-	end
-
+local load_vs_code_configurations = function()
 	require("dap.ext.vscode").load_launchjs(nil, {
 		codelldb = { "rust", "c" },
 	})
+end
+
+local load_dap_configs = function()
+	local dap = require("dap")
+	dap.configurations = {}
+
+	load_dap_configurations()
+	load_vs_code_configurations()
 end
 
 return function()
@@ -45,14 +43,19 @@ return function()
 	vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStoppedSign", linehl = "DapStoppedSign", numhl = "" })
 
 	load_dap_adapters()
-	load_dap_configurations()
-	load_vscode_configs()
+	load_dap_configs()
+
+	vim.api.nvim_create_autocmd({ "DirChanged" }, {
+		callback = function()
+			load_dap_configs()
+		end,
+	})
 
 	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		callback = function()
 			local file_name = vim.fn.expand("%:t")
 			if file_name == "launch.json" or file_name == "tasks.json" then
-				load_vscode_configs(true)
+				load_dap_configs()
 			end
 		end,
 	})
