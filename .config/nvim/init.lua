@@ -23,17 +23,25 @@ require("init_lazy")
 -- INFO: Init keybinds
 require("keybinds_manager").init_keybinds()
 
--- INFO: Defining the signs and highlights after loading plugins to overwrite them.
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+
+vim.diagnostic.config({
+	signs = {
+		--support diagnostic severity / diagnostic type name
+		text = { [1] = " ", ["WARN"] = " ", ["HINT"] = "󰌵", ["INFO"] = " " },
+	},
+})
+
+-- INFO: Defining the signs and highlights after loading plugins to overwrite them.
 vim.cmd([[highlight DiagnosticUnderlineError guifg=#db4b4b]])
 
-vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
 vim.cmd([[highlight DiagnosticUnderlineWarn guifg=#e0af68]])
 vim.cmd([[highlight DiagnosticDeprecated guifg=#e0af68]])
 
-vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
 vim.cmd([[highlight DiagnosticInfo guifg=#0db9d7]])
 
-vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#1abc9c]])
