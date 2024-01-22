@@ -9,34 +9,34 @@ return {
 		},
 		config = require("configs.neo-tree"),
 	},
-	-- {
-	-- 	"echasnovski/mini.files",
-	-- 	config = function()
-	-- 		require("mini.files").setup({
-	-- 			content = {
-	-- 				prefix = function(fs_entry)
-	-- 					local file_utility = require("utility.file_utility")
-	-- 					if fs_entry.fs_type == "directory" then
-	-- 						local items = file_utility.get_childs(fs_entry.path, nil, { levels = 1 })
-	-- 						if #items == 0 then
-	-- 							return " ", "MiniFilesDirectory"
-	-- 						else
-	-- 							return " ", "MiniFilesDirectory"
-	-- 						end
-	-- 					else
-	-- 						return require("mini.files").default_prefix(fs_entry)
-	-- 					end
-	-- 				end,
-	-- 			},
-	-- 			mappings = {
-	-- 				go_in = "L",
-	-- 				go_in_plus = "l",
-	-- 				go_out = "H",
-	-- 				go_out_plus = "h",
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"Spreadprism/mini.files",
+		config = function()
+			require("mini.files").setup({
+				content = {
+					prefix = function(fs_entry)
+						local file_utility = require("utility.file_utility")
+						if fs_entry.fs_type == "directory" then
+							local items = file_utility.get_childs(fs_entry.path, nil, { levels = 1 })
+							if #items == 0 then
+								return " ", "MiniFilesDirectory"
+							else
+								return " ", "MiniFilesDirectory"
+							end
+						else
+							return require("mini.files").default_prefix(fs_entry)
+						end
+					end,
+				},
+				mappings = {
+					go_in = "L",
+					go_in_plus = "l",
+					go_out = "H",
+					go_out_plus = "h",
+				},
+			})
+		end,
+	},
 	{
 		"echasnovski/mini.move",
 		config = function()

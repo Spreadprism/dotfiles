@@ -12,20 +12,20 @@ M.n = {
 	["H"] = { "^", "move the cursor to the first non-whitespace character", { noremap = true } },
 	-- closing and saving
 	["<C-q>"] = { "<CMD>q<CR>", "close", { silent = true } },
-	["<leader>e"] = {
-		function()
-			vim.cmd("Neotree filesystem toggle left")
-		end,
-		"Toggle neovim file explorer",
-		{ noremap = true, silent = true },
-	},
-	["<leader>E"] = {
-		function()
-			vim.cmd("Neotree filesystem toggle left reveal")
-		end,
-		"Toggle neovim file explorer with current buffer as focus",
-		{ noremap = true, silent = true },
-	},
+	-- ["<leader>e"] = {
+	-- 	function()
+	-- 		vim.cmd("Neotree filesystem toggle left")
+	-- 	end,
+	-- 	"Toggle neovim file explorer",
+	-- 	{ noremap = true, silent = true },
+	-- },
+	-- ["<leader>E"] = {
+	-- 	function()
+	-- 		vim.cmd("Neotree filesystem toggle left reveal")
+	-- 	end,
+	-- 	"Toggle neovim file explorer with current buffer as focus",
+	-- 	{ noremap = true, silent = true },
+	-- },
 	-- ["<leader>e"] = {
 	-- 	function()
 	-- 		vim.cmd("Telescope file_browser")
@@ -41,25 +41,25 @@ M.n = {
 	-- 	{ noremap = true, silent = true },
 	-- },
 	-- file keymaps
-	-- ["<leader>e"] = {
-	-- 	function()
-	-- 		if not MiniFiles.close() then
-	-- 			MiniFiles.open()
-	-- 		end
-	-- 		-- vim.cmd("Neotree position=floating")
-	-- 	end,
-	-- 	"Toggle neovim file explorer",
-	-- 	{ noremap = true, silent = true },
-	-- },
-	-- ["<leader>E"] = {
-	-- 	function()
-	-- 		if not MiniFiles.close() then
-	-- 			MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-	-- 		end
-	-- 	end,
-	-- 	"Toggle neovim file explorer with current buffer as focus",
-	-- 	{ noremap = true, silent = true },
-	-- },
+	["<leader>e"] = {
+		function()
+			if not MiniFiles.close() then
+				MiniFiles.open()
+			end
+			-- vim.cmd("Neotree position=floating")
+		end,
+		"Toggle neovim file explorer",
+		{ noremap = true, silent = true },
+	},
+	["<leader>E"] = {
+		function()
+			if not MiniFiles.close() then
+				MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+			end
+		end,
+		"Toggle neovim file explorer with current buffer as focus",
+		{ noremap = true, silent = true },
+	},
 	["<M-e>"] = {
 		function()
 			vim.cmd("silent !thunar $PWD")

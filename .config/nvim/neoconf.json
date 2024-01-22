@@ -20,7 +20,8 @@
     "lua_ls": {
       "Lua.completion.callSnippet": "Replace",
       "Lua.window.progressBar": false,
-      "Lua.window.statusBar": false
+      "Lua.window.statusBar": false,
+      "Lua.diagnostics.globals": ["vim", "MiniFiles"]
     }
   }
 }
