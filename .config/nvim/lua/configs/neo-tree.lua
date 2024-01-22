@@ -1,3 +1,5 @@
+local fu = require("utility.file_utility")
+local env = require("utility.env")
 return function()
 	vim.g.neo_tree_root_folder = "name"
 	require("neo-tree").setup({
@@ -18,6 +20,21 @@ return function()
 		use_libuv_file_watcher = true,
 		window = {
 			mappings = {
+				["o"] = function(state)
+					local node = state.tree:get_node()
+					local path = node.path
+					if fu.is_dir(path) then
+						vim.cmd("silent !thunar " .. path)
+					end
+				end,
+				["O"] = function(_)
+					vim.cmd("silent !thunar $PWD")
+				end,
+				["e"] = function(state)
+					local node = state.tree:get_node()
+					local path = node.path
+					MiniFiles.open(path, false)
+				end,
 				["a"] = {
 					"add",
 					-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details

@@ -13,6 +13,7 @@ local env = require("utility.env")
 local session_id = require("utility.instance_manager").get_session_id()
 env.set("userHome", env.get("HOME"))
 env.set("nvimHome", env.get("HOME") .. "/.config/nvim")
+env.set("IS_WSL", false)
 env.set("NVIM_SESSION_ID", session_id)
 
 env.set("workspaceFolder", vim.fn.getcwd())

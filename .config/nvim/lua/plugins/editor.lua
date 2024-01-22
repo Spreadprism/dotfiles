@@ -10,7 +10,7 @@ return {
 		config = require("configs.neo-tree"),
 	},
 	{
-		"Spreadprism/mini.files",
+		"echasnovski/mini.files",
 		config = function()
 			require("mini.files").setup({
 				content = {
