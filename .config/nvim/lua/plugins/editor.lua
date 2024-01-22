@@ -1,42 +1,42 @@
 return {
-	-- {
-	-- 	"nvim-neo-tree/neo-tree.nvim",
-	-- 	cmd = "Neotree",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-	-- 		"MunifTanjim/nui.nvim",
-	-- 	},
-	-- 	config = require("configs.neo-tree"),
-	-- },
 	{
-		"echasnovski/mini.files",
-		config = function()
-			require("mini.files").setup({
-				content = {
-					prefix = function(fs_entry)
-						local file_utility = require("utility.file_utility")
-						if fs_entry.fs_type == "directory" then
-							local items = file_utility.get_childs(fs_entry.path, nil, { levels = 1 })
-							if #items == 0 then
-								return " ", "MiniFilesDirectory"
-							else
-								return " ", "MiniFilesDirectory"
-							end
-						else
-							return require("mini.files").default_prefix(fs_entry)
-						end
-					end,
-				},
-				mappings = {
-					go_in = "L",
-					go_in_plus = "l",
-					go_out = "H",
-					go_out_plus = "h",
-				},
-			})
-		end,
+		"nvim-neo-tree/neo-tree.nvim",
+		cmd = "Neotree",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+		},
+		config = require("configs.neo-tree"),
 	},
+	-- {
+	-- 	"echasnovski/mini.files",
+	-- 	config = function()
+	-- 		require("mini.files").setup({
+	-- 			content = {
+	-- 				prefix = function(fs_entry)
+	-- 					local file_utility = require("utility.file_utility")
+	-- 					if fs_entry.fs_type == "directory" then
+	-- 						local items = file_utility.get_childs(fs_entry.path, nil, { levels = 1 })
+	-- 						if #items == 0 then
+	-- 							return " ", "MiniFilesDirectory"
+	-- 						else
+	-- 							return " ", "MiniFilesDirectory"
+	-- 						end
+	-- 					else
+	-- 						return require("mini.files").default_prefix(fs_entry)
+	-- 					end
+	-- 				end,
+	-- 			},
+	-- 			mappings = {
+	-- 				go_in = "L",
+	-- 				go_in_plus = "l",
+	-- 				go_out = "H",
+	-- 				go_out_plus = "h",
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"echasnovski/mini.move",
 		config = function()
@@ -171,6 +171,13 @@ return {
 		end,
 	},
 	{
+		"nvim-telescope/telescope-file-browser.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("telescope").load_extension("file_browser")
+		end,
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		event = "VeryLazy",
@@ -218,7 +225,7 @@ return {
 			table.insert(vimgrep_arguments, "!**/.git/*")
 
 			local trouble = require("trouble.providers.telescope")
-
+			local fb_actions = require("telescope").extensions.file_browser.actions
 			require("telescope").setup({
 				file_ignore_patterns = { "%.env" },
 				defaults = {
@@ -252,6 +259,19 @@ return {
 						override_file_sorter = true, -- override the file sorter
 						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 						-- the default case_mode is "smart_case"
+					},
+					file_browser = {
+						theme = "ivy",
+						-- disables netrw and use telescope-file-browser in its place
+						hijack_netrw = true,
+						mappings = {
+							["i"] = {
+								["<A-a>"] = fb_actions.create,
+							},
+							["n"] = {
+								-- your custom normal mode mappings
+							},
+						},
 					},
 				},
 			})

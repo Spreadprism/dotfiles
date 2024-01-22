@@ -4,7 +4,7 @@ local M = {}
 M.n = {
 	["<leader>og"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
 	["<leader>ot"] = { "<cmd>TroubleToggle<CR>", "Open trouble" },
-	["<leader>old"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
+	["<leader>oD"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
 	["<leader>od"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
 	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
 	-- moving
@@ -12,25 +12,54 @@ M.n = {
 	["H"] = { "^", "move the cursor to the first non-whitespace character", { noremap = true } },
 	-- closing and saving
 	["<C-q>"] = { "<CMD>q<CR>", "close", { silent = true } },
-	-- file keymaps
 	["<leader>e"] = {
 		function()
-			if not MiniFiles.close() then
-				MiniFiles.open()
-			end
+			vim.cmd("Neotree filesystem toggle left")
 		end,
 		"Toggle neovim file explorer",
 		{ noremap = true, silent = true },
 	},
 	["<leader>E"] = {
 		function()
-			if not MiniFiles.close() then
-				MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
-			end
+			vim.cmd("Neotree filesystem toggle left reveal")
 		end,
 		"Toggle neovim file explorer with current buffer as focus",
 		{ noremap = true, silent = true },
 	},
+	-- ["<leader>e"] = {
+	-- 	function()
+	-- 		vim.cmd("Telescope file_browser")
+	-- 	end,
+	-- 	"Toggle neovim file explorer",
+	-- 	{ noremap = true, silent = true },
+	-- },
+	-- ["<leader>E"] = {
+	-- 	function()
+	-- 		vim.cmd("Telescope file_browser path=%:p:h select_buffer=true")
+	-- 	end,
+	-- 	"Toggle neovim file explorer with current buffer as focus",
+	-- 	{ noremap = true, silent = true },
+	-- },
+	-- file keymaps
+	-- ["<leader>e"] = {
+	-- 	function()
+	-- 		if not MiniFiles.close() then
+	-- 			MiniFiles.open()
+	-- 		end
+	-- 		-- vim.cmd("Neotree position=floating")
+	-- 	end,
+	-- 	"Toggle neovim file explorer",
+	-- 	{ noremap = true, silent = true },
+	-- },
+	-- ["<leader>E"] = {
+	-- 	function()
+	-- 		if not MiniFiles.close() then
+	-- 			MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+	-- 		end
+	-- 	end,
+	-- 	"Toggle neovim file explorer with current buffer as focus",
+	-- 	{ noremap = true, silent = true },
+	-- },
 	["<M-e>"] = {
 		function()
 			vim.cmd("silent !thunar $PWD")
@@ -173,7 +202,6 @@ M.n = {
 		{ silent = true },
 	},
 }
-
 M.i = {
 	["<C-l>"] = { "<Right>", "Move right", { silent = true } },
 	["<C-j>"] = { "<Down>", "Move down", { silent = true } },
