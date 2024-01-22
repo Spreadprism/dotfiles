@@ -60,11 +60,16 @@ M.get_childs = function(path, pattern, options)
 		for child in lfs.dir(path) do
 			if child ~= "." and child ~= ".." then
 				table.insert(childs, child)
-				if M.is_dir(path .. "/" .. child) then
-					local child_child = M.get_childs(path .. "/" .. child)
-					if child_child ~= nil then
-						for _, c in pairs(child_child) do
-							table.insert(childs, child .. "/" .. c)
+				if options == nil or options.levels == nil or options.levels > 1 then
+					if options ~= nil and options.levels ~= nil then
+						options.levels = options.levels - 1
+					end
+					if M.is_dir(path .. "/" .. child) then
+						local child_child = M.get_childs(path .. "/" .. child, pattern, options)
+						if child_child ~= nil then
+							for _, c in pairs(child_child) do
+								table.insert(childs, child .. "/" .. c)
+							end
 						end
 					end
 				end

@@ -3,6 +3,7 @@ local M = {}
 -- Available options silent & noremap
 M.n = {
 	["<leader>og"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
+	["<leader>ot"] = { "<cmd>TroubleToggle<CR>", "Open trouble" },
 	["<leader>old"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
 	["<leader>od"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
 	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
@@ -13,12 +14,20 @@ M.n = {
 	["<C-q>"] = { "<CMD>q<CR>", "close", { silent = true } },
 	-- file keymaps
 	["<leader>e"] = {
-		"<CMD>Neotree filesystem toggle left<CR>",
+		function()
+			if not MiniFiles.close() then
+				MiniFiles.open()
+			end
+		end,
 		"Toggle neovim file explorer",
 		{ noremap = true, silent = true },
 	},
 	["<leader>E"] = {
-		"<CMD>Neotree filesystem toggle left reveal<CR>",
+		function()
+			if not MiniFiles.close() then
+				MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+			end
+		end,
 		"Toggle neovim file explorer with current buffer as focus",
 		{ noremap = true, silent = true },
 	},

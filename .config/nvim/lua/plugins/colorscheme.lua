@@ -32,6 +32,7 @@ return {
 			})
 			-- require("transparent").clear_prefix("NeoTree")
 			require("transparent").clear_prefix("Notify")
+			require("transparent").clear_prefix("Trouble")
 		end,
 	},
 }

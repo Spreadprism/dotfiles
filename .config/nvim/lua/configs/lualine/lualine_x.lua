@@ -118,16 +118,21 @@ return {
 	{
 		"diagnostics",
 		sources = { "nvim_workspace_diagnostic" },
-		symbols = { error = " ", warn = " ", info = " " },
+		symbols = { error = " ", warn = " ", hint = "󰌵 " },
 		diagnostics_color = {
 			color_error = { fg = colors.red },
 			color_warn = { fg = colors.yellow },
 			color_info = { fg = colors.cyan },
 		},
-		sections = { "error", "warn", "info" },
+		sections = { "error", "warn", "hint" },
 		always_visible = true,
 		cond = function()
 			return require("utility.buffer_info").filetype() ~= "norg"
+		end,
+		on_click = function(n_clicks, mouse_button, modifiers)
+			if mouse_button == "l" then
+				vim.cmd("TroubleToggle")
+			end
 		end,
 	},
 }

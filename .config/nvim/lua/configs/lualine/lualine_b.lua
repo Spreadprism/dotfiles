@@ -66,6 +66,15 @@ end
 return {
 	{
 		"branch",
+		-- function args
+		-- 1: n_clicks
+		-- 2: mouse_button
+		-- 3: modifiers
+		on_click = function(_, mouse_button, _)
+			if mouse_button == "l" then
+				vim.cmd("LazyGit")
+			end
+		end,
 	},
 	-- {
 	-- 	"diff",

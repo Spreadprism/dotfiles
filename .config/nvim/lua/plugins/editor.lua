@@ -1,13 +1,56 @@
 return {
+	-- {
+	-- 	"nvim-neo-tree/neo-tree.nvim",
+	-- 	cmd = "Neotree",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+	-- 		"MunifTanjim/nui.nvim",
+	-- 	},
+	-- 	config = require("configs.neo-tree"),
+	-- },
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		cmd = "Neotree",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-		},
-		config = require("configs.neo-tree"),
+		"echasnovski/mini.files",
+		config = function()
+			require("mini.files").setup({
+				content = {
+					prefix = function(fs_entry)
+						local file_utility = require("utility.file_utility")
+						if fs_entry.fs_type == "directory" then
+							local items = file_utility.get_childs(fs_entry.path, nil, { levels = 1 })
+							if #items == 0 then
+								return " ", "MiniFilesDirectory"
+							else
+								return " ", "MiniFilesDirectory"
+							end
+						else
+							return require("mini.files").default_prefix(fs_entry)
+						end
+					end,
+				},
+				mappings = {
+					go_in = "L",
+					go_in_plus = "l",
+					go_out = "H",
+					go_out_plus = "h",
+				},
+			})
+		end,
+	},
+	{
+		"echasnovski/mini.move",
+		config = function()
+			require("mini.move").setup({
+				mappings = {
+					up = "",
+					down = "",
+					line_left = "",
+					line_right = "",
+					line_down = "",
+					line_up = "",
+				},
+			})
+		end,
 	},
 	-- {
 	-- 	"nvim-tree/nvim-tree.lua",
@@ -263,14 +306,9 @@ return {
 		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
-			signs = {
-				-- icons / text used for a diagnostic
-				error = "",
-				warning = "",
-				hint = "",
-				information = "",
-				other = "",
-			},
+			auto_preview = false,
+			auto_fold = true,
+			use_diagnostic_signs = true,
 		},
 	},
 	{
