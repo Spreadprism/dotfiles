@@ -24,6 +24,15 @@ else
   export IN_WSL="false"
 fi
 
+new-notebook() {
+    echo "{
+ \"cells\": [],
+ \"metadata\": {},
+ \"nbformat\": 4,
+ \"nbformat_minor\": 2
+}" > $(pwd)/$1
+}
+
 # INFO: Conda
 lazyload conda -- 'source $HOME/.dotfiles/shell/conda.zsh'
 

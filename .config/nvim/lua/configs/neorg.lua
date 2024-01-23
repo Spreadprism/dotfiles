@@ -26,7 +26,8 @@ local get_workspaces = function()
 	workspaces["quicknote"] = notes_directory .. "/quicknote"
 
 	local pattern = "*/index.norg"
-	local index_files = fs.get_files(env.get("HOME") .. "/Notes", pattern)
+	local index_files = fs.get_files(env.get("HOME") .. "/Notes", pattern, { levels = 20 })
+
 	if index_files ~= nil then
 		for _, index_file in pairs(index_files) do
 			local actual_path = fs.get_parent_directory(notes_directory .. "/" .. index_file)
@@ -53,18 +54,20 @@ neorg.setup = function()
 			}, -- Adds pretty icons to your documents
 			["core.dirman"] = { -- Manages Neorg workspaces
 				config = {
-					-- workspaces = {
-					-- 	Notes = "~/Notes",
-					-- 	personal = "~/Notes/personal",
-					-- 	school = "~/Notes/school",
-					-- 	-- classes
-					-- 	MTI840 = "~/Notes/school/MTI840",
-					-- 	MGR850 = "~/Notes/school/MGR850",
-					-- },
-					workspaces = get_workspaces(),
+					workspaces = {
+						Notes = "~/Notes",
+						personal = "~/Notes/personal",
+						school = "~/Notes/school",
+						-- classes
+						MTI840 = "~/Notes/school/MTI840",
+						MGR850 = "~/Notes/school/MGR850",
+						MTR801 = "~/Notes/school/MTR801",
+					},
 					default_workspace = "Notes",
 				},
 			},
+			["core.ui"] = {},
+			["core.ui.calendar"] = {},
 		},
 	})
 end
