@@ -2,7 +2,9 @@
 
 # We can't activate if we are already in an environment
 if [ ! -z "$CONDA_DEFAULT_ENV" ]; then
-  exit 1
+  if [ "$CONDA_DEFAULT_ENV" != "base" ]; then
+    exit 1
+  fi
 fi
 
 env_dir=$HOME/miniconda3/envs/

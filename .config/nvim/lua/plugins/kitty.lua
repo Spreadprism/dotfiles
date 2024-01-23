@@ -21,10 +21,10 @@ local kitty_plugins = {
 						filetypes = { "norg" },
 					},
 				},
-				max_width = nil,
-				max_height = nil,
-				max_width_window_percentage = nil,
-				max_height_window_percentage = 50,
+				max_width = 100,
+				max_height = 12,
+				max_height_window_percentage = math.huge,
+				max_width_window_percentage = math.huge,
 				window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
 				window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "", "cmd" },
 				editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
