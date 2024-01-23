@@ -4,8 +4,9 @@ local M = {}
 M.n = {
 	["<leader>og"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
 	["<leader>ot"] = { "<cmd>TroubleToggle<CR>", "Open trouble" },
-	["<leader>oD"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
-	["<leader>od"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
+	-- ["<leader>oD"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
+	["<leader>oD"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
+	["<leader>od"] = { "<cmd>DBUIToggle<cr>", "Toggle dadbod UI" },
 	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
 	-- moving
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },

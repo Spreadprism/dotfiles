@@ -34,6 +34,9 @@ local format = function(entry, item)
 	elseif entry.source.name == "crates" then
 		item.kind = "  "
 		item.menu = "(crates)"
+	elseif entry.source.name == "vim-dadbod-completion" then
+		-- item kind should be a db icon from nerdfont
+		item.kind = " "
 	else
 		local kind = (cmp_kinds[item.kind] or "")
 		if item.kind ~= "Copilot" then
