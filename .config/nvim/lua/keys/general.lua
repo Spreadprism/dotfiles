@@ -6,7 +6,7 @@ M.n = {
 	["<leader>ot"] = { "<cmd>TroubleToggle<CR>", "Open trouble" },
 	-- ["<leader>oD"] = { "<cmd>LazyDocker<CR>", "Open lazydocker" },
 	["<leader>od"] = { "<cmd>Dashboard<CR>", "Open dashboard" },
-	["<leader>Dt"] = { "<cmd>DBUIToggle<cr>", "Toggle dadbod UI" },
+	["<leader>os"] = { "<cmd>DBUIToggle<cr>", "Open sql" },
 	["<C-s>"] = { "<cmd>w<CR>", "Save file" },
 	-- moving
 	["L"] = { "g_", "move the cursor to the last non-whitespace character", { noremap = true } },
