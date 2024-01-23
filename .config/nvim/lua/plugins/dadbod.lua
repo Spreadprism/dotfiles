@@ -12,7 +12,7 @@ return {
 			vim.cmd([[let g:db_ui_disable_mappings = 1]])
 			vim.cmd([[autocmd FileType dbui nmap <buffer> o <Plug>(DBUI_SelectLine)]])
 			vim.cmd([[autocmd FileType dbui nmap <buffer> <CR> <Plug>(DBUI_SelectLine)]])
-			vim.cmd([[autocmd FileType dbui nmap <buffer> S <Plug>(DBUI_SaveQuery)]])
+			vim.cmd([[autocmd FileType dbui nmap <buffer> <leader>Ds <Plug>(DBUI_SaveQuery)]])
 			vim.cmd([[autocmd FileType dbui nmap <buffer> h <Plug>(DBUI_ToggleDetails)]])
 			vim.cmd([[autocmd FileType dbui nmap <buffer> R <Plug>(DBUI_Redraw)]])
 		end,
