@@ -24,11 +24,19 @@ return function()
 					local node = state.tree:get_node()
 					local path = node.path
 					if fu.is_dir(path) then
-						vim.cmd("silent !thunar " .. path)
+						if env.get("IN_WSL") == "true" then
+							vim.cmd("silent !explorer.exe $(wslpath -w " .. path .. ")")
+						else
+							vim.cmd("silent !thunar " .. path)
+						end
 					end
 				end,
 				["O"] = function(_)
-					vim.cmd("silent !thunar $PWD")
+					if env.get("IN_WSL") == "true" then
+						vim.cmd("silent !explorer.exe $(wslpath -w $PWD)")
+					else
+						vim.cmd("silent !thunar $PWD")
+					end
 				end,
 				["e"] = function(state)
 					local node = state.tree:get_node()

@@ -16,10 +16,12 @@ source "$CONFIG_DIR/oh-my-zsh.zsh"
 # echo "Sourcing nvim"
 source "$CONFIG_DIR/nvim.zsh"
 
-# echo "Sourcing wsl"
 # INFO: source wsl only if we are in wsl
 if [[ $(grep -i Microsoft /proc/version) ]]; then
+  export IN_WSL="true"
   source "$CONFIG_DIR/wsl.zsh"
+else
+  export IN_WSL="false"
 fi
 
 new-notebook() {
