@@ -81,16 +81,20 @@ window#waybar {
 #pulseaudio {
   border-right: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0 10px;
+  background-color: transparent;
 }
 
 
 #battery.charging, #battery.plugged {
+    background-color: transparent;
     color: #26A65B;
 }
 
 #battery.warning:not(.charging) {
-  background-color: #f5a742;
+  background-color: transparent;
+  color: #f5a742;
 }
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+  background-color: transparent;
+    color: #f53c3c;
 }

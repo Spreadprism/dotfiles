@@ -26,7 +26,7 @@ local kitty_plugins = {
 				max_height_window_percentage = math.huge,
 				max_width_window_percentage = math.huge,
 				window_overlap_clear_enabled = true, -- toggles images when windows are overlapped
-				window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "", "cmd" },
+				window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "notify", "Cmdline" },
 				editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
 				tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
 				-- hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
@@ -66,7 +66,7 @@ local kitty_plugins = {
 
 local env = require("utility.env")
 
-if env.get("TERM") == "xterm-kitty" then
+if env.get("IN_KITTY") == "true" then
 	return kitty_plugins
 else
 	return {}
