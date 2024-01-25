@@ -29,6 +29,13 @@ return function()
 						else
 							vim.cmd("silent !thunar " .. path)
 						end
+					else
+						local directory = fu.get_parent_directory(path)
+						if env.get("IN_WSL") == "true" then
+							vim.cmd("silent !explorer.exe $(wslpath -w " .. directory .. ")")
+						else
+							vim.cmd("silent !thunar " .. directory)
+						end
 					end
 				end,
 				["O"] = function(_)

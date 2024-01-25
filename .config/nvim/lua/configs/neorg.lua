@@ -1,6 +1,7 @@
 local neorg = {}
 
 local fs = require("utility.file_utility")
+local ripgrep = require("utility.ripgrep")
 local env = require("utility.env")
 
 local notes_directory = env.get("HOME") .. "/Notes"
@@ -25,13 +26,11 @@ local get_workspaces = function()
 	workspaces[get_workspace_name(notes_directory)] = notes_directory
 	workspaces["quicknote"] = notes_directory .. "/quicknote"
 
-	local pattern = "*/index.norg"
-	local index_files = fs.get_files(env.get("HOME") .. "/Notes", pattern, { levels = 20 })
+	local index_files = ripgrep.rg("-uuu --files --glob 'index.norg'", "~/Notes")
 
 	if index_files ~= nil then
 		for _, index_file in pairs(index_files) do
-			local actual_path = fs.get_parent_directory(notes_directory .. "/" .. index_file)
-			workspaces[get_workspace_name(actual_path)] = actual_path
+			workspaces[get_workspace_name(index_file)] = fs.get_parent_directory(index_file)
 		end
 	end
 
@@ -54,16 +53,8 @@ neorg.setup = function()
 			}, -- Adds pretty icons to your documents
 			["core.dirman"] = { -- Manages Neorg workspaces
 				config = {
-					workspaces = {
-						Notes = "~/Notes",
-						personal = "~/Notes/personal",
-						school = "~/Notes/school",
-						-- classes
-						MTI840 = "~/Notes/school/MTI840",
-						MGR850 = "~/Notes/school/MGR850",
-						MTR801 = "~/Notes/school/MTR801",
-					},
-					default_workspace = "Notes",
+					workspaces = get_workspaces(),
+					default_workspace = get_workspace_name(notes_directory),
 				},
 			},
 			["core.ui"] = {},

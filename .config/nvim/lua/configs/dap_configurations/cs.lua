@@ -19,8 +19,9 @@ local get_program = function()
 	local bin_path = env.get("workspaceFolder") .. "/bin"
 	local program_name = env.get("workspaceFolderBaseName")
 
+	-- TODO: use ripgrep
 	local pattern = "/Debug/*/" .. program_name .. ".dll"
-	local possible_files = file_utility.get_files(bin_path, pattern)
+	local possible_files = file_utility.get_files(bin_path, pattern) -- FIX: removed the get_files function from file_utility.lua
 
 	if #possible_files == 0 then
 		print("No debug dll found")

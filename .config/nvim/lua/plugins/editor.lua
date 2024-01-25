@@ -17,8 +17,7 @@ return {
 					prefix = function(fs_entry)
 						local file_utility = require("utility.file_utility")
 						if fs_entry.fs_type == "directory" then
-							local items = file_utility.get_childs(fs_entry.path, nil, { levels = 1 })
-							if #items == 0 then
+							if file_utility.is_empty_dir(fs_entry.path) then
 								return " ", "MiniFilesDirectory"
 							else
 								return " ", "MiniFilesDirectory"
@@ -207,21 +206,31 @@ return {
 			end, { desc = "Search errors" })
 
 			-- INFO: Search configs
-			local telescopeConfig = require("telescope.config")
 
-			-- Clone the default Telescope configuration
-			local vimgrep_arguments = { unpack(telescopeConfig.values.vimgrep_arguments) }
-			-- I want to search in hidden/dot files.
-			table.insert(vimgrep_arguments, "--hidden")
-			-- I don't want to search in the `.git` directory.
-			table.insert(vimgrep_arguments, "--glob")
-			table.insert(vimgrep_arguments, "!**/.git/*")
+			local ignore_patterns = {
+				".git/*",
+				"**/node_modules/*",
+				"/target/*",
+				".next/*",
+				"**/__pycache__/*",
+			}
+
+			local find_files_rg = {
+				"rg",
+				"-uuu",
+				"--files",
+				"--hidden",
+			}
+
+			for _, pattern in pairs(ignore_patterns) do
+				table.insert(find_files_rg, "--glob")
+				table.insert(find_files_rg, "!" .. pattern)
+			end
 
 			local trouble = require("trouble.providers.telescope")
 			require("telescope").setup({
-				file_ignore_patterns = { "%.env" },
+				-- file_ignore_patterns = { "%.env" },
 				defaults = {
-					vimgrep_arguments = vimgrep_arguments,
 					mappings = {
 						i = {
 							["<Tab>"] = require("telescope.actions").move_selection_next,
@@ -233,15 +242,7 @@ return {
 				},
 				pickers = {
 					find_files = {
-						find_command = {
-							"rg",
-							"--files",
-							"--hidden",
-							"--glob",
-							"!**/.git/*",
-							"--glob",
-							"!**/node_modules/*",
-						},
+						find_command = find_files_rg,
 					},
 				},
 				extensions = {
