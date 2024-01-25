@@ -11,7 +11,7 @@ M.n = {
 		end,
 		"Clear all marks",
 	},
-	["<leader>sm"] = { "<CMD>Telescope harpoon marks<CR>", "Search marks" },
+	-- ["<leader>sm"] = { "<CMD>Telescope harpoon marks<CR>", "Search marks" },
 }
 
 return M

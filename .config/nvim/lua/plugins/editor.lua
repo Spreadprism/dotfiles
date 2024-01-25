@@ -51,35 +51,6 @@ return {
 			})
 		end,
 	},
-	-- {
-	-- 	"nvim-tree/nvim-tree.lua",
-	-- 	version = "*",
-	-- 	lazy = false,
-	-- 	dependencies = {
-	-- 		"nvim-tree/nvim-web-devicons",
-	-- 	},
-	-- 	config = function()
-	-- 		-- local function my_on_attach(bufnr)
-	-- 		-- 	local api = require("nvim-tree.api")
-	-- 		--
-	-- 		-- 	local function opts(desc)
-	-- 		-- 		return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-	-- 		-- 	end
-	-- 		--
-	-- 		-- 	-- default mappings
-	-- 		-- 	api.config.mappings.default_on_attach(bufnr)
-	-- 		--
-	-- 		-- 	-- custom mappings
-	-- 		-- 	vim.keymap.set("n", "<C-t>", api.tree.change_root_to_parent, opts("Up"))
-	-- 		-- 	vim.keymap.set("n", "?", api.tree.toggle_help, opts("Help"))
-	-- 		-- end
-	-- 		require("nvim-tree").setup({
-	-- 			sync_root_with_cwd = true,
-	-- 			reload_on_bufenter = true,
-	--        respect_buf_cwd = true,
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"MunifTanjim/nui.nvim",
 	},
@@ -154,7 +125,7 @@ return {
 				["<leader>j"] = { name = "+jupynium" },
 				["<leader>q"] = { name = "+quit/session" },
 				["<leader>s"] = { name = "+search" },
-				["<leader>sc"] = { name = "+current buffer" },
+				-- ["<leader>sc"] = { name = "+current buffer" },
 				["<leader>sh"] = { name = "+history" },
 				-- ["<leader>sg"] = { name = "+git" },
 				-- ["<leader>sgb"] = { name = "+current buffer" },
@@ -173,92 +144,11 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		event = "VeryLazy",
-		config = function()
-			local builtin = require("telescope.builtin")
-			-- INFO: general
-			vim.keymap.set("n", "<leader>sC", builtin.commands, { desc = "Search commands" })
-			-- INFO: history
-			vim.keymap.set("n", "<leader>shc", builtin.command_history, { desc = "Search commands history" })
-			-- INFO: git
-			-- vim.keymap.set("n", "<leader>sgB", builtin.git_branches, { desc = "Search branches" })
-			-- vim.keymap.set("n", "<leader>sgc", builtin.git_commits, { desc = "Search commits" })
-			-- vim.keymap.set("n", "<leader>sgbc", builtin.git_bcommits, { desc = "Search commits" })
-			-- INFO: lsp
-			vim.keymap.set("n", "<leader>se", builtin.diagnostics, { desc = "Search errors" })
-			vim.keymap.set("n", "<leader>sd", builtin.lsp_definitions, { desc = "Search definition" })
-			vim.keymap.set("n", "<leader>si", builtin.lsp_implementations, { desc = "Search definition" })
-			vim.keymap.set("n", "<leader>sr", builtin.lsp_references, { desc = "Search reference" })
-			-- INFO: files
-			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Search files" })
-			vim.keymap.set(
-				"n",
-				"<leader>sw",
-				require("telescope").extensions.workspaces.workspaces,
-				{ desc = "Search workspaces" }
-			)
-
-			vim.keymap.set("n", "<leader>sG", builtin.live_grep, { desc = "Grep workspace" })
-			-- INFO: current file
-			vim.keymap.set("n", "<leader>sg", builtin.current_buffer_fuzzy_find, { desc = "Grep current file" })
-
-			vim.keymap.set("n", "<leader>sce", function()
-				require("telescope.builtin").diagnostics({ bufnr = 0 })
-			end, { desc = "Search errors" })
-
-			-- INFO: Search configs
-
-			local ignore_patterns = {
-				".git/*",
-				"**/node_modules/*",
-				"/target/*",
-				".next/*",
-				"**/__pycache__/*",
-			}
-
-			local find_files_rg = {
-				"rg",
-				"-uuu",
-				"--files",
-				"--hidden",
-			}
-
-			for _, pattern in pairs(ignore_patterns) do
-				table.insert(find_files_rg, "--glob")
-				table.insert(find_files_rg, "!" .. pattern)
-			end
-
-			local trouble = require("trouble.providers.telescope")
-			require("telescope").setup({
-				-- file_ignore_patterns = { "%.env" },
-				defaults = {
-					mappings = {
-						i = {
-							["<Tab>"] = require("telescope.actions").move_selection_next,
-							["<S-Tab>"] = require("telescope.actions").move_selection_previous,
-							["<C-q>"] = require("telescope.actions").close,
-							["<c-t>"] = trouble.open_with_trouble,
-						},
-					},
-				},
-				pickers = {
-					find_files = {
-						find_command = find_files_rg,
-					},
-				},
-				extensions = {
-					fzf = {
-						fuzzy = true, -- false will only do exact matching
-						override_generic_sorter = true, -- override the generic sorter
-						override_file_sorter = true, -- override the file sorter
-						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-						-- the default case_mode is "smart_case"
-					},
-				},
-			})
-		end,
+		config = require("configs.telescope"),
 	},
 	{
 		-- INFO: fzf syntax
+		--
 		-- sbtrkt : fuzzy-match
 		-- 'wild : exact-match (quoted)
 		-- ^music : prefix-exact-match

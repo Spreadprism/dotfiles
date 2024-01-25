@@ -51,3 +51,5 @@ vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
 vim.cmd([[highlight DiagnosticInfo guifg=#0db9d7]])
 
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#1abc9c]])
+
+vim.cmd([[autocmd DirChanged * call chansend(v:stderr, printf("\033]7;file://%s\033\\", v:event.cwd))]])
