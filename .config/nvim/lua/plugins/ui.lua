@@ -103,7 +103,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		config = function()
 			require("nvim-web-devicons").setup({
-				strict = true,
+				strict = false,
 				override_by_filename = require("icons.filename"),
 				override_by_extension = require("icons.extension"),
 			})
