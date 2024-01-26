@@ -292,17 +292,29 @@ return {
 		"mg979/vim-visual-multi",
 		event = "VeryLazy",
 	},
+	-- {
+	-- 	"cvigilv/esqueleto.nvim",
+	-- 	config = function()
+	-- 		local templates_dir = vim.fn.stdpath("config") .. "/lua" .. "/templates"
+	-- 		-- get all directories name in templates_dir in table
+	-- 		local directories_name = vim.fn.readdir(templates_dir)
+	-- 		require("esqueleto").setup({
+	-- 			directories = { templates_dir },
+	-- 			patterns = directories_name,
+	-- 		})
+	-- 	end,
+	-- },
 	{
-		"cvigilv/esqueleto.nvim",
-		config = function()
-			local templates_dir = vim.fn.stdpath("config") .. "/lua" .. "/templates"
-			-- get all directories name in templates_dir in table
-			local directories_name = vim.fn.readdir(templates_dir)
-			require("esqueleto").setup({
-				directories = { templates_dir },
-				patterns = directories_name,
-			})
-		end,
+		"Spreadprism/new-file-template.nvim",
+		lazy = false,
+		priority = 100,
+		opts = {
+			disable_insert = false, -- Enter in insert mode after inserting the template?,
+			disable_autocmd = false, -- Disable the autocmd that creates the template.  You can use manually by calling :InsertTemplateFile,
+			disable_autosave = false,
+			disable_filetype = {},
+			disable_specific = {},
+		},
 	},
 	{
 		"kevinhwang91/nvim-ufo",

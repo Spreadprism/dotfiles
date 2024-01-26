@@ -66,6 +66,7 @@ return function()
 		},
 		sources = cmp.config.sources({
 			{ name = "path" },
+			{ name = "otter" },
 			-- { name = "copilot", group_index = 2 },
 			{ name = "crates", keyword_length = 0 },
 			{ name = "nvim_lsp", keyword_length = 1 },
