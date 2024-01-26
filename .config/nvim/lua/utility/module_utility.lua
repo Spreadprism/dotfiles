@@ -1,10 +1,9 @@
 local M = {}
 
-local lfs = require("lfs")
-
 M.BASE_NEOVIM_LUA_PATH = require("utility.env").get("HOME") .. "/.config/nvim/lua"
 
 local is_dir = function(path)
+	local lfs = require("lfs")
 	-- lfs.attributes will error on a filename ending in '/'
 	return path:sub(-1) == "/" or lfs.attributes(path, "mode") == "directory"
 end
@@ -19,6 +18,7 @@ M.get_modules_in_dir = function(path, base_path)
 		return {}
 	end
 
+	local lfs = require("lfs")
 	local modules = {}
 	for file in lfs.dir(path) do
 		if file ~= "." and file ~= ".." then

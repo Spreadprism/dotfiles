@@ -1,10 +1,10 @@
 local M = {}
-local lfs = require("lfs")
 -- INFO: luarocks install lua-glob --server=https://luarocks.org/dev --lua-version 5.1
 
 ---@param path string
 ---@return boolean
 M.exists = function(path)
+	local lfs = require("lfs")
 	local attr = lfs.attributes(path)
 	return attr ~= nil
 end
@@ -21,6 +21,7 @@ end
 ---@param path string
 ---@return boolean
 M.is_dir = function(path)
+	local lfs = require("lfs")
 	return M.is_valid_path(path) and lfs.attributes(path).mode == "directory"
 end
 
@@ -29,6 +30,7 @@ M.is_empty_dir = function(path)
 		return false
 	end
 
+	local lfs = require("lfs")
 	for file in lfs.dir(path) do
 		if file ~= "." and file ~= ".." then
 			return false
@@ -40,6 +42,7 @@ end
 ---@param path string
 ---@return boolean
 M.is_file = function(path)
+	local lfs = require("lfs")
 	return M.is_valid_path(path) and lfs.attributes(path).mode == "file"
 end
 

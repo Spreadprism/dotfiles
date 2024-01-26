@@ -19,6 +19,8 @@ env.set("NVIM_SESSION_ID", session_id)
 env.set("workspaceFolder", vim.fn.getcwd())
 env.set("workspaceFolderBaseName", vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
 
+-- INFO: Init luarocks
+require("init_rocks")
 -- INFO: Init packages
 require("init_lazy")
 -- INFO: Init keybinds
