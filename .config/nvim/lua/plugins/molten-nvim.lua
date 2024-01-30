@@ -1,6 +1,7 @@
 return {
 	{
 		"benlubas/molten-nvim",
+		event = "VeryLazy",
 		version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
 		build = ":UpdateRemotePlugins",
 		dependencies = { "quarto-dev/quarto-nvim" },
@@ -63,10 +64,12 @@ return {
 	},
 	{
 		"jmbuhr/otter.nvim",
+		event = "VeryLazy",
 	},
 	{
 		"quarto-dev/quarto-nvim",
 		ft = { "quarto", "markdown" },
+		event = "VeryLazy",
 		dependencies = {
 			"jmbuhr/otter.nvim",
 			"hrsh7th/nvim-cmp",
@@ -95,6 +98,7 @@ return {
 	},
 	{
 		"GCBallesteros/jupytext.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("jupytext").setup({
 				style = "markdown",

@@ -1,7 +1,18 @@
 return {
 	{
+		"theHamsta/nvim_rocks",
+		event = "VeryLazy",
+		priority = 100,
+		build = "pip3 install --user hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
+		config = function()
+			local nvim_rocks = require("nvim_rocks")
+			nvim_rocks.ensure_installed("fzy")
+			nvim_rocks.ensure_installed("luafilesystem")
+		end,
+	},
+	{
 		"christoomey/vim-tmux-navigator",
-		lazy = false,
+		event = "VeryLazy",
 	},
 	{
 		"nvim-lua/plenary.nvim",
@@ -16,6 +27,7 @@ return {
 	},
 	{
 		"rhysd/git-messenger.vim",
+		event = "VeryLazy",
 	},
 	{
 		"crnvl96/lazydocker.nvim",
