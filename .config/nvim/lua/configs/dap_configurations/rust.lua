@@ -3,11 +3,10 @@ local overseer = require("overseer")
 -- local file_utility = require("utility.file_utility")
 local env = require("utility.env")
 
-local get_binary = function()
+local get_binary = function(current_env)
 	local directory = vim.fn.getcwd()
-	-- local program_name = string.match(directory, "[^/]+$")
 	local program_name = env.get("workspaceFolderBaseName")
-	local program = directory .. "/target/debug/" .. program_name
+	local program = directory .. "/target/" .. current_env .. "/" .. program_name
 	return program
 end
 
@@ -32,7 +31,9 @@ return {
 		terminal = "integrated",
 		console = "integratedTerminal",
 		stopOnEntry = false,
-		program = get_binary,
+		program = function()
+			return get_binary("debug")
+		end,
 		preLaunchTask = "Rust build debug",
 	},
 }
