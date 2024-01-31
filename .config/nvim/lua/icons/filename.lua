@@ -35,4 +35,9 @@ return {
 		color = "#EF5350",
 		name = "makefile",
 	},
+	["vite.config.ts"] = {
+		icon = "",
+		color = "#FFAB00",
+		name = "viteconfig",
+	},
 }
