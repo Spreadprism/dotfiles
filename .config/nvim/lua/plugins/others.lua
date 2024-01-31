@@ -8,6 +8,7 @@ return {
 			local nvim_rocks = require("nvim_rocks")
 			nvim_rocks.ensure_installed("fzy")
 			nvim_rocks.ensure_installed("luafilesystem")
+			nvim_rocks.ensure_installed("magick")
 		end,
 	},
 	{
