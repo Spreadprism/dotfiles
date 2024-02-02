@@ -18,6 +18,14 @@ end
 ]]
 end
 
+local function plugin_template(relative_path, filename)
+	return [[
+return {
+  {
+    |cursor|
+  }
+}]]
+end
 --- @param opts table
 ---   A table containing the following fields:
 ---   - `full_path` (string): The full path of the new file, e.g., "lua/new-file-template/templates/init.lua".
@@ -26,6 +34,7 @@ end
 return function(opts)
 	local template = {
 		{ pattern = "configs/lsp/.*", content = lspconfig_template },
+		{ pattern = "plugins/.*", content = plugin_template },
 		{ pattern = ".*", content = base_template },
 	}
 

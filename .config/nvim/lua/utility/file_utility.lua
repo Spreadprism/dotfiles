@@ -53,4 +53,10 @@ M.get_parent_directory = function(path)
 	return parent_directory
 end
 
+M.get_basename = function(path)
+	-- example path : /home/user/something -> something
+	-- example file path : /home/user/something/file.txt -> file
+	local basename = path:match("^.+/(.+)$")
+	return basename
+end
 return M
