@@ -18,8 +18,8 @@ indicator-caps-lock
 
 # Define all colors
 
-key-hl-color=#FE6754
-caps-lock-key-hl-color=#FE6754
+key-hl-color=#C0CAF5
+caps-lock-key-hl-color=#C0CAF5
 separator-color=#000000
 #
 inside-color=00000033
@@ -48,7 +48,7 @@ text-clear-color=ffffff
 text-ver-color=ffffff
 text-wrong-color=ffffff
 #
-bs-hl-color=#FE6754
+bs-hl-color=#C0CAF5
 # caps-lock-bs-hl-color=ffffffFF
 # disable-caps-lock-text
 text-caps-lock-color=ffffff

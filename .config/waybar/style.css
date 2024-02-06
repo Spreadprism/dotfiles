@@ -34,12 +34,12 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background-color: rgba(254, 103, 84, 0.5);
+    background-color: rgba(122, 162, 247, 0.5);
     color: #000000;
 }
 
 #workspaces button.active {
-    background-color: rgba(254, 103, 84, 1);
+    background-color: rgba(122, 162, 247, 1);
     color: #000000;
 }
 
@@ -54,30 +54,35 @@ window#waybar {
     border-radius: 10;
 }
 
-#custom-logo{
-  padding: 0 10px;
-  color: rgba(254, 103, 84, 1);
-  font-size: 25px;
-}
 
 #tray {
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0 10px 0 10px;
 }
 
-#cpu,
+#cpu {
+  padding: 0 10px 0 15px;
+}
+
 #memory,
 #custom-temperature {
   border-left: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0 10px;
 }
 
-#clock {
-  padding: 0 10px 0 10px;
+#memory {
+  padding: 0 10px 0 15px;
+}
+
+#custom-logo {
+  padding: 0 20px 0 10px;
+  font-size: 30px;
+  color: rgba(122, 162, 247, 1);
 }
 
 #battery,
 #network,
+#clock,
 #pulseaudio {
   border-right: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0 10px;

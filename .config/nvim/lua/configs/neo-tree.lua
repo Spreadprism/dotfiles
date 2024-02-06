@@ -27,14 +27,14 @@ return function()
 						if env.get("IN_WSL") == "true" then
 							vim.cmd("silent !explorer.exe $(wslpath -w " .. path .. ")")
 						else
-							vim.cmd("silent !thunar " .. path)
+							vim.cmd("silent !nemo " .. path)
 						end
 					else
 						local directory = fu.get_parent_directory(path)
 						if env.get("IN_WSL") == "true" then
 							vim.cmd("silent !explorer.exe $(wslpath -w " .. directory .. ")")
 						else
-							vim.cmd("silent !thunar " .. directory)
+							vim.cmd("silent !nemo " .. directory)
 						end
 					end
 				end,
@@ -42,7 +42,7 @@ return function()
 					if env.get("IN_WSL") == "true" then
 						vim.cmd("silent !explorer.exe $(wslpath -w $PWD)")
 					else
-						vim.cmd("silent !thunar $PWD")
+						vim.cmd("silent !nemo $PWD")
 					end
 				end,
 				["e"] = function(state)
