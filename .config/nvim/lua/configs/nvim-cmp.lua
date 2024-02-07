@@ -34,6 +34,9 @@ local format = function(entry, item)
 	elseif entry.source.name == "crates" then
 		item.kind = "  "
 		item.menu = "(crates)"
+	elseif entry.source.name == "py-requirements" then
+		item.kind = "  "
+		item.menu = "(pip)"
 	elseif entry.source.name == "vim-dadbod-completion" then
 		-- item kind should be a db icon from nerdfont
 		item.kind = " "
@@ -69,6 +72,7 @@ return function()
 			{ name = "otter" },
 			-- { name = "copilot", group_index = 2 },
 			{ name = "crates", keyword_length = 0 },
+			{ name = "py-requirements", keyword_length = 0 },
 			{ name = "nvim_lsp", keyword_length = 1 },
 			{ name = "buffer", keyword_length = 3 },
 			{ name = "luasnip", keyword_length = 2 },
