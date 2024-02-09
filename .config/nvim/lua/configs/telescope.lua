@@ -1,12 +1,12 @@
-local function get_find_files_command()
-	local ignore_patterns = {
-		".git/*",
-		"**/node_modules/*",
-		"/target/*",
-		".next/*",
-		"**/__pycache__/*",
-	}
+local ignore_patterns = {
+	".git/*",
+	"**/node_modules/*",
+	"/target/*",
+	".next/*",
+	"**/__pycache__/*",
+}
 
+local function get_find_files_command()
 	local find_files_rg = {
 		"rg",
 		"-uuu",

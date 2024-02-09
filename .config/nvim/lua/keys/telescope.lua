@@ -21,7 +21,16 @@ M.n = {
 		"Fuzzy find buffer",
 	},
 	[keymap("G")] = {
-		builtin.live_grep,
+		function()
+			local ignore_patterns = {
+				"!.git/*",
+				"!**/node_modules/*",
+				"!/target/*",
+				"!.next/*",
+				"!**/__pycache__/*",
+			}
+			builtin.live_grep({ glob_pattern = ignore_patterns })
+		end,
 		"Grep workspace",
 	},
 	[keymap("w")] = {
