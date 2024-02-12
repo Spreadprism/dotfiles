@@ -27,14 +27,14 @@ return function()
 						if env.get("IN_WSL") == "true" then
 							vim.cmd("silent !explorer.exe $(wslpath -w " .. path .. ")")
 						else
-							vim.cmd("silent !nemo " .. path)
+							vim.cmd("silent !hyprctl dispatch exec nemo " .. path)
 						end
 					else
 						local directory = fu.get_parent_directory(path)
 						if env.get("IN_WSL") == "true" then
 							vim.cmd("silent !explorer.exe $(wslpath -w " .. directory .. ")")
 						else
-							vim.cmd("silent !nemo " .. directory)
+							vim.cmd("silent !hyprctl dispatch exec nemo" .. directory)
 						end
 					end
 				end,
@@ -42,7 +42,7 @@ return function()
 					if env.get("IN_WSL") == "true" then
 						vim.cmd("silent !explorer.exe $(wslpath -w $PWD)")
 					else
-						vim.cmd("silent !nemo $PWD")
+						vim.cmd("silent !hyprctl dispatch exec nemo $PWD")
 					end
 				end,
 				["e"] = function(state)
