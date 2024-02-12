@@ -40,4 +40,9 @@ return {
 		color = "#FFAB00",
 		name = "viteconfig",
 	},
+	["vitest.config.ts"] = {
+		icon = "",
+		color = "#729a1a",
+		name = "vitest",
+	},
 }

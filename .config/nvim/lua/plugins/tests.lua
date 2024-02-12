@@ -7,7 +7,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
 			"nvim-neotest/neotest-go",
-			"haydenmeade/neotest-jest",
+			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-python",
 			"rouge8/neotest-rust",
 		},
@@ -32,14 +32,7 @@ return {
 						args = { "-count=1", "-timeout=60s" },
 					}),
 					-- INFO: Javascript
-					require("neotest-jest")({
-						jestCommand = "npm test --",
-						jestConfigFile = "custom.jest.config.ts",
-						env = { CI = true },
-						cwd = function(path)
-							return vim.fn.getcwd()
-						end,
-					}),
+					require("neotest-vitest"),
 					-- INFO: Python
 					require("neotest-python")({
 						python = require("utility.python_env_manager").get_python_path(),
