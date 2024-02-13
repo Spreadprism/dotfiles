@@ -1,10 +1,17 @@
 local center = {
 	{
 		action = function()
-			vim.cmd("bd")
-			vim.defer_fn(function()
-				vim.cmd("Telescope find_files")
-			end, 5)
+			vim.cmd("only")
+			require("utility.telescope_pickers.workspace")()
+		end,
+		desc = " Open workspace",
+		icon = "󱈹 ",
+		key = "w",
+	},
+	{
+		action = function()
+			vim.cmd("only")
+			vim.cmd("Telescope find_files")
 		end,
 		desc = " Find file",
 		icon = "󰈞 ",
@@ -12,27 +19,8 @@ local center = {
 	},
 	{
 		action = function()
-			vim.cmd("bd")
-			vim.defer_fn(function()
-				require("utility.telescope_pickers.workspace")()
-			end, 5)
-		end,
-		desc = " Open workspace",
-		icon = "󱈹 ",
-		key = "w",
-	},
-	{
-		action = "Neorg index",
-		desc = " Notes",
-		icon = "󱞁 ",
-		key = "n",
-	},
-	{
-		action = function()
-			vim.cmd("bd")
-			vim.defer_fn(function()
-				vim.cmd("Telescope oldfiles")
-			end, 5)
+			vim.cmd("only")
+			vim.cmd("Telescope oldfiles")
 		end,
 		desc = " Recent files",
 		icon = "󱋡 ",
@@ -46,13 +34,27 @@ local center = {
 	},
 	{
 		action = function()
+			-- list all buffer of filetype dashboardpreview
+			vim.cmd("only")
+			vim.cmd("Leet")
+		end,
+		desc = " Leetcode",
+		icon = "󰓾 ",
+		key = "L",
+	},
+	{
+		action = "Neorg index",
+		desc = " Notes",
+		icon = "󱞁 ",
+		key = "n",
+	},
+	{
+		action = function()
 			-- If cwd is not nvim config dir, change to it
 			if vim.fn.getcwd() ~= vim.fn.expand("~/.dotfiles/.config/nvim") then
-				vim.cmd("bd")
-				vim.defer_fn(function()
-					vim.cmd("cd ~/.dotfiles/.config/nvim")
-					vim.cmd("Dashboard")
-				end, 5)
+				vim.cmd("only")
+				vim.cmd("cd ~/.dotfiles/.config/nvim")
+				vim.cmd("Dashboard")
 			end
 		end,
 		desc = " Neovim configs",
