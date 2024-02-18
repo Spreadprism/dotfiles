@@ -77,6 +77,7 @@ local kitty_plugins = {
 		},
 		opts = {
 			-- configuration goes here
+			lang = "rust",
 		},
 	},
 }
