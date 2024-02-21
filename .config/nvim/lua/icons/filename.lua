@@ -46,7 +46,7 @@ return {
 		name = "vitest",
 	},
 	["pyproject.toml"] = {
-		icon = " ",
+		icon = "",
 		color = "#407EB0",
 		name = "pyproject",
 	},
