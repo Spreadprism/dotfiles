@@ -74,7 +74,7 @@ local function filter_diagnostics(diagnostic)
 		if diagnostic.message:find("is not accessed") then
 			return false
 		end
-	elseif "bashls" then
+	elseif diagnostic.source == "shellcheck" then
 		-- Filter out diagnostic messages from .env files
 		local current_file = vim.fn.expand("%:t")
 
