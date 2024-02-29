@@ -42,4 +42,17 @@ return {
 		port = "9222",
 		console = "integratedTerminal",
 	},
+	{
+		name = "(NVIM-CONFIG) Launch chrome debugger (vite)",
+		type = "pwa-chrome",
+		request = "launch",
+		url = "http://localhost:5173",
+		-- skip files from vite's hmr
+		skipFiles = { "**/node_modules/**/*", "**/src/*" },
+		resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
+		webRoot = "${workspaceFolder}",
+		sourceMaps = true,
+		port = "9222",
+		console = "integratedTerminal",
+	},
 }

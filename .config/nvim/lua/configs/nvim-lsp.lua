@@ -70,15 +70,20 @@ end
 
 local function filter_diagnostics(diagnostic)
 	-- Only filter out Pyright stuff for now
-	if diagnostic.source ~= "Pyright" then
-		return true
+	if diagnostic.source == "Pyright" then
+		if diagnostic.message:find("is not accessed") then
+			return false
+		end
+	elseif diagnostic.source == "shellcheck" then
+		-- Filter out diagnostic messages from .env files
+		local current_file = vim.fn.expand("%:t")
+
+		---@diagnostic disable-next-line: param-type-mismatch
+		if current_file:find("%.env") then
+			return false
+		end
 	end
 
-	-- remove any diagnostic messages that end with is not accessed
-
-	if diagnostic.message:find("is not accessed") then
-		return false
-	end
 	return true
 end
 
