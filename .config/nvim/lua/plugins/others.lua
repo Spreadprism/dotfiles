@@ -1,5 +1,6 @@
 return {
 	{
+		-- INFO: luarocks
 		"theHamsta/nvim_rocks",
 		event = "VeryLazy",
 		priority = 100,
