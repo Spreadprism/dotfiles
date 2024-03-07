@@ -3,7 +3,10 @@ local ignore_patterns = {
 	"**/node_modules/*",
 	"/target/*",
 	".next/*",
+	".venv",
 	"**/__pycache__/*",
+	"**/.pytest_cache/*",
+	"**/.ruff_cache/*",
 }
 
 local function get_find_files_command()

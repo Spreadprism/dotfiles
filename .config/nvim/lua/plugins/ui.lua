@@ -22,23 +22,6 @@ return {
 		end,
 	},
 	{
-		"jonahgoldwastaken/copilot-status.nvim",
-		event = "VeryLazy",
-		dependencies = { "zbirenbaum/copilot.lua" },
-		config = function()
-			require("copilot_status").setup({
-				icons = {
-					idle = " ",
-					error = " ",
-					offline = " ",
-					warning = " ",
-					loading = " ",
-				},
-				debug = false,
-			})
-		end,
-	},
-	{
 		"nvimdev/dashboard-nvim",
 		event = "VimEnter",
 		config = require("configs.dashboard"),

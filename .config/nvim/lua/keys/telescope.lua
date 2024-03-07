@@ -20,6 +20,10 @@ M.n = {
 		builtin.current_buffer_fuzzy_find,
 		"Fuzzy find buffer",
 	},
+	[keymap("e")] = {
+		builtin.diagnostics,
+		"Search diagnostics",
+	},
 	[keymap("G")] = {
 		function()
 			local ignore_patterns = {
@@ -43,6 +47,10 @@ M.n = {
 	},
 	[keymap("r")] = {
 		builtin.lsp_references,
+		"Search reference",
+	},
+	[keymap("b")] = {
+		extensions.dap.list_breakpoints,
 		"Search reference",
 	},
 	[keymap("m")] = {
