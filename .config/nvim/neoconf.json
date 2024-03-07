@@ -22,6 +22,12 @@
       "Lua.window.progressBar": false,
       "Lua.window.statusBar": false,
       "Lua.diagnostics.globals": ["vim", "MiniFiles"]
+    },
+    "pylsp": {
+      "pylsp.plugins.rope_autoimport.enabled": true,
+      "pylsp.plugins.mccabe.enabled": false,
+      "pylsp.plugins.pycodestyle.enabled": false,
+      "pylsp.plugins.pyflakes.enabled": false
     }
   }
 }
