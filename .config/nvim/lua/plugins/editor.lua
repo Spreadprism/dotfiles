@@ -316,4 +316,23 @@ return {
 			require("telescope").load_extension("workspaces")
 		end,
 	},
+	{
+		"linux-cultist/venv-selector.nvim",
+		dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+		config = function()
+			local env = require("utility.env")
+			require("venv-selector").setup({
+				dap_enabled = true,
+				notify_user_on_activate = false,
+				anaconda_base_path = env.get("HOME") .. "/miniconda3",
+				anaconda_envs_path = env.get("HOME") .. "/miniconda3/envs",
+				-- auto_refresh = false
+			})
+		end,
+		event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+		keys = {
+			-- Keymap to open VenvSelector to pick a venv.
+			{ "<leader>lv", "<cmd>VenvSelect<cr>" },
+		},
+	},
 }

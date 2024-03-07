@@ -56,7 +56,15 @@ local current_lsp = function()
 	for _, client in pairs(all_clients) do
 		local name = client.name
 		if name == "pyright" then
-			name = name .. "(" .. require("utility.python_env_manager").get_venv_dir_name() .. ")"
+			local venv_name = require("venv-selector").get_active_venv()
+			if venv_name ~= nil then
+				venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
+				venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
+				venv_name = string.gsub(venv_name, ".*/miniconda3", "base")
+			else
+				venv_name = "base"
+			end
+			name = name .. "(" .. venv_name .. ")"
 		end
 
 		local blacklisted = false
