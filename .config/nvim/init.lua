@@ -22,6 +22,8 @@ env.set("workspaceFolderBaseName", vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
 require("init_lazy")
 -- INFO: Init keybinds
 require("keybinds_manager").init_keybinds()
+-- INFO: Init filetypes
+require("init_filetypes")
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
