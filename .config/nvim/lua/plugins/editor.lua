@@ -255,33 +255,6 @@ return {
 		end,
 	},
 	{
-		"zbirenbaum/copilot.lua",
-		event = "VeryLazy",
-		dependencies = "neovim/nvim-lspconfig",
-		config = function()
-			require("copilot").setup({
-				suggestion = {
-					enabled = true,
-					auto_trigger = true,
-					keymap = {
-						accept = "<M-a>",
-						dismiss = "<M-d>",
-						next = "<M-l>",
-						prev = "<M-h>",
-					},
-				},
-				panel = { enabled = false },
-			})
-		end,
-	},
-	-- {
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	event = "VeryLazy",
-	-- 	config = function()
-	-- 		require("copilot_cmp").setup()
-	-- 	end,
-	-- },
-	{
 		"nvim-pack/nvim-spectre",
 		event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
