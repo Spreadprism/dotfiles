@@ -29,7 +29,7 @@ return {
 		-- },
 		config = require("configs.nvim-lsp"),
 	},
-	{ "folke/neodev.nvim", opts = {} },
+	{ "folke/neodev.nvim", event = "VeryLazy", opts = {} },
 	{
 		"folke/neoconf.nvim",
 		dependencies = "b0o/schemastore.nvim",
