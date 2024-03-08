@@ -14,6 +14,7 @@ local colors = {
 
 local blacklist = {
 	"copilot", --INFO: not an lsp
+	"pylsp", -- INFO: I only use it for codeactions import
 	"ruff_lsp", -- INFO: Not an actual lsp, its a linter I don't want it to crowd the info
 }
 -- -- LSP clients attached to buffer
@@ -55,7 +56,7 @@ local current_lsp = function()
 	local attached_clients = {}
 	for _, client in pairs(all_clients) do
 		local name = client.name
-		if name == "pylsp" then
+		if name == "pyright" then
 			local venv_name = require("venv-selector").get_active_venv()
 			if venv_name ~= nil then
 				venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
