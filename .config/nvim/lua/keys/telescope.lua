@@ -16,6 +16,10 @@ M.n = {
 		builtin.find_files,
 		"Search files",
 	},
+	[keymap("i")] = {
+		"<cmd>IconPickerNormal<CR>",
+		"Search icons",
+	},
 	[keymap("g")] = {
 		builtin.current_buffer_fuzzy_find,
 		"Fuzzy find buffer",
