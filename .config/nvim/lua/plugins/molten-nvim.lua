@@ -44,15 +44,15 @@ return {
 	-- 		})
 	-- 		-- BUG: Can't get the export to work
 	--
-	-- 		-- -- automatically export output chunks to a jupyter notebook on write
-	-- 		-- vim.api.nvim_create_autocmd("BufWritePost", {
-	-- 		-- 	pattern = { "*.ipynb" },
-	-- 		-- 	callback = function()
-	-- 		-- 		if require("molten.status").initialized() == "Molten" then
-	-- 		-- 			vim.cmd("MoltenExportOutput!")
-	-- 		-- 		end
-	-- 		-- 	end,
-	-- 		-- })
+	-- 		-- automatically export output chunks to a jupyter notebook on write
+	-- 		vim.api.nvim_create_autocmd("BufWritePost", {
+	-- 			pattern = { "*.ipynb" },
+	-- 			callback = function()
+	-- 				if require("molten.status").initialized() == "Molten" then
+	-- 					vim.cmd("MoltenExportOutput!")
+	-- 				end
+	-- 			end,
+	-- 		})
 	-- 	end,
 	-- 	init = function()
 	-- 		vim.g.molten_auto_open_output = false

@@ -135,6 +135,19 @@ return {
 		"mrjones2014/smart-splits.nvim",
 	},
 	{
+		"SmiteshP/nvim-navic",
+		event = "VeryLazy",
+		config = function()
+			require("nvim-navic").setup({
+				lsp = {
+					preference = {
+						"pyright",
+					},
+				},
+			})
+		end,
+	},
+	{
 		"utilyre/barbecue.nvim",
 		name = "barbecue",
 		event = "VeryLazy",
@@ -146,6 +159,7 @@ return {
 		config = function()
 			require("barbecue").setup({
 				create_autocmd = false, -- prevent barbecue from updating itself automatically
+				attach_navic = false,
 			})
 			vim.api.nvim_create_autocmd({
 				"WinScrolled", -- or WinResized on NVIM-v0.9 and higher
