@@ -1,7 +1,7 @@
 return {
-	{
-		require("utility.os").icon,
-	},
+	-- {
+	-- 	require("utility.os").icon,
+	-- },
 	{
 		"tabs",
 		mode = 0,

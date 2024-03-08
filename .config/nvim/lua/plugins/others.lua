@@ -59,6 +59,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/py-requirements.nvim",
+		event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("py-requirements").setup({
@@ -123,6 +124,7 @@ return {
 	},
 	{
 		"ziontee113/icon-picker.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("icon-picker").setup({ disable_legacy_commands = true })
 		end,
