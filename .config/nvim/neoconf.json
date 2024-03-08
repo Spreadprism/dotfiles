@@ -36,6 +36,7 @@
     },
     "pylsp": {
       "pylsp.plugins.rope_autoimport.enabled": true,
+      // "pylsp.plugins.rope_autoimport.memory": true,
       "pylsp.plugins.jedi_completion.enabled": false,
       "pylsp.plugins.mccabe.enabled": false,
       "pylsp.plugins.pycodestyle.enabled": false,

@@ -68,11 +68,17 @@ local function filter(arr, func)
 	end
 end
 
+local message_to_filter = {
+	"is not accessed",
+	"is not defined",
+}
 local function filter_diagnostics(diagnostic)
 	-- Only filter out Pyright stuff for now
 	if diagnostic.source == "Pyright" then
-		if diagnostic.message:find("is not accessed") then
-			return false
+		for _, message in ipairs(message_to_filter) do
+			if diagnostic.message:find(message) then
+				return false
+			end
 		end
 	elseif diagnostic.source == "shellcheck" then
 		-- Filter out diagnostic messages from .env files

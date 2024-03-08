@@ -2,7 +2,7 @@
 -- INFO: Most of these rules are not applicable because pyright already handles them
 local rules_to_ignore = {
 	"F401",
-	"F821",
+	-- "F821",
 }
 
 return function(on_attach, capabilities)
