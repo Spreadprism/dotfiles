@@ -1,11 +1,13 @@
 link_config:
 	@cd dunst && make
+	@cd git && make
 	@cd hypr && make
 	@cd kanshi && make
 	@cd kitty && make
 	@cd lazydocker && make
 	@cd lazygit && make
 	@cd nvim && make
+	@cd pypoetry && make
 	@cd swaylock && make
 	@cd tmux && make
 	@cd waybar && make
