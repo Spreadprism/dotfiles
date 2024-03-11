@@ -43,12 +43,31 @@ end
 ---@diagnostic disable-next-line: unused-local
 local on_attach = function(client, bufnr) end
 
+local disabled_lsp = {
+	"pylsp", -- INFO: Will be disabled until rope is fixed
+}
 local configure_all_lsp = function()
 	local base_capabilities = define_capabilities()
 	local lsp_dir = module_utility.BASE_NEOVIM_LUA_PATH .. "/configs/lsp"
 	local lsp_to_configure = module_utility.get_modules_in_dir(lsp_dir)
+	local env = require("utility.env")
+
 	for _, module in pairs(lsp_to_configure) do
-		lspconfig[module].setup(require("configs.lsp." .. module)(on_attach, base_capabilities))
+		local is_disabled = false
+		if module == "pyright" and env.get("DELANCE_EXISTS") == "true" then
+			is_disabled = true
+		end
+		if not is_disabled then
+			for _, disabled in pairs(disabled_lsp) do
+				if module == disabled then
+					is_disabled = true
+					break
+				end
+			end
+		end
+		if not is_disabled then
+			lspconfig[module].setup(require("configs.lsp." .. module)(on_attach, base_capabilities))
+		end
 	end
 end
 
@@ -71,10 +90,11 @@ end
 local message_to_filter = {
 	"is not accessed",
 	"is not defined",
+	"is unused",
 }
 local function filter_diagnostics(diagnostic)
 	-- Only filter out Pyright stuff for now
-	if diagnostic.source == "Pyright" then
+	if diagnostic.source == "Pyright" or diagnostic.source == "Pylance" then
 		for _, message in ipairs(message_to_filter) do
 			if diagnostic.message:find(message) then
 				return false
@@ -97,10 +117,14 @@ local function custom_on_publish_diagnostics(_, result, ctx, config)
 	filter(result.diagnostics, filter_diagnostics)
 	vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
 end
+local function add_custom_Lsp()
+	require("configs.pylance-lsp-config").register()
+end
 
 return function()
 	vim.diagnostic.config(vim_diagnostic_opts)
 	set_autocmd()
+	add_custom_Lsp()
 	configure_all_lsp()
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {})
 end

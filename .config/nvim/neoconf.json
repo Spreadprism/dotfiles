@@ -23,11 +23,28 @@
       "Lua.window.statusBar": false,
       "Lua.diagnostics.globals": ["vim", "MiniFiles"]
     },
+    "pylance": {
+      "python.analysis.autoImportCompletions": true,
+      "python.autoComplete.extraPaths": ["${workspaceFolder}/src"],
+      "python.analysis.extraPaths": ["${workspaceFolder}/src"],
+      "python.analysis.indexing": true,
+      "python.analysis.packageIndexDepths": [
+        { "name": "", "depth": 20, "includeAllSymbols": true }
+      ],
+      "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "error",
+        "reportUnusedImport" : "none",
+        "reportUnusedClass" : "none",
+        "reportUnusedFunction" : "none",
+        "reportUnusedVariable" : "none"
+      }
+    },
     "pyright": {
       "pyright.disableOrganizeImports": true,
       "python.analysis.autoImportCompletions": false,
       "python.analysis.indexing": true,
       "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "error",
         "reportUnusedImport" : "none",
         "reportUnusedClass" : "none",
         "reportUnusedFunction" : "none",
@@ -36,7 +53,6 @@
     },
     "pylsp": {
       "pylsp.plugins.rope_autoimport.enabled": true,
-      // "pylsp.plugins.rope_autoimport.memory": true,
       "pylsp.plugins.jedi_completion.enabled": false,
       "pylsp.plugins.mccabe.enabled": false,
       "pylsp.plugins.pycodestyle.enabled": false,

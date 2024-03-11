@@ -56,7 +56,7 @@ local current_lsp = function()
 	local attached_clients = {}
 	for _, client in pairs(all_clients) do
 		local name = client.name
-		if name == "pyright" then
+		if name == "pyright" or name == "pylance" then
 			local venv_name = require("venv-selector").get_active_venv()
 			if venv_name ~= nil then
 				venv_name = string.gsub(venv_name, ".*/pypoetry/virtualenvs/*", "")
