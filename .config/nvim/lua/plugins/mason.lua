@@ -72,15 +72,15 @@ return {
 	-- 		require("mason-lspconfig").setup({ ensure_installed = language_servers })
 	-- 	end,
 	-- },
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		event = "VeryLazy",
-		dependencies = "williamboman/mason.nvim",
-		config = function()
-			require("mason-nvim-dap").setup({
-				ensure_installed = daps_plugins,
-				automatic_installation = true,
-			})
-		end,
-	},
+	-- {
+	-- 	"jay-babu/mason-nvim-dap.nvim",
+	-- 	event = "VeryLazy",
+	-- 	dependencies = "williamboman/mason.nvim",
+	-- 	config = function()
+	-- 		require("mason-nvim-dap").setup({
+	-- 			ensure_installed = daps_plugins,
+	-- 			automatic_installation = false,
+	-- 		})
+	-- 	end,
+	-- },
 }

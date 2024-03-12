@@ -80,7 +80,7 @@ local current_lsp = function()
 		end
 	end
 	if #attached_clients > 0 then
-		return " " .. table.concat(attached_clients, " | ")
+		return table.concat(attached_clients, " | ")
 	else
 		return nil
 	end
@@ -123,6 +123,11 @@ return {
 	{
 		current_lsp,
 		cond = display_lsp,
+		on_click = function(n_clicks, mouse_button, modifiers)
+			if mouse_button == "l" then
+				vim.cmd("Neoconf lsp")
+			end
+		end,
 	},
 	{
 		"diagnostics",
