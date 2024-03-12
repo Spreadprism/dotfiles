@@ -1,5 +1,6 @@
 link_config:
 	@cd dunst && make
+	@cd git && make
 	@cd hypr && make
 	@cd git && make
 	@cd kanshi && make
@@ -7,6 +8,7 @@ link_config:
 	@cd lazydocker && make
 	@cd lazygit && make
 	@cd nvim && make
+	@cd pypoetry && make
 	@cd swaylock && make
 	@cd tmux && make
 	@cd waybar && make
@@ -17,3 +19,8 @@ link_starship:
 	@echo "Linking ~/.config/starship.toml"
 	@rm -f ~/.config/starship.toml
 	@ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
+
+link_rope:
+	@echo "Linking ~/.config/pytool.toml"
+	@rm -f ~/.config/pytool.toml
+	@ln -s ~/.dotfiles/.config/pytool.toml ~/.config/pytool.toml

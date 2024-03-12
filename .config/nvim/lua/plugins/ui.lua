@@ -70,6 +70,13 @@ return {
 					},
 					opts = { skip = true },
 				},
+				{
+					filter = {
+						event = "msg_show",
+						find = "python.addImport",
+					},
+					opts = { skip = true },
+				},
 			},
 		},
 	},
