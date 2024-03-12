@@ -5,5 +5,10 @@ return function(on_attach, capabilities)
 			require("venv-selector").retrieve_from_cache()
 		end,
 		capabilities = capabilities,
+		settings = {
+			python = {
+				pythonPath = require("utility.env").get("HOME") .. "/miniconda3/bin/python",
+			},
+		},
 	}
 end

@@ -19,20 +19,33 @@
   "lspconfig": {
     "lua_ls": {
       "Lua.completion.callSnippet": "Replace",
-      "Lua.window.progressBar": false,
-      "Lua.window.statusBar": false,
+      "Lua.window.progressBar": false, "Lua.window.statusBar": false,
       "Lua.diagnostics.globals": ["vim", "MiniFiles"]
     },
     "pylance": {
       "python.analysis.autoImportCompletions": true,
-      "python.autoComplete.extraPaths": ["${workspaceFolder}/src"],
-      "python.analysis.extraPaths": ["${workspaceFolder}/src"],
+      "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/${workspaceFolderBasename}",
+        "/usr/lib/python3.11"
+      ],
+      "python.analysis.extraPaths": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}/${workspaceFolderBasename}",
+        "/usr/lib/python3.11"
+      ],
       "python.analysis.indexing": true,
+      "python.analysis.diagnosticMode": "workspace",
       "python.analysis.packageIndexDepths": [
-        { "name": "", "depth": 20, "includeAllSymbols": true }
+        {
+          "name": "",
+          "depth": 10,
+          "includeAllSymbols": true
+        }
       ],
       "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingModuleSource": "error",
+        "reportMissingImports": "error",
         "reportUnusedImport" : "none",
         "reportUnusedClass" : "none",
         "reportUnusedFunction" : "none",
@@ -41,7 +54,7 @@
     },
     "pyright": {
       "pyright.disableOrganizeImports": true,
-      "python.analysis.autoImportCompletions": false,
+      "python.analysis.autoImportCompletions": true,
       "python.analysis.indexing": true,
       "python.analysis.diagnosticSeverityOverrides": {
         "reportMissingModuleSource": "error",
