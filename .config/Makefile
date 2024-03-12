@@ -1,6 +1,7 @@
 link_config:
 	@cd dunst && make
 	@cd hypr && make
+	@cd git && make
 	@cd kanshi && make
 	@cd kitty && make
 	@cd lazydocker && make
