@@ -42,12 +42,15 @@ return {
 		config = function()
 			require("mini.move").setup({
 				mappings = {
-					up = "",
-					down = "",
+					up = "<M-k>",
+					down = "<M-j>",
+					right = "<M-l>",
+					left = "<M-h>",
+
 					line_left = "",
 					line_right = "",
-					line_down = "",
-					line_up = "",
+					line_down = "<M-j>",
+					line_up = "<M-k>",
 				},
 			})
 		end,
