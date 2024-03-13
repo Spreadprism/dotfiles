@@ -2,7 +2,7 @@ return {
 	{
 		"thehamsta/nvim_rocks",
 		priority = 100,
-		build = "pip3 install --user hererocks && python3 -mhererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
+		build = "pipx install hererocks && hererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
 		config = function()
 			local nvim_rocks = require("nvim_rocks")
 			nvim_rocks.ensure_installed("fzy")
