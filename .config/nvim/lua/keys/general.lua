@@ -19,6 +19,10 @@ M.n = {
 	["<C-q>"] = { "<CMD>q<CR>", "close", { silent = true } },
 	["<leader>e"] = {
 		function()
+			if vim.bo.filetype == "dashboard" then
+				vim.cmd("bd")
+			end
+
 			vim.cmd("Neotree filesystem toggle left")
 		end,
 		"Toggle neovim file explorer",
