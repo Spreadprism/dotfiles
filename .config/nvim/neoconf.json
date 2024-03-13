@@ -24,22 +24,13 @@
     },
     "pylance": {
       "python.analysis.autoImportCompletions": true,
-      "python.autoComplete.extraPaths": [
-        "${workspaceFolder}/src",
-        "${workspaceFolder}/${workspaceFolderBasename}",
-        "/usr/lib/python3.11"
-      ],
-      "python.analysis.extraPaths": [
-        "${workspaceFolder}/src",
-        "${workspaceFolder}/${workspaceFolderBasename}",
-        "/usr/lib/python3.11"
-      ],
+      "python.analysis.autoImportUserSymbols": true,
       "python.analysis.indexing": true,
       "python.analysis.diagnosticMode": "workspace",
       "python.analysis.packageIndexDepths": [
         {
           "name": "",
-          "depth": 10,
+          "depth": 2,
           "includeAllSymbols": true
         }
       ],

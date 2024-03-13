@@ -44,6 +44,12 @@ M.register = function()
 				settings = {
 					python = {
 						analysis = {
+							include = {
+								env.get("HOME") .. "/.config/nvim/python/",
+								env.get("workspaceFolder"),
+								env.get("workspaceFolder") .. "/src",
+								env.get("workspaceFolder") .. "/src/" .. env.get("workspaceFolderBaseName"),
+							},
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
 							diagnosticMode = "openFilesOnly",
