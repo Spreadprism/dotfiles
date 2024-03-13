@@ -191,8 +191,10 @@ M.v = {
 	-- code manipulation
 	["<Tab>"] = { ">gv", "Add tab", { silent = true } },
 	["<S-Tab>"] = { "<gv", "Remove tab", { silent = true } },
-	["<A-j>"] = { ":m '>+1<CR>gv=gv", "Move down", { silent = true } },
-	["<A-k>"] = { ":m '<-2<CR>gv=gv", "Move up", { silent = true } },
+	-- ["<A-j>"] = { ":m '>+1<CR>gv=gv", "Move down", { silent = true } },
+	-- ["<A-k>"] = { ":m '<-2<CR>gv=gv", "Move up", { silent = true } },
+	-- ["<A-l>"] = { ":m '>+1<CR>gv=gv", "Move right", { silent = true } },
+	-- ["<A-h>"] = { ":m '<-2<CR>gv=gv", "Move left", { silent = true } },
 	["<A-J>"] = { "yp", "Copy down", { silent = true } },
 	["<A-K>"] = { "yP", "Copy up", { silent = true } },
 	["/"] = { "gcgv", "toggle comment", {}, true },
