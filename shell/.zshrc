@@ -67,6 +67,7 @@ export _ZO_ECHO=0
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # pnpm
 export PNPM_HOME="/home/avalon/.local/share/pnpm"
