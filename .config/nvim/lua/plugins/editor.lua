@@ -167,6 +167,7 @@ return {
 		event = "VeryLazy",
 		build = "make",
 		config = function()
+			---@diagnostic disable-next-line: undefined-field
 			require("telescope").load_extension("fzf")
 		end,
 	},
@@ -175,6 +176,7 @@ return {
 		dependencies = "nvim-telescope/telescope.nvim",
 		event = "VeryLazy",
 		config = function()
+			---@diagnostic disable-next-line: undefined-field
 			require("telescope").load_extension("dap")
 		end,
 	},
@@ -249,6 +251,7 @@ return {
 		dependencies = "nvim-telescope/telescope.nvim",
 		config = function()
 			require("harpoon").setup({})
+			---@diagnostic disable-next-line: undefined-field
 			require("telescope").load_extension("harpoon")
 		end,
 	},
@@ -318,6 +321,7 @@ return {
 					open = workspace_hooks.on_open,
 				},
 			})
+			---@diagnostic disable-next-line: undefined-field
 			require("telescope").load_extension("workspaces")
 		end,
 	},
