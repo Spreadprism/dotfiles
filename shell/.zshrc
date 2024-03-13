@@ -66,8 +66,10 @@ alias ll='eza --tree'
 export _ZO_ECHO=0
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+# INFO: FZF-tab
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # pnpm
 export PNPM_HOME="/home/avalon/.local/share/pnpm"
