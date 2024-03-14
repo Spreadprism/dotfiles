@@ -42,8 +42,7 @@ return {
 					keymap = {
 						accept = "<M-a>",
 						dismiss = "<M-d>",
-						next = "<M-l>",
-						prev = "<M-h>",
+						next = "<M-h>",
 					},
 				},
 				panel = { enabled = false },

@@ -17,7 +17,7 @@ M.i = {
 			end
 		end,
 	},
-	["<c-a>"] = {
+	["<M-l>"] = {
 		function()
 			local ls = require("luasnip")
 			if ls.choice_active() then

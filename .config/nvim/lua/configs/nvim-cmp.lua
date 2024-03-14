@@ -75,7 +75,7 @@ return function()
 			{ name = "luasnip" },
 			{ name = "buffer" },
 			{ name = "path" },
-			{ name = "otter" },
+			-- { name = "otter" },
 			{ name = "crates" },
 			{ name = "py-requirements" },
 		}),
