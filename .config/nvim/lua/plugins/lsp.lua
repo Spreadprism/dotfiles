@@ -5,10 +5,7 @@ return {
 		dependencies = {
 			"hrsh7th/nvim-cmp",
 			"hrsh7th/cmp-buffer",
-			{
-				"L3MON4D3/LuaSnip",
-				dependencies = { "rafamadriz/friendly-snippets" },
-			},
+			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"folke/neoconf.nvim",
 			-- "williamboman/mason-lspconfig.nvim",
@@ -52,5 +49,20 @@ return {
 			"hrsh7th/cmp-cmdline",
 		},
 		config = require("configs.nvim-cmp"),
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
+		dependencies = { "rafamadriz/friendly-snippets", "saadparwaiz1/cmp_luasnip" },
+		config = function(_, opts)
+			local ls = require("luasnip")
+			ls.config.set_config({
+				history = true,
+				updateevents = "TextChanged,TextChangedI",
+				enable_autosnippets = true,
+			})
+
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
 	},
 }

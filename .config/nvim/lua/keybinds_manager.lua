@@ -3,6 +3,8 @@ Mode_keybindings = {
 	n = "normal",
 	i = "insert",
 	v = "visual",
+	s = "select",
+	vs = "visual_select",
 	t = "terminal",
 	-- Add more modes if needed
 }
@@ -28,6 +30,11 @@ local load_mappings = function(mappings)
 						if description ~= nil then
 							opts.desc = description
 						end
+					end
+					if mode == "v" then
+						mode = "x"
+					elseif mode == "vs" then
+						mode = "v"
 					end
 					if force_api == nil or not force_api then
 						vim.keymap.set(mode, key, action, opts)

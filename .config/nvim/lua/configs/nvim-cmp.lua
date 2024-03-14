@@ -31,6 +31,9 @@ local format = function(entry, item)
 	if entry.source.name == "path" then
 		item.kind = cmp_kinds.Folder
 		item.menu = "(path)"
+	elseif entry.source.name == "luasnip" then
+		item.kind = " "
+		item.menu = "(LuaSnip)"
 	elseif entry.source.name == "crates" then
 		item.kind = "  "
 		item.menu = "(crates)"
@@ -64,17 +67,17 @@ return function()
 	cmp.setup({
 		snippet = {
 			expand = function(args)
-				luasnip.lsp_expand(args.body)
+				require("luasnip").lsp_expand(args.body)
 			end,
 		},
 		sources = cmp.config.sources({
+			{ name = "nvim_lsp" },
+			{ name = "luasnip" },
+			{ name = "buffer" },
 			{ name = "path" },
 			{ name = "otter" },
-			{ name = "crates", keyword_length = 0 },
-			{ name = "py-requirements", keyword_length = 0 },
-			{ name = "nvim_lsp", keyword_length = 1 },
-			{ name = "buffer", keyword_length = 3 },
-			{ name = "luasnip", keyword_length = 2 },
+			{ name = "crates" },
+			{ name = "py-requirements" },
 		}),
 		window = {
 			documentation = cmp.config.window.bordered(),
@@ -131,6 +134,7 @@ return function()
 			end, { "i", "s" }),
 		},
 	})
+
 	cmp.setup.cmdline({ "/", "?" }, {
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = {

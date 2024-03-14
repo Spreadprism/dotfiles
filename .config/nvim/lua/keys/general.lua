@@ -182,9 +182,6 @@ M.n = {
 	},
 }
 M.i = {
-	["<C-l>"] = { "<Right>", "Move right", { silent = true } },
-	["<C-j>"] = { "<Down>", "Move down", { silent = true } },
-	["<C-k>"] = { "<Up>", "Move up", { silent = true } },
 	["<C-e>"] = { "<esc>A", "Go to end of line", { silent = true } },
 	["<C-s>"] = { "<esc>^", "Go to first char of line", { silent = true } },
 	["<C-o>"] = { "<esc>o", "Insert line bellow", { silent = true } },
