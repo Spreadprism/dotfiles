@@ -2,7 +2,6 @@ local M = {}
 
 -- Available options silent & noremap
 M.n = {
-	["<leader>olg"] = { "<cmd>LazyGit<CR>", "Open lazygit" },
 	["<leader>ot"] = { "<cmd>TroubleToggle<CR>", "Open trouble" },
 	["?"] = { "<cmd>noh<CR>", "Clear highlight" },
 	["<M-/>"] = { "*", "Search next word" },

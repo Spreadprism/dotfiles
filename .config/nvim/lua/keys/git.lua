@@ -8,6 +8,7 @@ end
 M.n = {
 	[keymap("b")] = { "<CMD>GitMessenger<CR>", "Toggle commit message" },
 	[keymap("o")] = { "<CMD>Neogit<CR>", "Open Neogit" },
+	[keymap("O")] = { "<cmd>LazyGit<CR>", "Open lazygit" },
 }
 
 return M
