@@ -111,11 +111,11 @@ M.n = {
 		"<CMD>tabnew +terminal<CR>i",
 		"new terminal tab",
 	},
-	["tl"] = {
+	["<M-m>"] = {
 		"<CMD>tabnext<CR>",
 		"Next tab",
 	},
-	["th"] = {
+	["<M-n>"] = {
 		"<CMD>tabprevious<CR>",
 		"Previous tab",
 	},
