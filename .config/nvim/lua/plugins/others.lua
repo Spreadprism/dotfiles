@@ -26,6 +26,11 @@ return {
 			"nvim-telescope/telescope.nvim",
 		},
 		opts = {
+			disable_hint = true,
+			integrations = {
+				telescope = true,
+				diffview = true,
+			},
 			mappings = {
 				finder = {
 					["<tab>"] = "Next",
