@@ -19,6 +19,15 @@ return {
 		"nvim-lua/plenary.nvim",
 	},
 	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		opts = {},
+	},
+	{
 		"kdheepak/lazygit.nvim",
 		event = "VeryLazy",
 		-- optional for floating window border decoration

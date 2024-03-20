@@ -1,5 +1,5 @@
 local get_program = function()
-	return vim.fn.input("program: ", vim.loop.cwd() .. "/" .. vim.fn.expand("%f"), "file")
+	return vim.fn.input("program: ", vim.fn.getcwd() .. "/" .. vim.fn.expand("%f"), "file")
 end
 local get_args = function()
 	return vim.split(vim.fn.input("args: ", "", "file"), " ")

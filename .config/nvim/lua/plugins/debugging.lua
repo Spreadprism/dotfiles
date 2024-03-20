@@ -96,7 +96,9 @@ return {
 			"rcarriga/nvim-dap-ui",
 		},
 		config = function()
-			require("dap-go").setup({})
+			require("dap-go").setup({
+				-- dap_configurations = {},
+			})
 		end,
 	},
 	{
