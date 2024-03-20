@@ -25,7 +25,14 @@ return {
 			"sindrets/diffview.nvim",
 			"nvim-telescope/telescope.nvim",
 		},
-		opts = {},
+		opts = {
+			mappings = {
+				finder = {
+					["<tab>"] = "Next",
+					["<s-tab>"] = "Previous",
+				},
+			},
+		},
 	},
 	{
 		"kdheepak/lazygit.nvim",
