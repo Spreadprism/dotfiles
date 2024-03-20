@@ -31,6 +31,7 @@ return {
 				telescope = true,
 				diffview = true,
 			},
+			graph_style = "unicode",
 			mappings = {
 				finder = {
 					["<tab>"] = "Next",

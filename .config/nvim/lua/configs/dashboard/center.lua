@@ -36,6 +36,16 @@ local center = {
 		action = function()
 			-- list all buffer of filetype dashboardpreview
 			vim.cmd("only")
+			vim.cmd("Neogit")
+		end,
+		desc = " Neogit",
+		icon = "󰊢 ",
+		key = "g",
+	},
+	{
+		action = function()
+			-- list all buffer of filetype dashboardpreview
+			vim.cmd("only")
 			vim.cmd("Leet")
 		end,
 		desc = " Leetcode",
