@@ -47,7 +47,7 @@ return function(on_attach, capabilities)
 					indexing = true,
 					diagnosticMode = "workspace",
 					include = {
-						env.get("HOME") .. "/.config/nvim/python",
+						env.get("HOME") .. "/.config/nvim/python", -- INFO: prepopulate imports with common modules ex os, sys, etc
 					},
 					packageIndexDepths = {
 						{
