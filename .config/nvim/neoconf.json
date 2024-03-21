@@ -27,6 +27,11 @@
       "python.analysis.autoImportUserSymbols": true,
       "python.analysis.indexing": true,
       "python.analysis.diagnosticMode": "workspace",
+      "python.analysis.include": [
+        "${workspaceFolder}",
+        // FIX: this shouldn't be an absolute path, but pylance doesn't resolve ~ or $HOME
+        "/home/avalon/.config/nvim/python/" // force pylance to import os, numpy, etc
+      ],
       "python.analysis.packageIndexDepths": [
         {
           "name": "",

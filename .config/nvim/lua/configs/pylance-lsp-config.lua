@@ -28,36 +28,46 @@ local function set_python_path(path)
 	end
 end
 
+M.build_configs = function()
+	local env = require("utility.env")
+
+	return {
+		default_config = {
+			cmd = { "delance-langserver", "--stdio" },
+			filetypes = { "python" },
+			root_dir = function(fname)
+				return util.root_pattern(unpack(root_files))(fname)
+			end,
+			single_file_support = true,
+			settings = {
+				python = {
+					analysis = {
+						include = {
+							env.get("HOME") .. "/.config/nvim/python/",
+						},
+						autoSearchPaths = true,
+						useLibraryCodeForTypes = true,
+						diagnosticMode = "openFilesOnly",
+					},
+				},
+			},
+		},
+	}
+end
+
 M.register = function()
 	local configs = require("lspconfig.configs")
 	local env = require("utility.env")
 
-	if env.get("DELANCE_EXISTS") == "true" and not configs.delance then
-		configs.pylance = {
-			default_config = {
-				cmd = { "delance-langserver", "--stdio" },
-				filetypes = { "python" },
-				root_dir = function(fname)
-					return util.root_pattern(unpack(root_files))(fname)
-				end,
-				single_file_support = true,
-				settings = {
-					python = {
-						analysis = {
-							include = {
-								env.get("HOME") .. "/.config/nvim/python/",
-								env.get("workspaceFolder"),
-								env.get("workspaceFolder") .. "/src",
-								env.get("workspaceFolder") .. "/src/" .. env.get("workspaceFolderBaseName"),
-							},
-							autoSearchPaths = true,
-							useLibraryCodeForTypes = true,
-							diagnosticMode = "openFilesOnly",
-						},
-					},
-				},
-			},
-		}
+	if env.get("DELANCE_EXISTS") == "true" and not configs.pylance then
+		local set_configs = function()
+			print("Setting pylance configs")
+			configs.pylance = M.build_configs()
+		end
+		set_configs()
+		vim.api.nvim_create_autocmd("DirChanged", {
+			callback = set_configs,
+		})
 	end
 end
 

@@ -15,8 +15,16 @@ env.set("userHome", env.get("HOME"))
 env.set("nvimHome", env.get("HOME") .. "/.config/nvim")
 env.set("NVIM_SESSION_ID", session_id)
 
-env.set("workspaceFolder", vim.fn.getcwd())
-env.set("workspaceFolderBaseName", vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+local set_workspace = function()
+	local workspace = vim.fn.getcwd()
+	env.set("workspaceFolder", workspace)
+	env.set("workspaceFolderBaseName", vim.fn.fnamemodify(workspace, ":t"))
+end
+
+set_workspace()
+vim.api.nvim_create_autocmd("DirChanged", {
+	callback = set_workspace,
+})
 
 if vim.fn.executable("delance-langserver") == 1 then
 	env.set("DELANCE_EXISTS", "true")

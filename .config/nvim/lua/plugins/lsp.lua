@@ -29,6 +29,7 @@ return {
 	{ "folke/neodev.nvim", event = "VeryLazy", opts = {} },
 	{
 		"folke/neoconf.nvim",
+		lazy = false,
 		dependencies = "b0o/schemastore.nvim",
 		opts = {
 			plugins = {
