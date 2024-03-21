@@ -42,9 +42,6 @@ M.build_configs = function()
 			settings = {
 				python = {
 					analysis = {
-						include = {
-							env.get("HOME") .. "/.config/nvim/python/",
-						},
 						autoSearchPaths = true,
 						useLibraryCodeForTypes = true,
 						diagnosticMode = "openFilesOnly",
@@ -60,14 +57,7 @@ M.register = function()
 	local env = require("utility.env")
 
 	if env.get("DELANCE_EXISTS") == "true" and not configs.pylance then
-		local set_configs = function()
-			print("Setting pylance configs")
-			configs.pylance = M.build_configs()
-		end
-		set_configs()
-		vim.api.nvim_create_autocmd("DirChanged", {
-			callback = set_configs,
-		})
+		configs.pylance = M.build_configs()
 	end
 end
 

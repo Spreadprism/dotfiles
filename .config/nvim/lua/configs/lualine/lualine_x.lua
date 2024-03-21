@@ -63,7 +63,7 @@ local current_lsp = function()
 				venv_name = string.gsub(venv_name, ".*/miniconda3/envs/", "")
 				venv_name = string.gsub(venv_name, ".*/miniconda3", "base")
 			else
-				venv_name = "base"
+				venv_name = "sys"
 			end
 			name = name .. "(" .. venv_name .. ")"
 		end

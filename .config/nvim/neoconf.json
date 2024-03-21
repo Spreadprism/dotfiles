@@ -22,32 +22,6 @@
       "Lua.window.progressBar": false, "Lua.window.statusBar": false,
       "Lua.diagnostics.globals": ["vim", "MiniFiles"]
     },
-    "pylance": {
-      "python.analysis.autoImportCompletions": true,
-      "python.analysis.autoImportUserSymbols": true,
-      "python.analysis.indexing": true,
-      "python.analysis.diagnosticMode": "workspace",
-      "python.analysis.include": [
-        "${workspaceFolder}",
-        // FIX: this shouldn't be an absolute path, but pylance doesn't resolve ~ or $HOME
-        "/home/avalon/.config/nvim/python/" // force pylance to import os, numpy, etc
-      ],
-      "python.analysis.packageIndexDepths": [
-        {
-          "name": "",
-          "depth": 2,
-          "includeAllSymbols": true
-        }
-      ],
-      "python.analysis.diagnosticSeverityOverrides": {
-        "reportMissingModuleSource": "error",
-        "reportMissingImports": "error",
-        "reportUnusedImport" : "none",
-        "reportUnusedClass" : "none",
-        "reportUnusedFunction" : "none",
-        "reportUnusedVariable" : "none"
-      }
-    },
     "pyright": {
       "pyright.disableOrganizeImports": true,
       "python.analysis.autoImportCompletions": true,
