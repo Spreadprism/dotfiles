@@ -6,6 +6,18 @@ CONFIG_DIR="$HOME/.dotfiles/shell"
 # INFO: Importing our utilities before everything else
 export PATH="$PATH:$HOME/.dotfiles/bin"
 
+# pnpm
+export PNPM_HOME="/home/avalon/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Created by `pipx` on 2023-11-15 12:54:02
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
+
+# pnpm end
 # INFO: Sourcing our shell files
 # echo "Sourcing tmux"
 source "$CONFIG_DIR/tmux.zsh"
@@ -46,11 +58,6 @@ elif [ -d "$env_dir/$current_directory_name" ]; then
     conda activate "$current_directory_name"
 fi
 
-
-# Created by `pipx` on 2023-11-15 12:54:02
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
-
 # echo "Sourcing private"
 # INFO: Sourcing our private shell (We must do this at the end if we want to override anything)
 source "$CONFIG_DIR/private.zsh"
@@ -70,11 +77,3 @@ eval "$(starship init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-
-# pnpm
-export PNPM_HOME="/home/avalon/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end

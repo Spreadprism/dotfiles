@@ -14,6 +14,9 @@ truncate_to_repo = false
 read_only=''
 read_only_style='yellow'
 
+[directory.substitutions]
+'/run/media/avalon/Vault' = '~/Vault'
+
 [conda]
 format = '\([$environment]($style)\)'
 # style = 'white'

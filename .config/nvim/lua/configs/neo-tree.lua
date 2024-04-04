@@ -1,7 +1,7 @@
 local fu = require("utility.file_utility")
 local env = require("utility.env")
 return function()
-	vim.g.neo_tree_root_folder = "name"
+	-- vim.g.neo_tree_root_folder = "name"
 	require("neo-tree").setup({
 		close_if_last_window = true,
 		use_popups_for_input = true,
