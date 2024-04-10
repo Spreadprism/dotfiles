@@ -1,4 +1,5 @@
+DIRECTORY_NAME := $(notdir $(CURDIR))
 build:
-	@echo "Building current_keyboard"
-	@cp current_keyboard ../../bin/current_keyboard
-	@chmod +x ../../bin/current_keyboard
+	@echo "Building $(DIRECTORY_NAME)"
+	@cp $(DIRECTORY_NAME) ../../bin/$(DIRECTORY_NAME)
+	@chmod +x ../../bin/$(DIRECTORY_NAME)

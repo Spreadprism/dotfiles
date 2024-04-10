@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+sudo aura -Syu && sudo aura -Au
