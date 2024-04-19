@@ -1,0 +1,3 @@
+#!/bin/zsh
+
+op read op://Private/ArchLinuxLaptop/password | sudo -S -p "" $@

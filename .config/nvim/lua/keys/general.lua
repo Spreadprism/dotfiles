@@ -185,6 +185,7 @@ M.i = {
 	["<C-s>"] = { "<esc>^", "Go to first char of line", { silent = true } },
 	["<C-o>"] = { "<esc>o", "Insert line bellow", { silent = true } },
 	["<S-Tab>"] = { "<C-H>", "Remove tab", { silent = true } },
+	[";;"] = { "<Esc>", "Escape" },
 }
 
 M.v = {

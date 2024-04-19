@@ -31,6 +31,9 @@ return {
 		terminal = "integrated",
 		console = "integratedTerminal",
 		stopOnEntry = false,
+		env = {
+			RUST_LOG = "debug",
+		},
 		program = function()
 			return get_binary("debug")
 		end,

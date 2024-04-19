@@ -85,6 +85,7 @@ return {
 		config = function()
 			require("colorizer").setup({
 				"*",
+				conf = { rgb_fn = true },
 				css = { rgb_fn = true },
 				scss = { rgb_fn = true },
 			})
