@@ -34,6 +34,7 @@ format='[$hostname]($style)'
 format = '\([$symbol( $version)( 🎯 $tfm)]($style)\)'
 symbol=''
 style='fg:#876CE2'
+detect_files = ['global.json', 'Directory.Build.props', 'Directory.Build.targets', 'Packages.props']
 
 [c]
 format = '\([$symbol( $version(-$name))]($style)\)'

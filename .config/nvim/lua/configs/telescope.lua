@@ -2,6 +2,8 @@ local ignore_patterns = {
 	".git/*",
 	"**/node_modules/*",
 	"/target/*",
+	"/dist/*",
+	"/.nx/*",
 	".next/*",
 	".venv",
 	"**/__pycache__/*",

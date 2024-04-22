@@ -35,11 +35,11 @@ function DisplayFilename()
 	return display
 end
 
-local dirman = require("neorg.modules.core.dirman.module")
-local get_current_workspace = dirman.public.get_current_workspace
+-- local dirman = require("neorg.modules.core.dirman.module")
+-- local get_current_workspace = dirman.public.get_current_workspace
 local current_neorg_workspace = function()
 	-- name is the first element
-	return get_current_workspace()[1]
+	-- return get_current_workspace()[1]
 end
 
 local display_neorg_workspace = function()

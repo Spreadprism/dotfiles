@@ -101,11 +101,6 @@ M.n = {
 		"<CMD>tabnew<CR>",
 		"New tab",
 	},
-	["T"] = {
-		"<cmd>terminal<CR>i",
-		"Convert current buffer to terminal",
-		{ silent = true },
-	},
 	["tt"] = {
 		"<CMD>tabnew +terminal<CR>i",
 		"new terminal tab",

@@ -9,6 +9,7 @@ local prefered_output = {
 return {
 	{
 		"mfussenegger/nvim-dap",
+		dependencies = "nvim-neotest/nvim-nio",
 		config = require("configs.nvim-dap"),
 	},
 	{
