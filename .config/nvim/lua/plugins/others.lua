@@ -1,7 +1,7 @@
 return {
 	{
 		"thehamsta/nvim_rocks",
-		priority = 100,
+		event = "VeryLazy",
 		build = "pipx install hererocks && hererocks . -j2.1.0-beta3 -r3.0.0 && cp nvim_rocks.lua lua",
 		config = function()
 			local nvim_rocks = require("nvim_rocks")

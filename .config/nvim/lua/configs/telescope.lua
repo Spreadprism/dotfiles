@@ -1,7 +1,7 @@
 local ignore_patterns = {
 	".git/*",
 	"**/node_modules/*",
-	"/target/*",
+	"**/target/*",
 	"/dist/*",
 	"/.nx/*",
 	".next/*",
