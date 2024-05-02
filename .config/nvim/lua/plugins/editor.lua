@@ -110,6 +110,7 @@ return {
 		opts = {
 			triggers_blacklist = {
 				i = { ";", ";" },
+				v = { "something" },
 			},
 			window = {
 				border = "rounded",

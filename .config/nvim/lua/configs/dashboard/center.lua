@@ -52,12 +52,12 @@ local center = {
 		icon = "󰓾 ",
 		key = "L",
 	},
-	{
-		action = "Neorg index",
-		desc = " Notes",
-		icon = "󱞁 ",
-		key = "n",
-	},
+	-- {
+	-- 	action = "Neorg index",
+	-- 	desc = " Notes",
+	-- 	icon = "󱞁 ",
+	-- 	key = "n",
+	-- },
 	{
 		action = function()
 			-- If cwd is not nvim config dir, change to it

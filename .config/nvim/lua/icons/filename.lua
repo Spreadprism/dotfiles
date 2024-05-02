@@ -50,4 +50,9 @@ return {
 		color = "#407EB0",
 		name = "pyproject",
 	},
+	["docker-compose.dev.yml"] = {
+		icon = "󰡨",
+		color = "#458EE6",
+		name = "dockercomposedev",
+	},
 }
