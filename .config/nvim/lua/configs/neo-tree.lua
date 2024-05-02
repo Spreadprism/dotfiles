@@ -21,6 +21,8 @@ return function()
 					local components = require("neo-tree.sources.common.components")
 					local name = components.name(config, node, state)
 					if node:get_depth() == 1 then
+						name.text = env.get("PWD")
+						name.text = string.gsub(name.text, "/home/avalon/", "~/")
 						name.text = string.gsub(name.text, "/run/media/avalon/", "~/")
 					end
 					return name
