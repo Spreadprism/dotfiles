@@ -9,6 +9,9 @@ vim.o.showtabline = 0
 vim.o.updatetime = 300
 vim.o.scl = "yes"
 
+-- TODO: Should be removed later on when plugins are updated
+vim.deprecate = function() end
+
 local env = require("utility.env")
 local session_id = require("utility.instance_manager").get_session_id()
 env.set("userHome", env.get("HOME"))

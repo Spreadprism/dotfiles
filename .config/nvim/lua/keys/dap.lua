@@ -3,6 +3,7 @@ local M = {}
 M.n = {
 	["<F5>"] = {
 		function()
+			require("rustaceanvim.commands.debuggables").add_dap_debuggables()
 			require("dap").continue()
 		end,
 		"DAP start / continue",

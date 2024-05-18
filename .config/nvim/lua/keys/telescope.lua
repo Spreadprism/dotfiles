@@ -6,7 +6,7 @@ local keymap = function(key)
 end
 
 local builtin = require("telescope.builtin")
----@diagnostic disable-next-line: undefined-field
+---@diagnostic disable-next-line: undefined-field, different-requires
 local extensions = require("telescope").extensions
 M.n = {
 	["<leader>S"] = {

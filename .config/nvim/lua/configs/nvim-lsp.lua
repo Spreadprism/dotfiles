@@ -47,6 +47,7 @@ local disabled_lsp = {
 	"pylsp", -- INFO: Will be disabled until rope is fixed
 	"pylance",
 	"pyright",
+	"rust_analyzer",
 }
 local initialized_lsp = {}
 

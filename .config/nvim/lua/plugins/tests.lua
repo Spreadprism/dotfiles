@@ -9,7 +9,7 @@ return {
 			"nvim-neotest/neotest-go",
 			"marilari88/neotest-vitest",
 			"nvim-neotest/neotest-python",
-			"rouge8/neotest-rust",
+			-- "rouge8/neotest-rust",
 		},
 		config = function()
 			local neotest_ns = vim.api.nvim_create_namespace("neotest")
@@ -25,6 +25,7 @@ return {
 			require("neotest").setup({
 				adapters = {
 					-- INFO: Golang
+					require("rustaceanvim.neotest"),
 					require("neotest-go")({
 						experimental = {
 							test_table = true,
@@ -41,10 +42,10 @@ return {
 						dap = { justMyCode = true },
 					}),
 					-- INFO: Rust
-					require("neotest-rust")({
-						args = { "--no-capture" },
-						dap_adapter = "codelldb",
-					}),
+					-- require("neotest-rust")({
+					-- 	args = { "--no-capture" },
+					-- 	dap_adapter = "codelldb",
+					-- }),
 				},
 			})
 		end,

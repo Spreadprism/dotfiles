@@ -1,4 +1,3 @@
-
 profile bureau {
   output "eDP-1" disable
   output "Dell Inc. DELL S2721HN 2NGQSJ3" mode 1920x1080@60Hz position 0,0

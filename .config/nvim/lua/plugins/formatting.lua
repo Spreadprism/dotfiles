@@ -20,6 +20,9 @@ return {
 					json = {
 						require("formatter.filetypes.json").prettier,
 					},
+					toml = {
+						require("formatter.filetypes.toml").taplo,
+					},
 					["*"] = {
 						function()
 							local util = require("formatter.util")

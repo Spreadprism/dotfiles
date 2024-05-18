@@ -105,11 +105,11 @@ M.n = {
 		"<CMD>tabnew +terminal<CR>i",
 		"new terminal tab",
 	},
-	["<M-m>"] = {
+	["<Tab>"] = {
 		"<CMD>tabnext<CR>",
 		"Next tab",
 	},
-	["<M-n>"] = {
+	["<S-Tab>"] = {
 		"<CMD>tabprevious<CR>",
 		"Previous tab",
 	},
@@ -184,6 +184,7 @@ M.i = {
 }
 
 M.v = {
+	[";;"] = { "<Esc>", "Escape", { noremap = true } },
 	-- code manipulation
 	["<Tab>"] = { ">gv", "Add tab", { silent = true } },
 	["<S-Tab>"] = { "<gv", "Remove tab", { silent = true } },

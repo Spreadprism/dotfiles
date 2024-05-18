@@ -40,13 +40,6 @@
       "pylsp.plugins.mccabe.enabled": false,
       "pylsp.plugins.pycodestyle.enabled": false,
       "pylsp.plugins.pyflakes.enabled": false
-    },
-    "rust_analyzer": {
-      "rust-analyzer.cargo.extraEnv": {
-        "CARGO_PROFILE_RUST_ANALYZER_INHERITS": "dev"
-      },
-      "rust-analyzer.cargo.extraArgs": ["--profile", "rust_analyzer"],
-      "rust-analyzer.checkOnSave": true
     }
   }
 }

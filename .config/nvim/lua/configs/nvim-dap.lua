@@ -25,9 +25,6 @@ local load_vs_code_configurations = function()
 end
 
 local load_dap_configs = function()
-	local dap = require("dap")
-	dap.configurations = {}
-
 	load_dap_configurations()
 	load_vs_code_configurations()
 end

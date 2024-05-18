@@ -1,0 +1,28 @@
+#!/bin/bash
+# TODO: Needs to fix it
+echo "Installing missing packages..."
+case $(cat /etc/*-release | grep -i '^ID=' | cut -d'=' -f2) in
+  "arch")
+    sudo pacman -S zsh fzf starship eza zoxide git --needed
+    ;;
+  *)
+    echo "Unknown distribution"
+    exit 1
+    ;;
+esac
+
+echo "Changing shell to zsh"
+if [ "$SHELL" != "/bin/zsh" ]; then
+  chsh -s /bin/zsh
+fi
+
+echo "Linking zsh configuration"
+DOT_DIR="$HOME/.dotfiles"
+rm "$HOME/.zshrc"
+ln -s "$DOT_DIR/shell/.zshrc" "$HOME/.zshrc"
+
+echo "Linking starship configuration"
+rm -f "$HOME/.config/starship.toml"
+ln -s "$DOT_DIR/.config/starship.toml" "$HOME/.config/starship.toml"
+
+zsh

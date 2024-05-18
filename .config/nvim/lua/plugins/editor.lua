@@ -158,6 +158,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		event = "VeryLazy",
+		---@diagnostic disable-next-line: different-requires
 		config = require("configs.telescope"),
 	},
 	{
@@ -343,6 +344,7 @@ return {
 				notify_user_on_activate = false,
 				anaconda_base_path = env.get("HOME") .. "/miniconda3",
 				anaconda_envs_path = env.get("HOME") .. "/miniconda3/envs",
+
 				-- auto_refresh = false
 			})
 		end,

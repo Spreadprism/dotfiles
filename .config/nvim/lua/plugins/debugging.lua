@@ -135,36 +135,47 @@ return {
 		end,
 	},
 	{
-		"simrat39/rust-tools.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		ft = { "rust" },
+		"mrcjkb/rustaceanvim",
+		lazy = false, -- This plugin is already lazy
 		config = function()
-			local codelldb_path = "/usr/bin/codelldb"
-			local liblldb_path = "/usr/lib/liblldb.so"
-			vim.keymap.set(
-				"n",
-				"<leader>dd",
-				"<CMD>RustDebuggables<CR>",
-				{ silent = true, desc = "Launch rust debuggables" }
-			)
-			require("rust-tools").setup({
+			vim.g.rustaceanvim = {
 				dap = {
-					adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+					autoload_configurations = true,
 				},
-				server = {
-					settings = {
-						["rust-analyzer"] = {
-							cargo = {
-								allFeatures = true,
-							},
-							checkOnSave = {
-								enable = true,
-								command = "clippy",
-							},
-						},
-					},
-				},
-			})
+			}
 		end,
 	},
+	-- {
+	-- 	"simrat39/rust-tools.nvim",
+	-- 	dependencies = "neovim/nvim-lspconfig",
+	-- 	ft = { "rust" },
+	-- 	config = function()
+	-- 		local codelldb_path = "/usr/bin/codelldb"
+	-- 		local liblldb_path = "/usr/lib/liblldb.so"
+	-- 		vim.keymap.set(
+	-- 			"n",
+	-- 			"<leader>dd",
+	-- 			"<CMD>RustDebuggables<CR>",
+	-- 			{ silent = true, desc = "Launch rust debuggables" }
+	-- 		)
+	-- 		require("rust-tools").setup({
+	-- 			dap = {
+	-- 				adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+	-- 			},
+	-- 			server = {
+	-- 				settings = {
+	-- 					["rust-analyzer"] = {
+	-- 						cargo = {
+	-- 							allFeatures = true,
+	-- 						},
+	-- 						checkOnSave = {
+	-- 							enable = true,
+	-- 							command = "clippy",
+	-- 						},
+	-- 					},
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 }

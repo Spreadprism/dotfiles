@@ -40,9 +40,9 @@ local format = function(entry, item)
 	elseif entry.source.name == "py-requirements" then
 		item.kind = "  "
 		item.menu = "(pip)"
-	elseif entry.source.name == "vim-dadbod-completion" then
-		-- item kind should be a db icon from nerdfont
-		item.kind = " "
+	-- elseif entry.source.name == "vim-dadbod-completion" then
+	-- 	-- item kind should be a db icon from nerdfont
+	-- 	item.kind = " "
 	else
 		local kind = (cmp_kinds[item.kind] or "")
 		if item.kind ~= "Copilot" then
@@ -78,6 +78,7 @@ return function()
 			-- { name = "otter" },
 			{ name = "crates" },
 			{ name = "py-requirements" },
+			{ name = "cmp-dbee" },
 		}),
 		window = {
 			documentation = cmp.config.window.bordered(),

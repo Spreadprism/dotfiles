@@ -48,6 +48,13 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			{
+				"MattiasMTS/cmp-dbee",
+				dependencies = {
+					{ "kndndrj/nvim-dbee" },
+				},
+				ft = "sql", -- optional but good to have
+			},
 		},
 		config = require("configs.nvim-cmp"),
 	},

@@ -1,79 +1,234 @@
+# ------------------------------------------------------------
+# profiler
+# ------------------------------------------------------------
 zmodload zsh/zprof
-alias zperf='zprof'
-
-CONFIG_DIR="$HOME/.dotfiles/shell"
-
-# INFO: Importing our utilities before everything else
-export PATH="$PATH:$HOME/.dotfiles/bin"
-
-# pnpm
-export PNPM_HOME="/home/avalon/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# Created by `pipx` on 2023-11-15 12:54:02
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
-
-# pnpm end
-# INFO: Sourcing our shell files
-# echo "Sourcing tmux"
-source "$CONFIG_DIR/tmux.zsh"
-# echo "Sourcing aliases"
-source "$CONFIG_DIR/aliases.zsh"
-# echo "Sourcing oh-my-zsh"
-source "$CONFIG_DIR/oh-my-zsh.zsh"
-# echo "Sourcing nvim"
-source "$CONFIG_DIR/nvim.zsh"
-
-# INFO: source wsl only if we are in wsl
-if [[ $(grep -i Microsoft /proc/version) ]]; then
-  export IN_WSL="true"
-  source "$CONFIG_DIR/wsl.zsh"
-else
-  export IN_WSL="false"
+# ------------------------------------------------------------
+# Zinit
+# ------------------------------------------------------------
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+  echo "Installing zinit"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
-
-new-notebook() {
-    echo "{
- \"cells\": [],
- \"metadata\": {},
- \"nbformat\": 4,
- \"nbformat_minor\": 2
-}" > $(pwd)/$1
+source "${ZINIT_HOME}/zinit.zsh"
+# ------------------------------------------------------------
+# Plugins
+# ------------------------------------------------------------
+zinit_program () {
+  zi ice from"gh-r" as"program"
+  zi light $1
 }
 
-# INFO: Conda
-lazyload conda -- 'source $HOME/.dotfiles/shell/conda.zsh'
-
-env_dir="$HOME/miniconda3/envs"
-current_directory_name="${PWD##*/}"
-
-# if $env or $env + "_env" exists, activate it
-if [ -d "$env_dir/$current_directory_name"_env ]; then
-    conda activate "$current_directory_name"_env
-elif [ -d "$env_dir/$current_directory_name" ]; then
-    conda activate "$current_directory_name"
+zinit_completion () {
+  zi ice as"completion"
+  zinit snippet $1
+}
+# ------------------------------------------------------------
+zinit ice as"command" from"gh-r" \
+          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+          atpull"%atclone" src"init.zsh"
+DIRECTORY_STYLE="bold cyan"
+zinit light starship/starship
+# ------------------------------------------------------------
+zinit ice wait lucid
+zinit_program junegunn/fzf
+zinit ice wait lucid
+zinit_program ajeetdsouza/zoxide
+zinit ice wait lucid
+zinit_program jesseduffield/lazygit
+zinit ice wait lucid
+zinit_program eza-community/eza
+zinit light zsh-users/zsh-syntax-highlighting # INFO: Adds a % if loaded async
+zinit light zsh-users/zsh-completions
+# ------------------------------------------------------------
+ZVM_VI_ESCAPE_BINDKEY=';;'
+ZVM_VI_SURROUND_BINDKEY='s-prefix'
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+ZVM_VI_HIGHLIGHT_BACKGROUND=#283457
+ZVM_VI_HIGHLIGHT_FOREGROUND=#c0caf5
+ZVM_VI_EDITOR='nvim'
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+# ------------------------------------------------------------
+zinit ice wait lucid
+zinit_program junegunn/fzf
+zinit light zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
+# ------------------------------------------------------------
+zinit light qoomon/zsh-lazyload # INFO: Cannot be lazyloaded
+zinit ice wait lucid
+zinit snippet OMZP::sudo
+# ------------------------------------------------------------
+if [[ $(cat /etc/*-release | grep -i '^ID=' | cut -d'=' -f2) = 'arch' ]]
+then
+  zinit snippet OMZP::archlinux
 fi
-
-# echo "Sourcing private"
-# INFO: Sourcing our private shell (We must do this at the end if we want to override anything)
-source "$CONFIG_DIR/private.zsh"
-
-# Needs eza
+# ------------------------------------------------------------
+zinit ice wait lucid
+zinit light Aloxaf/fzf-tab
+zinit snippet OMZP::command-not-found
+zinit ice wait lucid
+zinit snippet OMZP::dirhistory
+zinit ice wait lucid
+zinit_completion OMZP::poetry
+zinit ice wait lucid
+zinit_completion OMZP::docker
+zinit ice wait lucid
+zinit_completion OMZP::docker-compose
+zinit ice wait lucid
+zinit_completion OMZP::kubectl
+# ------------------------------------------------------------
+# Completion
+# ------------------------------------------------------------
+autoload -Uz compinit && compinit
+zinit cdreplay -q
+eval "$(dircolors -b)" # Enables LS_COLORS
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+# ------------------------------------------------------------
+# Command history
+# ------------------------------------------------------------
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+# ------------------------------------------------------------
+# Utility functions
+# ------------------------------------------------------------
+conda_activate_current_dir () {
+  env_dir=$HOME/miniconda3/envs/
+  current_directory_name="${PWD##*/}"
+  if [ -d "$env_dir/$current_directory_name"_env ]; then
+    source ~/miniconda3/bin/activate "$current_directory_name"_env
+  elif [ -d "$env_dir/$current_directory_name" ]; then
+    source ~/miniconda3/bin/activate "$current_directory_name"
+  fi
+}
+previous_dir () {
+  dirhistory_back
+  zle .accept-line
+}
+next_dir () {
+  dirhistory_forward
+  zle .accept-line
+}
+function zvm_after_select_vi_mode() {
+  case $ZVM_MODE in
+    $ZVM_MODE_NORMAL)
+      # redrawing the prompt
+    ;;
+    $ZVM_MODE_INSERT)
+      # Something you want to do...
+    ;;
+    $ZVM_MODE_VISUAL)
+      # Something you want to do...
+    ;;
+    $ZVM_MODE_VISUAL_LINE)
+      # Something you want to do...
+    ;;
+    $ZVM_MODE_REPLACE)
+      # Something you want to do...
+    ;;
+  esac
+}
+# ------------------------------------------------------------
+# zsh widgets
+# ------------------------------------------------------------
+zle -N previous_dir
+zle -N next_dir
+# ------------------------------------------------------------
+# Aliases
+# ------------------------------------------------------------
+alias zz='cd -'
 alias ls='eza'
-alias ll='eza --tree'
-
-# Needs eza
-alias ls='eza'
-alias ll='eza --tree'
-# echo "Initializing prompt"
-export _ZO_ECHO=0
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
-# INFO: FZF-tab
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+alias lg='lazygit'
+alias activate='conda_activate_current_dir'
+alias deactivate='conda deactivate'
+# ------------------------------------------------------------
+# Keybinds
+# ------------------------------------------------------------
+function zvm_after_lazy_keybindings() {
+  # INFO: These keybindings are set only in normal mode
+  zvm_bindkey vicmd 'H' beginning-of-line
+  zvm_bindkey vicmd 'L' end-of-line
+}
+function zvm_after_init() {
+  # INFO: These keybindings are set for insert mode
+  bindkey '^A' autosuggest-execute
+  bindkey '^O' previous_dir
+  bindkey '^P' next_dir
+}
+# ------------------------------------------------------------
+# Paths
+# ------------------------------------------------------------
+export PATH="$PATH:$HOME/.dotfiles/bin"
+if command -v pnpm &> /dev/null
+then
+  export PNPM_HOME="/home/avalon/.local/share/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi
+# ------------------------------------------------------------
+if command -v pipx &> /dev/null
+then
+  export PATH="$PATH:$HOME/.local/bin"
+fi
+# ------------------------------------------------------------
+if command -v gem &> /dev/null
+then
+  export PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin/"
+fi
+# ------------------------------------------------------------
+if command -v go &> /dev/null
+then
+  export GOPATH="$HOME/.go"
+  export GOBIN="$GOPATH/bin"
+fi
+# ------------------------------------------------------------
+if command -v cargo &> /dev/null
+then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+# ------------------------------------------------------------
+if command -v nvim &> /dev/null
+then
+  export NVIM_LISTEN_ADDRESS='/tmp/nvim.socket'
+fi
+# ------------------------------------------------------------
+# Lazy loading
+# ------------------------------------------------------------
+lazyload nvm -- 'source $HOME/.dotfiles/shell/nvm.zsh'
+lazyload conda -- 'source $HOME/.dotfiles/shell/conda.zsh'
+# ------------------------------------------------------------
+# WSL
+# ------------------------------------------------------------
+if [[ $(grep -i Microsoft /proc/version) ]]; then
+  export IN_WSL="true"
+  export BROWSER=wslview
+  alias wsl='wsl.exe'
+  alias explorer='explorer.exe .'
+  alias pws='powershell.exe'
+fi
+# ------------------------------------------------------------
+# Shell init
+# ------------------------------------------------------------
+eval "$(zoxide init --cmd cd zsh)"
+conda_activate_current_dir # Activate conda env if present
+# ------------------------------------------------------------
+# Tmux
+# ------------------------------------------------------------
+if command -v tmux &> /dev/null
+then
+  source ~/.dotfiles/shell/tmux.zsh
+fi
