@@ -65,6 +65,8 @@ then
 fi
 # ------------------------------------------------------------
 zinit ice wait lucid
+zinit light joshskidmore/zsh-fzf-history-search
+zinit ice wait lucid
 zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::command-not-found
 zinit ice wait lucid
@@ -124,19 +126,14 @@ next_dir () {
 function zvm_after_select_vi_mode() {
   case $ZVM_MODE in
     $ZVM_MODE_NORMAL)
-      # redrawing the prompt
     ;;
     $ZVM_MODE_INSERT)
-      # Something you want to do...
     ;;
     $ZVM_MODE_VISUAL)
-      # Something you want to do...
     ;;
     $ZVM_MODE_VISUAL_LINE)
-      # Something you want to do...
     ;;
     $ZVM_MODE_REPLACE)
-      # Something you want to do...
     ;;
   esac
 }
