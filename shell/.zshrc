@@ -29,6 +29,7 @@ zinit ice as"command" from"gh-r" \
           atpull"%atclone" src"init.zsh"
 DIRECTORY_STYLE="bold cyan"
 zinit light starship/starship
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
 # ------------------------------------------------------------
 zinit ice wait lucid
 zinit_program junegunn/fzf
@@ -50,6 +51,7 @@ ZVM_VI_EDITOR='nvim'
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 # ------------------------------------------------------------
+export FZF\_DEFAULT\_OPTS='--bind=shift-tab:up,tab:down'
 zinit ice wait lucid
 zinit_program junegunn/fzf
 zinit light zsh-users/zsh-autosuggestions
@@ -123,17 +125,24 @@ next_dir () {
   dirhistory_forward
   zle .accept-line
 }
+
+# The plugin will auto execute this zvm_after_select_vi_mode function
 function zvm_after_select_vi_mode() {
   case $ZVM_MODE in
     $ZVM_MODE_NORMAL)
+      # Something you want to do...
     ;;
     $ZVM_MODE_INSERT)
+      # Something you want to do...
     ;;
     $ZVM_MODE_VISUAL)
+      # Something you want to do...
     ;;
     $ZVM_MODE_VISUAL_LINE)
+      # Something you want to do...
     ;;
     $ZVM_MODE_REPLACE)
+      # Something you want to do...
     ;;
   esac
 }
@@ -203,10 +212,34 @@ then
   export NVIM_LISTEN_ADDRESS='/tmp/nvim.socket'
 fi
 # ------------------------------------------------------------
+# conda
+# ------------------------------------------------------------
+init_conda() {
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+          . "$HOME/miniconda3/etc/profile.d/conda.sh"
+      else
+          export PATH="$HOME/miniconda3/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+}
+init_nvm() {
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+# ------------------------------------------------------------
 # Lazy loading
 # ------------------------------------------------------------
-lazyload nvm -- 'source $HOME/.dotfiles/shell/nvm.zsh'
-lazyload conda -- 'source $HOME/.dotfiles/shell/conda.zsh'
+lazyload nvm -- 'init_nvm'
+lazyload conda -- 'init_conda'
 # ------------------------------------------------------------
 # WSL
 # ------------------------------------------------------------
@@ -222,6 +255,8 @@ fi
 # ------------------------------------------------------------
 eval "$(zoxide init --cmd cd zsh)"
 conda_activate_current_dir # Activate conda env if present
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # ------------------------------------------------------------
 # Tmux
 # ------------------------------------------------------------

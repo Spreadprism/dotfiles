@@ -1,11 +1,17 @@
 format = '''
 ╭\[$directory\](${custom.conda-env-available})$conda$git_branch$git_status(
 ├$python$golang$c$dotnet$rust$elixir$java$ruby$nodejs${custom.docker})
-╰($container)(\($hostname\))${custom.insert}${custom.normal}─➤ 
+╰─$character
 '''
 add_newline = false
 continuation_prompt = '  ➤ '
 command_timeout = 1000
+
+[character]
+format = '$symbol '
+success_symbol = '[➤](bold green)'
+error_symbol = '[➤](bold red)'
+vimcmd_symbol = '[➤](bold cyan)'
 
 [directory]
 format = '[$path]($style)(\]\[[$read_only]($read_only_style))'
@@ -14,6 +20,9 @@ style = "bold cyan"
 truncate_to_repo = false
 read_only = ''
 read_only_style = 'yellow'
+
+[directory.substitutions]
+'/run/media/avalon/Vault' = '~/Vault'
 
 [conda]
 format = '\([$environment]($style)\)'

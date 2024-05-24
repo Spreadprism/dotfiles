@@ -1,0 +1,7 @@
+{
+  "diagnostics.globals": ["vim", "MiniFiles",
+        "jit",
+        "plugin",
+        "keybind",
+        "keybind_group"]
+}

@@ -1,0 +1,5 @@
+require("init_globals")
+require("init_nvim")
+require("init_rocks")
+require("init_plugins_specs")
+require("init_lazy")
