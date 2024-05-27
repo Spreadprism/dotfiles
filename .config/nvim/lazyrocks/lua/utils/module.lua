@@ -1,11 +1,12 @@
 local M = {}
 
-local lua_dir_path = vim.g.g.lua_directory_name
+local lua_dir_path = vim.g.configs.lua_directory_name
 local fs = require("utils.filesystem")
 
 ---@param module string
 ---@return table
 M.submodules = function(module)
+	module = module:gsub("%.", "/")
 	local module_path = vim.fs.joinpath(lua_dir_path, module)
 	if not fs.is_dir(module_path) then
 		return {}

@@ -2,18 +2,15 @@
 
 ## TODO
 
+Do the thing for git trees
 ### Plugins
 - Comment.nvim
 - Neogit
-- smart-split
-- lualine
+- nvim-spectre
 
 ### Keybinds
 #### For each lowercase => buffer, uppercase => cwd
-- Add <leader>sl -> search last
--------------------------------
 - Add <leader>sr -> search and replace
--------------------------------
 - Add <leader>sd -> search diagnostic
 - Add <leader>sda -> search diagnostic all
 - Add <leader>sde -> search diagnostic errors
@@ -31,10 +28,6 @@
 - Add <leader>n -> notification
 -------------------------------
 - Add <leader>l -> lsp
-- Add <leader>li -> lsp info
-- Add <leader>lr -> lsp restart
-- Add <leader>ls -> lsp settings
-- Add <leader>le -> edit lsp settings
 - Add gd -> go to definition (telescope)
 - Add gr -> go to reference (telescope)
 -------------------------------
@@ -49,8 +42,13 @@
 -------------------------------
 - Add <leader>x -> export options
 -------------------------------
-- Add v -> switch visual selection side ___cursor => cursor___
-- Add glv -> go last visual selection
-- Add gli -> go last insert
+- Add <leader>g -> git
+- Add <leader>gg -> Open neogit
+- Add <leader>gl -> Open lazygit
+- Add <leader>gb -> git blame
+-------------------------------
+- Add <M-1..9> -> goto tab n (create buffer if not exists)
+- Add <M-Shift + 1..9> -> goto tab n (create `ask_what_to_create` if not exists)
+-------------------------------
 - Add gu -> go to url
 - Add . -> repeat last motion

@@ -115,7 +115,7 @@ return {
 		"karb94/neoscroll.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("neoscroll").setup({ stop_eof = false })
+			require("neoscroll").setup({ stop_eof = false, hide_cursor = false })
 		end,
 	},
 	{

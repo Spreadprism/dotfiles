@@ -25,6 +25,7 @@ for _, file in ipairs(plugin_files) do
 		end
 	else
 		print("Failed to load " .. full_module_name)
+		print(module_result)
 	end
 end
 

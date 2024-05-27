@@ -129,15 +129,14 @@ end
 ---@param config fun(LazyPlugin, table) | true | string
 function Plugin:config(config)
 	if type(config) == "string" then
-		if vim.list_contains(mod_utils.submodules(vim.g.g.configs_directory_name), config) then
-			local config_module = config
-			config = function()
-				require(vim.g.g.configs_directory_name .. "." .. config_module)
+		local config_module = config
+		config = function()
+			local ok, err = pcall(require, config_module)
+			if not ok then
+				vim.notify(err, vim.log.levels.ERROR, { title = "LazyRockSpecs" })
 			end
-			self.specs.config = config
-		else
-			error("configs." .. config .. " not found")
 		end
+		self.specs.config = config
 	else
 		self.specs.config = config
 	end
@@ -224,13 +223,13 @@ end
 
 function Plugin:validate_config()
 	if self.specs.config == nil then
-		local config_modules = mod_utils.submodules(vim.g.g.configs_directory_name)
+		local config_modules = mod_utils.submodules(vim.g.configs.configs_directory_name)
 		for _, name in ipairs(self.possible_file_name) do
 			if vim.list_contains(config_modules, name) then
 				self.specs.config = function()
-					local ok, _ = pcall(require, vim.g.g.configs_directory_name .. "." .. name)
+					local ok, err = pcall(require, vim.g.configs.configs_directory_name .. "." .. name)
 					if not ok then
-						print("Failed to load " .. vim.g.g.configs_directory_name .. "." .. name)
+						vim.notify(err, vim.log.levels.ERROR, { title = "LazyRockSpecs" })
 					end
 				end
 				break
@@ -240,13 +239,13 @@ function Plugin:validate_config()
 end
 function Plugin:validate_keys()
 	if self.specs.keys == nil then
-		local keybind_modules = mod_utils.submodules(vim.g.g.keybinds_directory_name)
+		local keybind_modules = mod_utils.submodules(vim.g.configs.keybinds_directory_name)
 		for _, name in ipairs(self.possible_file_name) do
 			if vim.list_contains(keybind_modules, name) then
 				self.specs.keys = function()
-					local ok, _ = pcall(require, vim.g.g.keybinds_directory_name .. "." .. name)
+					local ok, err = pcall(require, vim.g.configs.keybinds_directory_name .. "." .. name)
 					if not ok then
-						print("Failed to load " .. vim.g.g.keybinds_directory_name .. "." .. name)
+						vim.notify(err, vim.log.levels.ERROR, { title = "LazyRockSpecs" })
 					end
 				end
 				break

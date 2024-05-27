@@ -6,7 +6,8 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.showtabline = 0
 vim.o.scl = "yes"
-vim.opt.updatetime = 200
+vim.o.timeout = true
+vim.o.timeoutlen = 200
 
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.deprecate = function() end -- TODO: Remove this when v12 is more mature

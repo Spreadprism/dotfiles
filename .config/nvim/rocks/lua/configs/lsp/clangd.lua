@@ -3,6 +3,5 @@ return function(on_attach, capabilities)
 	return {
 		on_attach = on_attach,
 		capabilities = capabilities,
-		filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	}
 end

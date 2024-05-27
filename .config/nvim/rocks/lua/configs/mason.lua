@@ -3,7 +3,7 @@ require("mason-lspconfig").setup()
 require("mason-nvim-dap").setup()
 
 require("mason-tool-installer").setup({
-	ensure_installed = {
+	ensure_installed = vim.list_extend({}, {
 		-- INFO: LSP
 		"bash-language-server",
 		"rust-analyzer",
@@ -17,5 +17,5 @@ require("mason-tool-installer").setup({
 		"delve",
 		-- INFO: Tools
 		"ruff",
-	},
+	}),
 })

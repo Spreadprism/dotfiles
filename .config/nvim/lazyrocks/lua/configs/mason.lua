@@ -2,22 +2,19 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-nvim-dap").setup()
 require("mason-tool-installer").setup({
-	ensure_installed = {
+	ensure_installed = vim.list_extend(
 		-- INFO: LSP
-		"bash-language-server",
-		"docker-compose-language-service",
-		"dockerfile-language-server",
-		"rust-analyzer",
-		"ruff-lsp",
-		"lua-language-server",
-		"pyright",
-		"typescript-language-server",
-		-- INFO: DAP
-		"codelldb",
-		"debugpy",
-		"delve",
-		-- INFO: Linter
-		-- INFO: Formatter
-		"ruff",
-	},
+		require("utils.lsp").all_lsp_mason(),
+		{
+			-- INFO: DAP
+			"codelldb",
+			"debugpy",
+			"delve",
+			-- INFO: Linter
+			-- INFO: Formatter
+			"ruff",
+			"prettier",
+			"stylua",
+		}
+	),
 })

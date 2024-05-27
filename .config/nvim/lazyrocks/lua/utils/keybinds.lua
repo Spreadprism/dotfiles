@@ -1,25 +1,8 @@
 local M = {}
 
-local valid_mode = {
-	n = "normal",
-	i = "insert",
-	v = "visual",
-	s = "select",
-	vs = "visual_select",
-	t = "terminal",
-}
-
-local is_valid_mode = function(mode)
-	return valid_mode[mode] ~= nil
-end
-
 local register_keybind = function(mode, key, action, description, opts, force_api)
 	force_api = force_api or false
 
-	if not is_valid_mode(mode) then
-		warn("Failed to register keybind, invalid mode: " .. mode .. " => " .. key)
-		return
-	end
 	opts.desc = description
 
 	if
@@ -31,7 +14,11 @@ local register_keybind = function(mode, key, action, description, opts, force_ap
 			end
 		end)
 	then
-		warn("Failed to register keybind: " .. mode .. " => " .. key)
+		vim.notify(
+			"Failed to register keybind, invalid mode: " .. mode .. " => " .. key,
+			vim.log.levels.WARNING,
+			{ title = "Keybinds" }
+		)
 	end
 end
 

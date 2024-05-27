@@ -1,4 +1,3 @@
-print("mini.move")
 require("mini.move").setup({
 	mappings = {
 		up = "<M-k>",
