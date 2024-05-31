@@ -9,6 +9,7 @@ end
 
 local hop = require("hop")
 keybind("n", "F", main_hop_f, "Jump to word"):register()
+keybind("v", "F", "<cmd>HopLine<cr>", "Jump to word"):register()
 keybind({ "n", "v" }, "f", function()
 	hop.hint_char1({ current_line_only = true })
 end, "Jump to char"):register()

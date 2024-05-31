@@ -59,13 +59,10 @@ vim.diagnostic.config({
 
 -- INFO: Defining the signs and highlights after loading plugins to overwrite them.
 vim.cmd([[highlight DiagnosticUnderlineError guifg=#db4b4b]])
-
 vim.cmd([[highlight DiagnosticUnderlineWarn guifg=#e0af68]])
 vim.cmd([[highlight DiagnosticDeprecated guifg=#e0af68]])
-
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#0db9d7]])
 vim.cmd([[highlight DiagnosticInfo guifg=#0db9d7]])
-
 vim.cmd([[highlight DiagnosticUnderlineInfo guifg=#1abc9c]])
 
 vim.cmd([[autocmd DirChanged * call chansend(v:stderr, printf("\033]7;file://%s\033\\", v:event.cwd))]])
