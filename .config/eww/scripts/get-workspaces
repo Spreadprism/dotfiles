@@ -1,11 +1,43 @@
-#!/usr/bin/env bash
+#! /bin/sh
 
-spaces (){
-	WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
-	seq 1 10 | jq --argjson windows "${WORKSPACE_WINDOWS}" --slurp -Mc 'map(tostring) | map({id: ., windows: ($windows[.]//0)})'
+function get_id() {
+  case $@ in
+    -i=*|--id=*)
+      ID="${@#*=}"
+      # Make sure the ID exists
+      ID=$(hyprctl monitors -j | jq ".[] | select(.id == $ID) | .id")
+      ;;
+    -n=*|--name=*)
+      NAME="${@#*=}"
+      ID=$(hyprctl monitors -j | jq ".[] | select(.name == \"$NAME\") | .id")
+      ;;
+    -d=*|--desc=*)
+      DESC="${@#*=}"
+      ID=$(hyprctl monitors -j | jq ".[] | select(.description == \"$DESC\") | .id")
+      ;;
+    -s=*|--serial=*)
+      SERIAL="${@#*=}"
+      ID=$(hyprctl monitors -j | jq ".[] | select(.serial == \"$SERIAL\") | .id")
+      ;;
+  *)
+    echo "Needed display identifier"
+    exit 1
+  esac
+
+  if [ -e $ID ]; then
+    echo "Failed to grab ID"
+    exit 1
+  fi
+  echo $ID
 }
 
-spaces
-socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
-	spaces
+function workspaces() {
+  ID=$1
+  WORKSPACES=$(hyprctl workspaces -j | jq -r "[.[] | select(.monitorID == $ID and .id > 0) | {name: .name}] | sort_by(.name)")
+  echo $WORKSPACES
+}
+
+workspaces $(get_id $1)
+socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
+  workspaces $(get_id $1)
 done

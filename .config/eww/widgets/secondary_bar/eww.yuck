@@ -1,0 +1,5 @@
+(defwidget secondary_bar []
+  (centerbox :orientation "h"
+    (leftstuff)
+    (centerstuff)
+    (rightstuff)))
