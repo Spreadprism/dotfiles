@@ -1,3 +1,0 @@
-0000000000000000000000000000000000000000 7d28e684de46a3a0a6f9d4d56775fa9e02690e6b avalon <avalon@archlinux.(none)> 1717395151 -0400	clone: from https://github.com/Spreadprism/nvim.git
-7d28e684de46a3a0a6f9d4d56775fa9e02690e6b 9ca65a005bb7950a8623f9eda4635bb304c5f33a avalon <avalon@archlinux.(none)> 1717697856 -0400	pull origin main: Fast-forward
-9ca65a005bb7950a8623f9eda4635bb304c5f33a c0f60a5dac485651e7a8005155c42ea6fb8b3069 Emeric Duguay <emericduguay@proton.me> 1717698034 -0400	commit: new filesystem logic
