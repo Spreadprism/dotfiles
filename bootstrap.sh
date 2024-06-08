@@ -37,4 +37,6 @@ if [ ! -f $EGET_PATH ]; then
   clear
 fi
 
-cd $DOTFILES_LOCATION
+cd
+
+exec bash
