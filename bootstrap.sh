@@ -17,17 +17,22 @@ cd $DOTFILES_LOCATION
 stow base --adopt
 stow shell --adopt
 
-cd $USR_BIN
+# We force our config files
+git clean -df
+git checkout -- .
 
 # Install bash-it
-if [ ! -d $HOME/.bash_it ]; then
-  git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+BASH_IT_PATH=$HOME/.bash_it
+if [ ! -d $BASH_IT_PATH ]; then
+  git clone --depth=1 https://github.com/Bash-it/bash-it.git $BASH_IT_PATH
   ~/.bash_it/install.sh --no-modify-config
   clear
 fi
 
 # Install eget
-if [ ! -f $USR_BIN/eget ]; then
+cd $USR_BIN
+EGET_PATH=$USR_BIN/eget
+if [ ! -f $EGET_PATH ]; then
   curl -sS https://zyedidia.github.io/eget.sh | sh
   clear
 fi
