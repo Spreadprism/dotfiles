@@ -1,9 +1,62 @@
 # ------------------------------------------------------------
-# profiler
+# INFO: profiler
 # ------------------------------------------------------------
 zmodload zsh/zprof
 # ------------------------------------------------------------
-# Zinit
+# INFO: Binaries
+# ------------------------------------------------------------
+BIN_DIR=$HOME/bin
+export PATH="$PATH:$BIN_DIR"
+EGET_PATH=$BIN_DIR/eget
+if [ ! -f $EGET_PATH ]; then
+  LAST_PWD=$PWD
+  cd $BIN_DIR
+  curl -sS https://zyedidia.github.io/eget.sh | sh
+  cd $LAST_PWD
+  clear
+fi
+# ------------------------------------------------------------
+if ! command -v starship &> /dev/null; then
+  eget starship/starship --to=~/bin -a="starship-x86_64-unknown-linux-gnu.tar.gz"
+fi
+# ------------------------------------------------------------
+if ! command -v bob &> /dev/null; then
+  eget MordechaiHadad/bob --to=~/bin -a="bob-linux-x86_64.zip"
+fi
+# ------------------------------------------------------------
+if ! command -v rg &> /dev/null; then
+  eget BurntSushi/ripgrep --to=~/bin
+fi
+# ------------------------------------------------------------
+if ! command -v fzf &> /dev/null; then
+  eget junegunn/fzf --to=~/bin
+fi
+# ------------------------------------------------------------
+if ! command -v jq &> /dev/null; then
+  eget jqlang/jq --to=~/bin -a="jq-linux64"
+fi
+# ------------------------------------------------------------
+if ! command -v jqp &> /dev/null; then
+  eget noahgorstein/jqp --to=~/bin
+fi
+# ------------------------------------------------------------
+if ! command -v bat &> /dev/null; then
+  eget sharkdp/bat --to=~/bin -a="bat-v0.24.0-x86_64-unknown-linux-gnu.tar.gz"
+fi
+# ------------------------------------------------------------
+if ! command -v eza &> /dev/null; then
+  eget eza-community/eza --to=~/bin -a="eza_x86_64-unknown-linux-gnu.tar.gz"
+fi
+# ------------------------------------------------------------
+if ! command -v lazygit &> /dev/null; then
+  eget jesseduffield/lazygit --to=~/bin
+fi
+# ------------------------------------------------------------
+if ! command -v zoxide &> /dev/null; then
+  eget ajeetdsouza/zoxide --to=~/bin
+fi
+# ------------------------------------------------------------
+# INFO: Zinit
 # ------------------------------------------------------------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
@@ -12,15 +65,14 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 # ------------------------------------------------------------
-# Paths
+# INFO: Paths
 # ------------------------------------------------------------
-export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/share/bob/nvim-bin"
+# ------------------------------------------------------------
 if [ -d "/var/lib/flatpak/exports/bin" ]; then
   export PATH="$PATH:/var/lib/flatpak/exports/bin"
 fi
 # ------------------------------------------------------------
-# gcloud
 if [ -d "/opt/google-cloud-cli/" ]; then
   export CLOUDSDK_ROOT_DIR=/opt/google-cloud-cli
   export CLOUDSDK_PYTHON=$(which python)
@@ -63,40 +115,10 @@ if command -v nvim &> /dev/null
 then
   export NVIM_LISTEN_ADDRESS='/tmp/nvim.socket'
 fi
-
 # ------------------------------------------------------------
-# Plugins
+# INFO: Zsh plugins
 # ------------------------------------------------------------
-zinit_program () {
-  zi ice from"gh-r" as"program"
-  zi light $1
-}
-
-zinit_completion () {
-  zi ice as"completion"
-  zinit snippet $1
-}
-# ------------------------------------------------------------
-zinit ice as"command" from"gh-r" \
-          atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-          atpull"%atclone" src"init.zsh"
-DIRECTORY_STYLE="bold cyan"
-zinit light starship/starship
-# ------------------------------------------------------------
-# TODO: Setup ripgrep
-zinit ice wait lucid
-zinit_program junegunn/fzf
-zinit ice wait lucid
-zinit_program jqlang/jq
-zinit ice from"gh-r" as"command" mv"bat*/bat -> bat"
-zinit light sharkdp/bat
-zinit ice wait lucid
-zinit_program ajeetdsouza/zoxide
-zinit ice wait lucid
-zinit_program jesseduffield/lazygit
-zinit ice wait lucid
-zinit_program eza-community/eza
-zinit light zsh-users/zsh-syntax-highlighting # INFO: Adds a % if loaded async
+zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 # ------------------------------------------------------------
 ZVM_VI_ESCAPE_BINDKEY=';;'
@@ -110,17 +132,18 @@ zinit light jeffreytse/zsh-vi-mode
 # ------------------------------------------------------------
 export FZF\_DEFAULT\_OPTS='--bind=shift-tab:up,tab:down'
 zinit ice wait lucid
-zinit_program junegunn/fzf
 zinit light zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion)
 # ------------------------------------------------------------
 zinit light qoomon/zsh-lazyload # INFO: Cannot be lazyloaded
 zinit ice wait lucid
 zinit snippet OMZP::sudo
+# ------------------------------------------------------------
 if [[ $(cat /etc/*-release | grep -i '^ID=' | cut -d'=' -f2) = 'arch' ]]
 then
   zinit snippet OMZP::archlinux
 fi
+# ------------------------------------------------------------
 zinit ice wait lucid
 zinit light joshskidmore/zsh-fzf-history-search
 zinit ice wait lucid
@@ -128,30 +151,39 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::command-not-found
 zinit ice wait lucid
 zinit snippet OMZP::dirhistory
+# ------------------------------------------------------------
 if command -v poetry &> /dev/null
 then
   zinit ice wait lucid
-  zinit_completion OMZP::poetry
+  zi ice as"completion"
+  zinit snippet OMZP::poetry
 fi
+# ------------------------------------------------------------
 if command -v docker &> /dev/null
 then
   zinit ice wait lucid
-  zinit_completion OMZP::docker
+  zi ice as"completion"
+  zinit snippet OMZP::docker
   zinit ice wait lucid
-  zinit_completion OMZP::docker-compose
+  zi ice as"completion"
+  zinit snippet OMZP::docker-compose
 fi
+# ------------------------------------------------------------
 if command -v kubectl &> /dev/null
 then
   zinit ice wait lucid
-  zinit_completion OMZP::kubectl
+  zi ice as"completion"
+  zinit snippet OMZP::kubectl
 fi
+# ------------------------------------------------------------
 if command -v gcloud &> /dev/null
 then
   zinit ice wait lucid
-  zinit_completion OMZP::gcloud
+  zi ice as"completion"
+  zinit snippet OMZP::gcloud
 fi
 # ------------------------------------------------------------
-# Completion
+# INFO: Completion
 # ------------------------------------------------------------
 autoload -Uz compinit && compinit
 zinit cdreplay -q
@@ -162,7 +194,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # ------------------------------------------------------------
-# Command history
+# INFO: Command history
 # ------------------------------------------------------------
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
@@ -175,7 +207,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups
 # ------------------------------------------------------------
-# Utility functions
+# INFO: Utility functions
 # ------------------------------------------------------------
 conda_activate_current_dir () {
   env_dir=$HOME/miniconda3/envs/
@@ -194,34 +226,13 @@ next_dir () {
   dirhistory_forward
   zle .accept-line
 }
-
-# The plugin will auto execute this zvm_after_select_vi_mode function
-function zvm_after_select_vi_mode() {
-  case $ZVM_MODE in
-    $ZVM_MODE_NORMAL)
-      # Something you want to do...
-    ;;
-    $ZVM_MODE_INSERT)
-      # Something you want to do...
-    ;;
-    $ZVM_MODE_VISUAL)
-      # Something you want to do...
-    ;;
-    $ZVM_MODE_VISUAL_LINE)
-      # Something you want to do...
-    ;;
-    $ZVM_MODE_REPLACE)
-      # Something you want to do...
-    ;;
-  esac
-}
 # ------------------------------------------------------------
-# zsh widgets
+# INFO: Widgets
 # ------------------------------------------------------------
 zle -N previous_dir
 zle -N next_dir
 # ------------------------------------------------------------
-# Aliases
+# INFO: Aliases
 # ------------------------------------------------------------
 alias v='nvim'
 alias nvim-rocks='NVIM_APPNAME=nvim-rocks nvim'
@@ -233,7 +244,7 @@ alias lg='lazygit'
 alias activate='conda_activate_current_dir'
 alias deactivate='conda deactivate'
 # ------------------------------------------------------------
-# Keybinds
+# INFO: Keybinds
 # ------------------------------------------------------------
 function zvm_after_lazy_keybindings() {
   # INFO: These keybindings are set only in normal mode
@@ -242,12 +253,12 @@ function zvm_after_lazy_keybindings() {
 }
 function zvm_after_init() {
   # INFO: These keybindings are set for insert mode
-  bindkey '^A' autosuggest-execute
+  bindkey '<M-a>' autosuggest-execute
   bindkey '^O' previous_dir
   bindkey '^P' next_dir
 }
 # ------------------------------------------------------------
-# conda
+# INFO: Lazy loading
 # ------------------------------------------------------------
 init_conda() {
   # >>> conda initialize >>>
@@ -270,21 +281,12 @@ init_nvm() {
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 }
-init_gcloud() {
-  export CLOUDSDK_ROOT_DIR=/opt/google-cloud-cli
-  export CLOUDSDK_PYTHON=/usr/bin/python
-  export CLOUDSDK_PYTHON_ARGS='-S -W ignore'
-  export PATH=$CLOUDSDK_ROOT_DIR/bin:$PATH
-  export GOOGLE_CLOUD_SDK_HOME=$CLOUDSDK_ROOT_DIR
-}
-# ------------------------------------------------------------
-# Lazy loading
 # ------------------------------------------------------------
 lazyload nvm -- 'init_nvm'
 lazyload nvim -- 'init_nvm'
 lazyload conda -- 'init_conda'
 # ------------------------------------------------------------
-# WSL
+# INFO: WSL
 # ------------------------------------------------------------
 if [[ $(grep -i Microsoft /proc/version) ]]; then
   export IN_WSL="true"
@@ -294,14 +296,7 @@ if [[ $(grep -i Microsoft /proc/version) ]]; then
   alias pws='powershell.exe'
 fi
 # ------------------------------------------------------------
-# Shell init
+# INFO: Initialize
 # ------------------------------------------------------------
+eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-conda_activate_current_dir # Activate conda env if present
-# ------------------------------------------------------------
-# Tmux
-# ------------------------------------------------------------
-# if command -v tmux &> /dev/null
-# then
-#   source ~/.shell/tmux.zsh
-# fi
