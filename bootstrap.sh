@@ -7,6 +7,7 @@ USR_BIN="$HOME/bin"
 # Interupt if error
 set -e
 
+# Install dotfiles
 if [ ! -d $DOTFILES_LOCATION ]; then
   git clone $GIT_REPO $DOTFILES_LOCATION
   clear
@@ -14,6 +15,7 @@ fi
 
 cd $DOTFILES_LOCATION
 
+# Only bootstrap base configs + shell configs
 stow base --adopt
 stow shell --adopt
 
@@ -21,7 +23,7 @@ stow shell --adopt
 git clean -df
 git checkout -- .
 
-# Install bash-it
+# Install bash_it
 BASH_IT_PATH=$HOME/.bash_it
 if [ ! -d $BASH_IT_PATH ]; then
   git clone --depth=1 https://github.com/Bash-it/bash-it.git $BASH_IT_PATH
