@@ -13,19 +13,22 @@ if [ ! -d $DOTFILES_LOCATION ]; then
 fi
 
 cd $DOTFILES_LOCATION
-stow base
-stow shell
+
+stow base --adopt
+stow shell --adopt
 
 cd $USR_BIN
+
+# Install bash-it
+if [ ! -d $HOME/.bash_it ]; then
+  git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it
+  ~/.bash_it/install.sh --no-modify-config
+  clear
+fi
 
 # Install eget
 if [ ! -f $USR_BIN/eget ]; then
   curl -sS https://zyedidia.github.io/eget.sh | sh
-  clear
-fi
-
-if [ ! -d $HOME/.oh-my-bash ]; then
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
   clear
 fi
 
