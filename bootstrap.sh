@@ -1,5 +1,6 @@
 #! /bin/sh
 
+CWD=$PWD
 GIT_REPO="https://github.com/Spreadprism/dotfiles.git"
 DOTFILES_LOCATION="$HOME/.dotfiles"
 USR_BIN="$HOME/bin"
@@ -23,22 +24,14 @@ stow shell --adopt
 git clean -df
 git checkout -- .
 
-# Install bash_it
-BASH_IT_PATH=$HOME/.bash_it
-if [ ! -d $BASH_IT_PATH ]; then
-  git clone --depth=1 https://github.com/Bash-it/bash-it.git $BASH_IT_PATH
-  ~/.bash_it/install.sh --no-modify-config
+cd $CWD
+
+BIN_DIR=$HOME/bin
+
+if ! command -v zsh &> /dev/null; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)" -- -d $HOME/bin -e yes
   clear
+  export PATH="$PATH:$BIN_DIR/bin"
 fi
 
-# Install eget
-cd $USR_BIN
-EGET_PATH=$USR_BIN/eget
-if [ ! -f $EGET_PATH ]; then
-  curl -sS https://zyedidia.github.io/eget.sh | sh
-  clear
-fi
-
-cd
-
-exec bash
+exec zsh
